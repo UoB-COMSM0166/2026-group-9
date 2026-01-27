@@ -1,0 +1,58 @@
+let bgImage;
+let ballX, ballY;
+let ballSpeedX = 1;
+let ballSpeedY = 2;
+let acceleration = 0.002;
+const MAX_SPEED = 5; 
+let ballSize = 30;
+
+let paddleW = 60;
+let paddleH = 20;
+let paddleY; 
+
+function preload() {
+  bgImage = loadImage("https://picsum.photos/600/400");
+}
+
+function setup() {
+  createCanvas(600, 400);
+  ballX = width / 2;
+  ballY = height / 2;
+  paddleY = height - paddleH / 2; 
+}
+
+function draw() {
+  image(bgImage, 0, 0, width, height);
+
+  ballSpeedX *= (1 + acceleration);
+  ballSpeedY *= (1 + acceleration);
+  ballSpeedX = Math.sign(ballSpeedX) * Math.min(Math.abs(ballSpeedX), MAX_SPEED);
+  ballSpeedY = Math.sign(ballSpeedY) * Math.min(Math.abs(ballSpeedY), MAX_SPEED);
+
+  ballX += ballSpeedX;
+  ballY += ballSpeedY;
+
+  if (ballX + ballSize/2 > width || ballX - ballSize/2 < 0) {
+    ballSpeedX *= -1;
+  }
+  if (ballY - ballSize/2 < 0) {
+    ballSpeedY *= -1;
+  }
+
+  let paddleX = mouseX;
+  paddleX = constrain(paddleX, paddleW/2, width - paddleW/2);
+  if (
+    ballY + ballSize/2 > paddleY - paddleH/2 && 
+    ballX > paddleX - paddleW/2 && ballX < paddleX + paddleW/2 
+  ) {
+    ballSpeedY *= -1; 
+    ballY = paddleY - paddleH/2 - ballSize/2; 
+  }
+
+
+  fill(150);
+  rect(paddleX - paddleW/2, paddleY - paddleH/2, paddleW, paddleH, 10); 
+
+  fill(0, 150, 255);
+  circle(ballX, ballY, ballSize);
+}
