@@ -27,10 +27,10 @@ VIDEO. Include a demo video of your game here (you don't have to wait until the 
 
 GROUP PHOTO. Add a group photo here.
 
-- Group member 1, name, email, role
-- Group member 2, name, email, role
-- Group member 3, name, email, role
-- Group member 4, name, email, role
+- Group member 1, Jack Feng, yj25938@bristol.ac.uk, role -n/a
+- Group member 2, Sinan Xu, pi25205@bristol.ac.uk , role
+- Group member 3, Yize Yang, jn25127@bristol.ac.uk, role
+- Group member 4, Zhanyu xu, pr25318@bristol.ac.uk, role
 - Group member 5, name, email, role
 - Group member 6, name, email, role
 
