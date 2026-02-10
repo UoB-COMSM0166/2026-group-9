@@ -31,8 +31,7 @@ GROUP PHOTO. Add a group photo here.
 - Group member 2, Sinan Xu, pi25205@bristol.ac.uk , role
 - Group member 3, Yize Yang, jn25127@bristol.ac.uk, role
 - Group member 4, Zhanyu xu, pr25318@bristol.ac.uk, role
-- Group member 5, name, email, role
-- Group member 6, name, email, role
+- Group member 5, Jianjiang Yang, dx25555@bristol.ac.uk, role
 
 ## Project Report
 
