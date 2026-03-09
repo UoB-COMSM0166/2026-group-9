@@ -84,6 +84,7 @@ GROUP PHOTO. Add a group photo here.
 - 15% ~750 words
 
 Qualitative Analysis: Think Aloud
+
 ❌User Observations:
 Attack Frequency: Players complained that having to click the mouse for every single attack was exhausting due to the high frequency of repetitive actions.
 
