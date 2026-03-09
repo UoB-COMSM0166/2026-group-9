@@ -1,38 +1,26 @@
 # 2026-group-9
 2026 COMSM0166 group 9
 
-# COMSM0166 Project Template
-A project template for the Software Engineering Discipline and Practice module (COMSM0166).
+## ☣️KTV☣️
 
-## Info
-
-This is the template for your group project repo/report. We'll be setting up your repo and assigning you to it after the group forming activity. You can delete this info section, but please keep the rest of the repo structure intact.
-
-You will be developing your game using [P5.js](https://p5js.org) a javascript library that provides you will all the tools you need to make your game. However, we won't be teaching you javascript, this is a chance for you and your team to learn a (friendly) new language and framework quickly, something you will almost certainly have to do with your summer project and in future. There is a lot of documentation online, you can start with:
-
-- [P5.js tutorials](https://p5js.org/tutorials/) 
-- [Coding Train P5.js](https://thecodingtrain.com/tracks/code-programming-with-p5-js) course - go here for enthusiastic video tutorials from Dan Shiffman (recommended!)
-
-## KTV
-
-Kill that Virus (or simply KTV) is a Roguelike game inspired by Vampire Survivors and Plague Inc. 
+KTV☣️:Kill that Virus is a Roguelike game inspired by Vampire Survivors and Plague Inc. 
 You play as a single cell within the human body, 
 on a mission to purge all foreign pathogens and impurities. 
 Players can dive into the Story Mode to experience a meticulously designed plot full of twists and turns, 
 or test their limits in Endless Mode for a pure, adrenaline-pumping Roguelike combat experience.
 Across both modes, players can enjoy the following signature features crafted by our team:
 
-Diverse Arsenal: A wide variety of weapons to choose from.
+☣️Diverse Arsenal: A wide variety of weapons to choose from.
 
-Miraculous Items: Power-ups with unique and awesome effects.
+🧪Miraculous Items: Power-ups with unique and awesome effects.
 
-Hand-Drawn Environments: Game scenes 100% hand-painted by our development team.
+✏️Hand-Drawn Environments: Game scenes 100% hand-painted by our development team.
 
-Escalating Challenges: Enemies that grow increasingly difficult as you progress.
+💀Escalating Challenges: Enemies that grow increasingly difficult as you progress.
 
-Intense Boss Fights: Heart-pounding encounters against massive pathogens.
+😈Intense Boss Fights: Heart-pounding encounters against massive pathogens.
 
-Educational Trivia: Fun facts and insights into how the human body works.
+📗Educational Trivia: Fun facts and insights into how the human body works.
 
 And many more hidden surprises!
 In KTV, the gameplay experience evolves based on your actions and choices. 
