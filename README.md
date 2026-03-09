@@ -102,6 +102,7 @@ Impact Feedback (Damage): Players suggested adding screen shake and prominent wa
 Tutorial Level: Players suggested implementing a tutorial stage to help them better understand the mechanics and objectives of the game.
 
 Analysis Outcome:
+
 Optimizing Attack Mechanics: The most frequent feedback received was regarding the "one click, one attack" constraint. Players found constant clicking tedious, especially when facing large swarms of enemies. To resolve this and improve immersion, we will implement an auto-fire feature that allows continuous weapon use by holding down the mouse button.
 
 Improving Intuitive Design: Requests for both game instructions and tutorial levels reflect a core issue: the current gameplay experience is not intuitive enough. While this can be addressed through tutorials, we aim to prioritize improving the UI/UX design and providing clearer on-screen guidance to create a more seamless learning curve.
