@@ -13,15 +13,29 @@ You will be developing your game using [P5.js](https://p5js.org) a javascript li
 - [P5.js tutorials](https://p5js.org/tutorials/) 
 - [Coding Train P5.js](https://thecodingtrain.com/tracks/code-programming-with-p5-js) course - go here for enthusiastic video tutorials from Dan Shiffman (recommended!)
 
-## Your Game (change to title of your game)
+Kill that Virus (KTV) - Game Introduction
+Kill that Virus (or simply KTV) is a Roguelike game inspired by Vampire Survivors and Plague Inc. You play as a single cell within the human body, on a mission to purge all foreign pathogens and impurities. Players can dive into the Story Mode to experience a meticulously designed plot full of twists and turns, or test their limits in Endless Mode for a pure, adrenaline-pumping Roguelike combat experience.
 
-STRAPLINE. Add an exciting one sentence description of your game here.
+Across both modes, players can enjoy the following signature features crafted by our team:
 
-IMAGE. Add an image of your game here, keep this updated with a snapshot of your latest development.
+Diverse Arsenal: A wide variety of weapons to choose from.
 
-LINK. Add a link here to your deployed game, you can also make the image above link to your game if you wish. Your game lives in the [/docs](/docs) folder, and is published using Github pages. 
+Miraculous Items: Power-ups with unique and awesome effects.
 
-VIDEO. Include a demo video of your game here (you don't have to wait until the end, you can insert a work in progress video)
+Hand-Drawn Environments: Game scenes 100% hand-painted by our development team.
+
+Escalating Challenges: Enemies that grow increasingly difficult as you progress.
+
+Intense Boss Fights: Heart-pounding encounters against massive pathogens.
+
+Educational Trivia: Fun facts and insights into how the human body works.
+
+And many more hidden surprises!
+
+In KTV, the gameplay experience evolves based on your actions and choices. As your capabilities grow, the enemies and levels will continuously challenge your reflexes and tactical skills. We strive to deliver a unique, heart-racing, and addictive experience for every player!
+
+—Purge or be purged. The choice is yours.—
+Group 9 Developers
 
 ## Your Group
 
