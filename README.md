@@ -21,12 +21,19 @@ on a mission to purge all foreign pathogens and impurities.
 Players can dive into the Story Mode to experience a meticulously designed plot full of twists and turns, 
 or test their limits in Endless Mode for a pure, adrenaline-pumping Roguelike combat experience.
 Across both modes, players can enjoy the following signature features crafted by our team:
+
 Diverse Arsenal: A wide variety of weapons to choose from.
+
 Miraculous Items: Power-ups with unique and awesome effects.
+
 Hand-Drawn Environments: Game scenes 100% hand-painted by our development team.
+
 Escalating Challenges: Enemies that grow increasingly difficult as you progress.
+
 Intense Boss Fights: Heart-pounding encounters against massive pathogens.
+
 Educational Trivia: Fun facts and insights into how the human body works.
+
 And many more hidden surprises!
 In KTV, the gameplay experience evolves based on your actions and choices. 
 As your capabilities grow, the enemies and levels will 
