@@ -38,6 +38,7 @@ Group 9 Developers
 
 
 🔗[Link of Latest version of the Game!]
+https://uob-comsm0166.github.io/2026-group-9/
 
 🎮[Demo video!]
 
