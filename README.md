@@ -1,38 +1,26 @@
 # 2026-group-9
 2026 COMSM0166 group 9
 
-# COMSM0166 Project Template
-A project template for the Software Engineering Discipline and Practice module (COMSM0166).
+## ☣️KTV☣️
 
-## Info
-
-This is the template for your group project repo/report. We'll be setting up your repo and assigning you to it after the group forming activity. You can delete this info section, but please keep the rest of the repo structure intact.
-
-You will be developing your game using [P5.js](https://p5js.org) a javascript library that provides you will all the tools you need to make your game. However, we won't be teaching you javascript, this is a chance for you and your team to learn a (friendly) new language and framework quickly, something you will almost certainly have to do with your summer project and in future. There is a lot of documentation online, you can start with:
-
-- [P5.js tutorials](https://p5js.org/tutorials/) 
-- [Coding Train P5.js](https://thecodingtrain.com/tracks/code-programming-with-p5-js) course - go here for enthusiastic video tutorials from Dan Shiffman (recommended!)
-
-## KTV
-
-Kill that Virus (or simply KTV) is a Roguelike game inspired by Vampire Survivors and Plague Inc. 
+KTV☣️:Kill that Virus is a Roguelike game inspired by Vampire Survivors and Plague Inc. 
 You play as a single cell within the human body, 
 on a mission to purge all foreign pathogens and impurities. 
 Players can dive into the Story Mode to experience a meticulously designed plot full of twists and turns, 
 or test their limits in Endless Mode for a pure, adrenaline-pumping Roguelike combat experience.
 Across both modes, players can enjoy the following signature features crafted by our team:
 
-Diverse Arsenal: A wide variety of weapons to choose from.
+☣️Diverse Arsenal: A wide variety of weapons to choose from.
 
-Miraculous Items: Power-ups with unique and awesome effects.
+🧪Miraculous Items: Power-ups with unique and awesome effects.
 
-Hand-Drawn Environments: Game scenes 100% hand-painted by our development team.
+✏️Hand-Drawn Environments: Game scenes 100% hand-painted by our development team.
 
-Escalating Challenges: Enemies that grow increasingly difficult as you progress.
+💀Escalating Challenges: Enemies that grow increasingly difficult as you progress.
 
-Intense Boss Fights: Heart-pounding encounters against massive pathogens.
+😈Intense Boss Fights: Heart-pounding encounters against massive pathogens.
 
-Educational Trivia: Fun facts and insights into how the human body works.
+📗Educational Trivia: Fun facts and insights into how the human body works.
 
 And many more hidden surprises!
 In KTV, the gameplay experience evolves based on your actions and choices. 
@@ -43,11 +31,18 @@ We strive to deliver a unique, heart-racing, and addictive experience for every 
 —Purge or be purged. The choice is yours.—
 Group 9 Developers
 
-IMAGE. Add an image of your game here, keep this updated with a snapshot of your latest development.
+📸[Snapshot of Latest version of the Game!]
 
-LINK. Add a link here to your deployed game, you can also make the image above link to your game if you wish. Your game lives in the [/docs](/docs) folder, and is published using Github pages. 
+![messageImage_1773095176948](https://github.com/user-attachments/assets/e16f068c-57cc-4c2c-a1a0-edaa304d4dbe)
+![messageImage_1773095199516](https://github.com/user-attachments/assets/b3a64b21-95ef-439a-a950-c1aab06e6b9a)
 
-VIDEO. Include a demo video of your game here (you don't have to wait until the end, you can insert a work in progress video)
+
+🔗[Link of Latest version of the Game!]
+
+🎮[Demo video!]
+
+![新增專案](https://github.com/user-attachments/assets/bf459aad-1ec8-4561-bec8-25a3b12d70c9)
+
 
 ## Your Group
 
@@ -65,7 +60,6 @@ GROUP PHOTO. Add a group photo here.
 
 ### Introduction
 
-- 5% ~250 words 
 - This game is based on Vampire Survivors and expands on the original gameplay with richer content and more diverse mechanics. It is a top-down 2D survival game in which players only need to use the WASD keys to control the character’s movement and the mouse to point toward enemies; the character will then attack automatically without additional input. Enemies continuously spawn outside the player’s field of view and quickly move toward the character to launch attacks. Whenever the character takes damage, their health bar decreases, and if health reaches zero, the run ends.
 - The core innovation of our game lies in the deep integration of classic roguelike elements into the original structure. Once the game starts, it proceeds in real time without pausing, creating a tense and immersive experience. After defeating a certain number of enemies, players earn rewards such as new weapons, passive items, or buffs that enhance their combat ability. As time passes, they face increasingly powerful and numerous enemy waves. Each run features random upgrades and enemy combinations, ensuring that no two playthroughs feel the same. 
 
@@ -85,12 +79,14 @@ GROUP PHOTO. Add a group photo here.
 
 - Describe implementation of your game, in particular highlighting the TWO areas of *technical challenge* in developing your game. 
 
-### Evaluation
+### ✍️Evaluation💭
 
 - 15% ~750 words
 
 Qualitative Analysis: Think Aloud
-User Observations:
+
+🤔User Observations:
+
 Attack Frequency: Players complained that having to click the mouse for every single attack was exhausting due to the high frequency of repetitive actions.
 
 Game Guidance: Players suggested adding various in-game instructions to reduce the sense of confusion during their first playthrough.
@@ -101,7 +97,7 @@ Impact Feedback (Damage): Players suggested adding screen shake and prominent wa
 
 Tutorial Level: Players suggested implementing a tutorial stage to help them better understand the mechanics and objectives of the game.
 
-Analysis Outcome:
+✨Analysis Outcome:
 
 Optimizing Attack Mechanics: The most frequent feedback received was regarding the "one click, one attack" constraint. Players found constant clicking tedious, especially when facing large swarms of enemies. To resolve this and improve immersion, we will implement an auto-fire feature that allows continuous weapon use by holding down the mouse button.
 
