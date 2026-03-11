@@ -7,6 +7,8 @@ let timer = 15;
 let killCount = 0;
 let currentLevel = 1;
 let gameState = "PLAY";
+let lastshotTime = 0;
+let fireRate = 200; // 射擊間隔200毫秒
 
 const WORLD_W = 1920;
 const WORLD_H = 1080;
@@ -54,6 +56,24 @@ function draw() {
 }
 
 function updateGame() {
+    // 自動射擊邏輯：按住滑鼠且過了冷卻時間
+  if (mouseIsPressed && millis() - lastShotTime > fireRate) {
+    let camX = constrain(width / 2 - player.x, -(WORLD_W - width), 0);
+    let camY = constrain(height / 2 - player.y, -(WORLD_H - height), 0);
+    
+    // 計算從玩家中心到滑鼠位置的角度
+    let angle = atan2(mouseY - (player.y + camY), mouseX - (player.x + camX));
+    
+    bullets.push({ 
+        //used AI to help figure out the correct angle...// 這裡的角度計算確實有點麻煩，AI幫了不少忙
+      x: player.x, 
+      y: player.y, 
+      vx: cos(angle) * 10, 
+      vy: sin(angle) * 10 
+    });
+    
+    lastShotTime = millis(); // 更新最後射擊時間
+  }
     // 玩家移動
     // if (keyIsDown(LEFT_ARROW)) player.x -= 4;
     // if (keyIsDown(RIGHT_ARROW)) player.x += 4;
@@ -158,15 +178,16 @@ function resetPlayer() {
     player = {x: WORLD_W / 2, y: WORLD_H / 2, size: 30, hp: 10};
 }
 
-function mousePressed() {
-    if (gameState === "PLAY") {
-        // 修正攝影機偏移後的射擊角度
-        let camX = constrain(width / 2 - player.x, -(WORLD_W - width), 0);
-        let camY = constrain(height / 2 - player.y, -(WORLD_H - height), 0);
-        let angle = atan2(mouseY - (player.y + camY), mouseX - (player.x + camX));
-        bullets.push({x: player.x, y: player.y, vx: cos(angle) * 10, vy: sin(angle) * 10});
-    }
-}
+//此為原本的射擊邏輯，已改為限制射擊頻率的版本
+// function mousePressed() {
+//     if (gameState === "PLAY") {
+//         // 修正攝影機偏移後的射擊角度
+//         let camX = constrain(width / 2 - player.x, -(WORLD_W - width), 0);
+//         let camY = constrain(height / 2 - player.y, -(WORLD_H - height), 0);
+//         let angle = atan2(mouseY - (player.y + camY), mouseX - (player.x + camX));
+//         bullets.push({x: player.x, y: player.y, vx: cos(angle) * 10, vy: sin(angle) * 10});
+//     }
+// }
 
 function drawGameContent() {
     // 畫主角
