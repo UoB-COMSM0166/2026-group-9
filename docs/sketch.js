@@ -88,7 +88,7 @@ function updateGame() {
         }
 
     }
-    if(KeyIsDown(65)) player.x-= 4 * moveXMult;//A
+    if(keyIsDown(65)) player.x-= 4 * moveXMult;//A
     if(KeyIsDown(68)) player.x+= 4 * moveXMult;//D
     if(KeyIsDown(87)) player.y-= 4 * moveYMult;//W
     if(KeyIsDown(83)) player.y+= 4 * moveYMult;//S
@@ -108,7 +108,7 @@ function updateGame() {
     let angle = atan2(mouseY - (player.y + camY), mouseX - (player.x + camX));
     
     bullets.push({ 
-        //used AI to help figure out the correct angle...// 這裡的角度計算確實有點麻煩，AI幫了不少忙
+        //used AI to help figure out the correct angle...//
       x: player.x, 
       y: player.y, 
       vx: cos(angle) * 10, 
