@@ -1,4 +1,4 @@
-let bgImg1, bgImg2;
+let bgImg1, bgImg2, bgImg3;
 let player;
 let bullets = [];
 let enemies = [];
@@ -19,6 +19,7 @@ const VICTORY_KILLS_LV2 = 10; // 第二關需要的殺敵數門檻
 function preload() {
     bgImg1 = loadImage('01.png');
     bgImg2 = loadImage('02.png');
+    bgImg3 = loadImage('03.png');
 }
 
 function setup() {
@@ -42,7 +43,8 @@ function draw() {
 
         // 根據當前關卡顯示背景
         if (currentLevel === 1) image(bgImg1, 0, 0, WORLD_W, WORLD_H);
-        else image(bgImg2, 0, 0, WORLD_W, WORLD_H);
+        else if (currentLevel === 2) image(bgImg2, 0, 0, WORLD_W, WORLD_H);
+        else image(bgImg3, 0, 0, WORLD_W, WORLD_H);
 
         drawGameContent();
         pop();
@@ -72,7 +74,7 @@ function updateGame() {
       vy: sin(angle) * 10 
     });
     
-    lastShotTime = millis(); // 更新最後射擊時間
+    lastshotTime = millis(); // 更新最後射擊時間
   }
     // 玩家移動
     // if (keyIsDown(LEFT_ARROW)) player.x -= 4;
@@ -90,16 +92,22 @@ function updateGame() {
     player.y = constrain(player.y, 0, WORLD_H);
 
     // 敵人生成：第二關生成頻率稍快
-    let spawnRate = currentLevel === 1 ? 60 : 45;
-    if (frameCount % spawnRate === 0) {
-        let angle = random(TWO_PI);
-        enemies.push({
-            x: player.x + cos(angle) * 400,
-            y: player.y + sin(angle) * 400,
-            size: 25,
-            hp: currentLevel === 1 ? 3 : 5 // 第二關細菌變硬
-        });
-    }
+    // 根據關卡調整生成頻率 (數字越小越快)
+let spawnRate = 60; 
+if (currentLevel === 1) spawnRate = 60;
+else if (currentLevel === 2) spawnRate = 45;
+else if (currentLevel === 3) spawnRate = 30; // 第三關大幅增加生成速度
+
+if (frameCount % spawnRate === 0) {
+    let angle = random(TWO_PI);
+    enemies.push({
+        x: player.x + cos(angle) * 400,
+        y: player.y + sin(angle) * 400,
+        size: 25,
+        // 第三關細菌血量增加 (假設原本是 3 或 5)
+        hp: currentLevel === 3 ? 8 : (currentLevel === 2 ? 5 : 3) 
+    });
+}
 
     updateObjects();
 
@@ -114,15 +122,18 @@ function updateGame() {
         } else if (currentLevel === 2) {
             // 第二關：時間到「且」殺敵滿 20
             if (killCount >= VICTORY_KILLS_LV2) {
-                gameState = "WIN";
-            } else {
-                gameState = "GAMEOVER"; // 沒殺滿 20 隻，判定失敗
+                goToLevel3();
+            } else gameState = "GAMEOVER"; 
+        }else if( currentLevel === 3) {
+                if (killCount >= 45) gameState = "WIN";
+                else gameState = "GAMEOVER";
             }
         }
-    }
+    
 
-    if (player.hp <= 0) gameState = "GAMEOVER";
+    if (player.hp <= 0) {gameState = "GAMEOVER";}
 }
+
 
 function updateObjects() {
     // 子彈移動
@@ -169,6 +180,17 @@ function goToLevel2() {
     // timer = 60;
     timer = 25;
     killCount = 0; // 重置第二關的殺敵數
+    enemies = [];
+    bullets = [];
+    resetPlayer();
+}
+
+function goToLevel3() {
+    currentLevel = 3;
+    levelDuration = 60; // 設定通關時間一分鐘
+    timer = 60;
+    killCount = 0; 
+    VICTORY_KILLS_LV3 = 45; // 新增一個變數來存第三關目標
     enemies = [];
     bullets = [];
     resetPlayer();
@@ -240,7 +262,10 @@ function drawUI() {
         textStyle(BOLD);
         stroke(0);
         strokeWeight(4);
-        let title = currentLevel === 1 ? "-Infected Lungs-" : "-Toxic Stomach-";
+        let title = " ";
+        if(currentLevel === 1) title = "LEVEL 1: Lost in Lungs";
+        else if(currentLevel === 2) title = "LEVEL 2: Broken Brain";
+        else title = "LEVEL 3: Get THE F@%# OUT!";
         text(title, width / 2, height / 2);
         pop();
     }
