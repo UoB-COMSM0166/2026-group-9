@@ -26,13 +26,34 @@ function spawnEnemies() {
         spawnX = constrain(spawnX, 0, WORLD_W - MARGIN_DISTANCE);
         spawnY = constrain(spawnY, 0, WORLD_H - MARGIN_DISTANCE);
 
-        var newEnemy = createEnemy("enemy1", spawnX, spawnY);
+        // 决定敌人种类
+        var newEnemy;
+        let seed = random(1, 100);
+        let checkpoint;
+        if (currentLevel === 1) {
+            // checkpoint = 100;
+            checkpoint = 10;
+        } else if (currentLevel === 2) {
+            checkpoint = 60;
+        } else {
+            checkpoint = 20;
+        }
+        if (seed <= checkpoint) {
+            newEnemy = createEnemy("basic", spawnX, spawnY);
+        } else {
+            if (random() < 0.5) {
+                newEnemy = createEnemy("fast", spawnX, spawnY);
+            } else {
+                newEnemy = createEnemy("tank", spawnX, spawnY);
+            }
+        }
 
         enemies.push({
             type: newEnemy.type,
             x: newEnemy.x,
             y: newEnemy.y,
             hp: newEnemy.hp,
+            maxHp: newEnemy.maxHp,
             size: newEnemy.size,
             contactDamage: newEnemy.contactDamage,
             color: newEnemy.color,

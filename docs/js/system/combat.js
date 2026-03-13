@@ -22,7 +22,8 @@ function updateEnemiesAndCombat() {
         // 被子彈擊中
         for (let j = bullets.length - 1; j >= 0; j--) {
             if (dist(bullets[j].x, bullets[j].y, e.x, e.y) < e.size / 2 + 5) {
-                damageEnemy(e, 3);
+                //此处参数'amount'应传入武器伤害，由于武器模块未完成，此处暂时用字面量代替
+                damageEnemy(e, 2);
                 bullets.splice(j, 1);
                 break;
             }

@@ -15,18 +15,21 @@ function drawGameContent() {
     // 畫主角
     fill(0, 255, 150);
     ellipse(player.x, player.y, player.size);
-    drawHealthBar(player.x, player.y - 25, player.hp, 10, "green");
+    // drawHealthBar(player.x, player.y - 25, player.hp, 10, "green");
+    drawHealthBar(player.x, player.y - 25, player.hp, 20, "green");
     // 畫敵人
     for (let e of enemies) {
-        fill(255, 50, 50);
+
+        fill(e.color);
         ellipse(e.x, e.y, e.size);
-        drawHealthBar(e.x, e.y - 20, e.hp, e.hp, "red");
+        drawHealthBar(e.x, e.y - (e.size * 0.75), e.hp, e.maxHp, "red");
     }
     // 畫子彈
     fill(255, 255, 0);
     for (let b of bullets) ellipse(b.x, b.y, 12);
 }
 
+// 也许可以根据敌人体型大小修改血条整体大小
 function drawHealthBar(x, y, curr, max, col) {
     push();
     rectMode(CENTER);

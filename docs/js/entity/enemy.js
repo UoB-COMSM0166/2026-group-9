@@ -6,6 +6,7 @@ function createEnemy(type, x, y) {
         x: x,
         y: y,
         hp: template.hp,
+        maxHp: template.maxHp,
         size: template.size,
         contactDamage: template.contactDamage,
         color: template.color,

@@ -21,6 +21,10 @@ function handlePlayerMovement() {
     if (keyIsDown(87)) player.y -= 4 * moveYMult;
     if (keyIsDown(83)) player.y += 4 * moveYMult;
 
+    // 方便调试，按o进入第二关，按p进入第三关
+    if (keyIsDown(79)) goToLevel2();
+    if (keyIsDown(80)) goToLevel3();
+
     if (confusionMsg !== "") {
         fill(255, 0, 0);
         textSize(30);
