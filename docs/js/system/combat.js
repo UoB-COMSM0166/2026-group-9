@@ -18,13 +18,11 @@ function updateEnemiesAndCombat() {
     // 敵人追逐與碰撞
     for (let i = enemies.length - 1; i >= 0; i--) {
         let e = enemies[i];
-        let angle = atan2(player.y - e.y, player.x - e.x);
-        e.x += cos(angle) * (currentLevel === 1 ? 2.0 : 2.5);
-        e.y += sin(angle) * (currentLevel === 1 ? 2.0 : 2.5);
+        moveEnemyTowardPlayer(e, player);
         // 被子彈擊中
         for (let j = bullets.length - 1; j >= 0; j--) {
             if (dist(bullets[j].x, bullets[j].y, e.x, e.y) < e.size / 2 + 5) {
-                e.hp -= 3;
+                damageEnemy(e, 3);
                 bullets.splice(j, 1);
                 break;
             }
@@ -40,3 +38,4 @@ function updateEnemiesAndCombat() {
         }
     }
 }
+

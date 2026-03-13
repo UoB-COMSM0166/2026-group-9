@@ -19,7 +19,7 @@ function drawGameContent() {
     for (let e of enemies) {
         fill(255, 50, 50);
         ellipse(e.x, e.y, e.size);
-        drawHealthBar(e.x, e.y - 20, e.hp, currentLevel === 1 ? 3 : 5, "red");
+        drawHealthBar(e.x, e.y - 20, e.hp, e.hp, "red");
     }
     // 畫子彈
     fill(255, 255, 0);
