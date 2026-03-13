@@ -58,7 +58,7 @@ GROUP PHOTO. Add a group photo here.
 ![b5fa1d2dc8a17b01f6c224e67302c3bb](https://github.com/user-attachments/assets/f1b4bfc4-1020-4e09-a5f2-37b27771b751)
 
 
-- Group member 1, Jack Feng, yj25938@bristol.ac.uk, role -n/a
+- Group member 1, Jack Feng, yj25938@bristol.ac.uk, role
 - Group member 2, Sinan Xu, pi25205@bristol.ac.uk , role
 - Group member 3, Yize Yang, jn25127@bristol.ac.uk, role
 - Group member 4, Zhanyu xu, pr25318@bristol.ac.uk, role
