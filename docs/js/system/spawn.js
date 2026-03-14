@@ -31,6 +31,7 @@ function spawnEnemies() {
         let seed = random(1, 100);
         let checkpoint;
         if (currentLevel === 1) {
+            // todo recover the enemy checkpoint
             // checkpoint = 100;
             checkpoint = 10;
         } else if (currentLevel === 2) {
@@ -48,16 +49,25 @@ function spawnEnemies() {
             }
         }
 
-        enemies.push({
-            type: newEnemy.type,
-            x: newEnemy.x,
-            y: newEnemy.y,
-            hp: newEnemy.hp,
-            maxHp: newEnemy.maxHp,
-            size: newEnemy.size,
-            contactDamage: newEnemy.contactDamage,
-            color: newEnemy.color,
-            speed: newEnemy.speed
+        enemies.push(newEnemy);
+    }
+}
+
+function spawnDeathParticles(x, y, color) {
+    // 粒子数量
+    let count = 10;
+    for (let i = 0; i < count; i++) {
+        let angle = random(TWO_PI);
+        let speed = random(3, 6);
+
+        particles.push({
+            x: x,
+            y: y,
+            spdX: cos(angle) * speed,
+            spdY: sin(angle) * speed,
+            life: 300,
+            color: color,
+            size: random(3, 6)
         });
     }
 }

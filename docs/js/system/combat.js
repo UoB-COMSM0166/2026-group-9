@@ -38,6 +38,7 @@ function updateEnemiesAndCombat() {
             redMaskAlpha = 150;
 
         } else if (e.hp <= 0) {
+            spawnDeathParticles(e.x, e.y, e.color);
             enemies.splice(i, 1);
             killCount++; // 擊殺數增加
         }

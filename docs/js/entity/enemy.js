@@ -3,6 +3,7 @@ function createEnemy(type, x, y) {
 
     return {
         type: template.id,
+        shape: template.shape,
         x: x,
         y: y,
         hp: template.hp,
@@ -29,5 +30,9 @@ function moveEnemyTowardPlayer(enemy, player) {
 
 function damageEnemy(enemy, amount) {
     enemy.hp -= amount;
-    if (enemy.hp < 0) enemy.hp = 0;
+    enemy.flashTimer = 18;
+
+    if (enemy.hp < 0) {
+        enemy.hp = 0;
+    }
 }

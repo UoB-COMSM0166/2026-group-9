@@ -19,14 +19,60 @@ function drawGameContent() {
     drawHealthBar(player.x, player.y - 25, player.hp, 20, "green");
     // 畫敵人
     for (let e of enemies) {
+        push();
+        noStroke();
+        // 敌人受伤闪烁
+        // todo 受伤动画选择
+        if (e.flashTimer > 0) {
+            if (e.flashTimer % 6 === 0) {
+                fill(255);
+            } else {
+                fill(e.color);
+            }
 
-        fill(e.color);
-        ellipse(e.x, e.y, e.size);
+            e.flashTimer--;
+        } else {
+            fill(e.color);
+        }
+        if (e.shape === "rect") {
+            rectMode(CENTER);
+            rect(e.x, e.y, e.size, e.size);
+        } else if (e.shape === "triangle") {
+            let r = e.size / 2;
+            // 等边三角形
+            triangle(
+                e.x, e.y - r,
+                e.x - r * 0.866, e.y + r * 0.5,
+                e.x + r * 0.866, e.y + r * 0.5
+            );
+        } else {
+            ellipse(e.x, e.y, e.size);
+        }
+        pop();
         drawHealthBar(e.x, e.y - (e.size * 0.75), e.hp, e.maxHp, "red");
     }
     // 畫子彈
     fill(255, 255, 0);
     for (let b of bullets) ellipse(b.x, b.y, 12);
+
+    // 画粒子
+    for (let i = particles.length - 1; i >= 0; i--) {
+        let p = particles[i];
+        p.x += p.spdX;
+        p.y += p.spdY;
+        p.life -= 10;
+
+        push();
+        noStroke();
+        fill(p.color);
+        rectMode(CENTER);
+        rect(p.x, p.y, p.size, p.size);
+        pop();
+
+        if (p.life <= 0) {
+            particles.splice(i, 1);
+        }
+    }
 }
 
 // 也许可以根据敌人体型大小修改血条整体大小
@@ -58,7 +104,7 @@ function drawUI() {
         textAlign(CENTER, CENTER);
 
         let currentLevelDuration = (currentLevel === 1) ? 15 : (currentLevel === 2 ? 25 : 60);
-        let title = "";
+        let title;
         if (currentLevel === 1) title = "LEVEL 1: Lost in Lungs";
         else if (currentLevel === 2) title = "LEVEL 2: Broken Brain";
         else title = "LEVEL 3: Get THE F@%# OUT!";
