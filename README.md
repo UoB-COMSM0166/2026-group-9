@@ -3,6 +3,14 @@
 
 <img width="1920" height="1080" alt="MainMenu" src="https://github.com/user-attachments/assets/7d509195-b73f-4de7-8836-eb1c6b9c4b80" />
 
+🔗[Link of Latest version of the Game!]
+
+https://uob-comsm0166.github.io/2026-group-9/
+
+📝[Link of our Kanban board]
+
+(https://offjjx.atlassian.net/jira/software/projects/SCRUM/boards/1?atlOrigin=eyJpIjoiZjQ5MmMyOTljMzQ2NGY1OTkwZGIzM2Y1NTIyNjUzOWYiLCJwIjoiaiJ9)
+
 ## ☣️KTV☣️
 
 KTV☣️:Kill that Virus is a Roguelike game inspired by Vampire Survivors and Plague Inc. 
@@ -33,16 +41,10 @@ We strive to deliver a unique, heart-racing, and addictive experience for every 
 —Purge or be purged. The choice is yours.—
 Group 9 Developers
 
-
-
 📸[Snapshot of Latest version of the Game!]
 
 ![messageImage_1773355627386](https://github.com/user-attachments/assets/bc6467a4-8cf6-4ad3-b1dc-55f7babb7f24)
 
-
-🔗[Link of Latest version of the Game!]
-
-https://uob-comsm0166.github.io/2026-group-9/
 
 🎮[Demo video!]
 
@@ -60,10 +62,6 @@ GROUP PHOTO. Add a group photo here.
 - Group member 3, Yize Yang, jn25127@bristol.ac.uk, role
 - Group member 4, Zhanyu xu, pr25318@bristol.ac.uk, role
 - Group member 5, Jianjiang Yang, dx25555@bristol.ac.uk, role
-
-- 📝[Link of our Kanban board]
-
-(https://offjjx.atlassian.net/jira/software/projects/SCRUM/boards/1?atlOrigin=eyJpIjoiZjQ5MmMyOTljMzQ2NGY1OTkwZGIzM2Y1NTIyNjUzOWYiLCJwIjoiaiJ9)
 
 ## Project Report
 
