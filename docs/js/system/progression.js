@@ -15,7 +15,7 @@ function checkProgress() {
                 goToLevel3();
             } else gameState = "GAMEOVER";
         } else if (currentLevel === 3) {
-            if (killCount >= 45) gameState = "WIN";
+            if (killCount >= 45) triggerGameWin();
             else gameState = "GAMEOVER";
         }
     }
@@ -44,10 +44,6 @@ function goToLevel3() {
     enemies = [];
     bullets = [];
     resetPlayer();
-    if(killCount >= 45){
-        triggerGameWin();
-    }
-    else{gameState = "GAMEOVER";}
 }
 
 
