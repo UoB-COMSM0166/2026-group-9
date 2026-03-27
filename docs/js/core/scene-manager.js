@@ -9,7 +9,7 @@ function sceneSwitch() {
         drawWorld();
         drawUI();
     } else if (gameState === "WIN") {
-        showEndScreen("ALL INFECTIONS CLEARED!");
+        showComicBook();
     } else {
         showEndScreen("CELL DESTROYED");
     }
