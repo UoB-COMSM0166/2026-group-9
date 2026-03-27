@@ -77,6 +77,7 @@ function mousePressed() {
 }
 
 function triggerGameWin() {
+    userStartAudio
     gameState = "WIN";
     currentComicPage = 0;
     comicFadeAlpha = 255; // 從全黑開始
