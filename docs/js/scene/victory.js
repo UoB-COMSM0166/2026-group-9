@@ -20,6 +20,7 @@ function draw() {
 }
 
 function showComicBook() {
+    console.log("I AM DRAWING THE COMIC NOW!");
     background(0); // 漫畫底色為黑
     
     // 1. 顯示目前的漫畫頁面
