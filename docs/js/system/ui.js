@@ -16,9 +16,17 @@ function drawGameContent() {
      
     drawPlayer(); // new add 调用我们在player.js里写的图像绘制函数
 
+    if (shieldOn) {
+        push();
+        noFill();
+        stroke(0, 200, 255);
+        strokeWeight(4);
+        ellipse(player.x, player.y, player.size + 18);
+        pop();
+    }
 
     // drawHealthBar(player.x, player.y - 25, player.hp, 10, "green");
-    drawHealthBar(player.x, player.y - 25, player.hp, 20, "green");
+    drawHealthBar(player.x, player.y - 25, player.hp, player.maxHp, "green");
     /* 畫敵人
     for (let e of enemies) {
         push();
@@ -109,11 +117,26 @@ function drawUI() {
     textSize(20);
     textAlign(LEFT);
     text("Time: " + timer, 20, 30);
-    text("HP: " + player.hp, 20, 60);
+    text("HP: " + player.hp + " / " + player.maxHp, 20, 60);
+    text("Weapon: " + weaponMode.toUpperCase(), 20, 90);
+    text("Medkits: " + medkits, 20, 120);
+
+    if (shieldOn) {
+        fill(0, 255, 255);
+        text("Shield: ON", 20, 150);
+    } else if (shieldCDLeft > 0) {
+        fill(180);
+        text("Shield CD: " + ceil(shieldCDLeft / 60) + "s", 20, 150);
+    } else {
+        fill("lime");
+        text("Shield: READY", 20, 150);
+    }
+
+    fill(255);
     // 第一關隱藏殺敵進度，第二關才顯示
     if (currentLevel === 2) {
         fill(killCount >= VICTORY_KILLS_LV2 ? "lime" : "yellow");
-        text("Kills: " + killCount + " / " + VICTORY_KILLS_LV2, 20, 90);
+        text("Kills: " + killCount + " / " + VICTORY_KILLS_LV2, 20, 180);
     }
     // 關卡標題顯示 5 秒
     if (timer > levelDuration - 5) {
