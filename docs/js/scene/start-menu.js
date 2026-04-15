@@ -1,62 +1,57 @@
-// js/scene/menu.js
-
-function showMenu() {
-    background(20); // 深色背景
-    
-    // 标题
-    fill(255, 200, 200);
-    textAlign(CENTER, CENTER);
-    textSize(60);
-    textStyle(BOLD);
-    text("MICROBE INVASION", width / 2, height / 2 - 100);
-
-    // 绘制按钮
-    drawMenuButton("START GAME", width / 2, height / 2 + 20);
-    drawMenuButton("SETTINGS", width / 2, height / 2 + 100);
-}
-
-function drawMenuButton(label, x, y) {
-    let btnW = 200;
-    let btnH = 50;
-    
-    // 检测鼠标悬停
-    let isHover = mouseX > x - btnW/2 && mouseX < x + btnW/2 && 
-                  mouseY > y - btnH/2 && mouseY < y + btnH/2;
-
-    push();
-    rectMode(CENTER);
-    stroke(255);
-    strokeWeight(2);
-    fill(isHover ? 100 : 40); // 悬停变色
-    rect(x, y, btnW, btnH, 10);
-    
-    noStroke();
+function drawStartMenu() {
+  background(30);
+  textAlign(CENTER, CENTER);
+  
+  // 绘制标题
+  fill(255, 100, 100);
+  textSize(64);
+  textStyle(BOLD);
+  text("Kill that Virus", width / 2, height / 3);
+  
+  // 按钮位置与大小
+  let btnX = width / 2;
+  let btnY = height / 2 + 60;
+  let btnW = 220;
+  let btnH = 70;
+  
+  // 检测鼠标是否悬停在按钮上以改变外观
+  let isHover = (mouseX > btnX - btnW/2 && mouseX < btnX + btnW/2 && 
+                 mouseY > btnY - btnH/2 && mouseY < btnY + btnH/2);
+                 
+  if (isHover) {
+    fill(120, 255, 120); // 悬停时变为绿色
+    cursor(HAND);
+  } else {
     fill(255);
-    textSize(24);
-    text(label, x, y);
-    pop();
+    cursor(ARROW);
+  }
+  
+  // 绘制按钮矩形
+  rectMode(CENTER);
+  noStroke();
+  rect(btnX, btnY, btnW, btnH, 15);
+  
+  // 按钮文字
+  fill(0);
+  textSize(32);
+  text("START GAME", btnX, btnY);
 }
 
-function handleMenuClick() {
-    // 检查 "START GAME" 按钮
-    if (mouseX > width/2 - 100 && mouseX < width/2 + 100 && 
-        mouseY > height/2 + 20 - 25 && mouseY < height/2 + 20 + 25) {
-        startGame();
-    }
+/**
+ * 检查是否点击了开始按钮
+ * 需在 sketch.js 的 mousePressed() 中调用
+ */
+function checkStartMenuClick() {
+  if (gameState === "MENU") {
+    let btnX = width / 2;
+    let btnY = height / 2 + 60;
+    let btnW = 220;
+    let btnH = 70;
     
-    // 检查 "SETTINGS" 按钮
-    if (mouseX > width/2 - 100 && mouseX < width/2 + 100 && 
-        mouseY > height/2 + 100 - 25 && mouseY < height/2 + 100 + 25) {
-        console.log("Settings clicked!"); // 这里可以添加设置逻辑
+    if (mouseX > btnX - btnW/2 && mouseX < btnX + btnW/2 && 
+        mouseY > btnY - btnH/2 && mouseY < btnY + btnH/2) {
+      gameState = "PLAY";
+      cursor(ARROW);
     }
-}
-
-function startGame() {
-    gameState = "PLAY";
-    currentLevel = 1;
-    timer = 15;
-    killCount = 0;
-    enemies = [];
-    bullets = [];
-    resetPlayer();
+  }
 }
