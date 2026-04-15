@@ -131,8 +131,40 @@ With these considerations, we decided to integrate player leveling and weapon dr
 
 ### 3. Design
 
-- 15% ~750 words 
-- System architecture. Class diagrams, behavioural diagrams. 
+Part 4: System Design
+4.1 Architecture Overview
+Our system architecture adheres to a core principle: every functional component and gameplay mechanic must remain highly focused on Kill That Virus! to eliminate functional redundancy. This focused approach ensures a transparent and direct relationship between event triggers, player feedback, and state transitions. For instance, as a player eliminates enemies, the resulting state change (kill count accumulation) directly drives the progression into subsequent levels. This hierarchical and interdependent design allows the system to be decomposed into manageable modular subsystems rather than a monolithic, hard-to-maintain codebase.
+
+4.2 Class Design
+Our class design follows the principle of responsibility separation to manage the complexity of a multi-stage infection battle. The Game Controller coordinates the main loop and oversees the high-level gameState. The Player class encapsulates movement, infection status (HP), and interactions with viral enemies. A dedicated Progression Component (within the system layer) acts as the single source of truth for the current kill count and level thresholds, translating gameplay performance into state transitions. Other classes, such as combat, represent domain entities with their own autonomous update and collision behaviours. Finally, the UI/Victory layer (including the showComicBook module) presents the narrative conclusion and UI feedback based on these internal states.
+
+The most important design decision was to decouple the victory narrative from the core combat logic. Instead of embedding ending triggers inside every enemy destruction function, we implemented a centralized Progression Manager. This manager monitors state changes and triggers the WIN state only when specific thresholds are met. This keeps the codebase clean, reduces redundancy, and allows us to adjust level difficulty (e.g., required kills) in one central location without affecting the underlying combat mechanics.
+
+
+Key Design Patterns:
+
+Separation of Concerns: By segregating functionality into Entity (Player, Enemy), System (Collision, Combat), and Core (Scene Management) layers, we achieved low coupling across the project.
+
+Scalability: This modularity ensures that adding new viral strains or narrative comic pages only requires configuration updates in the Data Layer (Pools) or index expansion in the Victory Module, without altering the core game loop.
+
+4.3 Behavioural Design
+While the class diagram shows the static structure of the system, the behavioural design explains how critical gameplay events—specifically the transition from intense combat to narrative conclusion—unfold over time. In our project, the most vital interaction is the Progression-to-Victory pipeline. 
+
+The behavioural path begins when a valid collision results in an enemy's destruction, triggering a signal to the Progression Manager. Once the manager identifies that the kill count has reached the level-3 threshold, it executes the triggerGameWin sequence. This path involves a complex state shift: the combat loop is paused, the Ending BGM is initialized via a user-start audio prompt to satisfy browser security policies, and the Comic Controller takes over the rendering loop. The subsequent behaviour is driven by User Input: each mouse click propagates through the system to update the currentComicPage and reset the fadeAlpha for a smooth visual transition. This sequence demonstrates how a simple gameplay event (a kill) propagates through the system to become a state change and, finally, player-visible narrative feedback.
+
+
+4.3.1 Level Progression Logic
+The dynamic progression of the game is governed by the checkProgress() method, which periodically evaluates player performance metrics. For example, in Level 2, the system simultaneously monitors the survival timer and the kill count. Only when both criteria are met will the system execute the goToLevel3() transition.
+
+4.3.2 Post-Game Narrative Sequence
+The victory sequence employs a sophisticated behavioural pattern based on Asynchronous Resource Handling and user input:
+
+Initialization & Audio Context: Upon reaching the final threshold, the ProgressionManager signals the VictoryScene. To comply with modern browser security policies regarding autoplaying audio, we implement userStartAudio() within the first user interaction to unlock the audio context for the Ending BGM.
+
+Visual Transition Algorithm: To enhance the narrative experience, we implemented a Fade-to-Black algorithm rather than abrupt image switching. By manipulating a comicFadeAlpha variable in the per-frame update loop, we achieve a smooth visual transition that enhances the atmosphere of the ending.
+
+Asynchronous Synchronization (Atomicity): While assets are loaded asynchronously to prevent browser blocking, our behavioural design ensures that showComicBook() is only invoked by the sceneSwitch() once the isLoaded state is confirmed. This guarantees Atomicity—ensuring the narrative sequence never begins with missing or partially loaded assets.
+
 
 ---
 
