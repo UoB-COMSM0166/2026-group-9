@@ -47,3 +47,16 @@ function updateGame() {
     checkProgress();
     checkGameOver();
 }
+
+function mousePressed() {
+    if (gameState === "MENU") {
+        handleMenuClick();
+    } else if (gameState === "WIN") {
+        // 原有的漫画翻页逻辑
+        userStartAudio(); 
+        if (endingBGM && !endingBGM.isPlaying()) {
+            endingBGM.loop();
+        }
+        // ... 原有的翻页判断 ...
+    }
+}
