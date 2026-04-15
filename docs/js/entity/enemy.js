@@ -19,7 +19,12 @@ function createEnemy(type, x, y) {
         sprintSpeed: template.sprintSpeed,
         sprintTimer: 0,
         sprintDx: 0,
-        sprintDy: 0
+        sprintDy: 0,
+        // add for image
+        imgKey: template.imgKey, 
+    
+        // add for image
+        flashTimer: template.flashTimer || 0 
     };
 }
 
