@@ -80,7 +80,6 @@ GROUP PHOTO. Add a group photo here.
 - [Contribution Statement](#contribution-statement)
 - [Additional Marks](#additional-marks)
 
-
 ---
 
 <a id="introduction"></a>
@@ -251,7 +250,7 @@ SUS is an internationally common user experience evaluation scale, which contain
 
 <img width="696" height="506" alt="image" src="https://github.com/user-attachments/assets/bbdc7755-c3b2-46e1-bd1e-f571e8f7c2cf" />
 
-Descriptive statistics�
+Descriptive statistics:
 
 | **Question** **No.** | **Simplified** **Question Description**                    | **Reve rse Scor ing** | **M**   **ea** **n** **Sc or** **e** | **Me** **dia** **n** | **Stan dard** **Devia** **tion** | **Mini mum Score** | **Maxi mum Score** | **Rati** **ng** **Leve** **l** |
 | -------------------- | ---------------------------------------------------------- | --------------------- | ------------------------------------ | -------------------- | -------------------------------- | ------------------ | ------------------ | ------------------------------ |
@@ -266,15 +265,14 @@ Descriptive statistics�
 | 9    | I felt   very confident using the   system.                  | Yes  | 4.60 | 5.00 | 0.49 | 4    | 5    | Exce llent (4.5   +) |
 | 10   | I needed to learn a lot   of things before I could use this   system. | No   | 1.70 | 1.00 | 1.27 | 1    | 5    | Poor (<3.   0)       |
 
-1�Project advantages (Q3, Q7, Q9, Q4, Q6): The game is easy to use and the threshold is low. The core operation is to control the direction and attack of the mouse movement with the right hand, and the movement of the character with the left hand. It adopts the common style of the industry, which reduces the cognitive cost of players. It only needs a brief introduction, and the novice teaching will be added to the starting interface. The difficulty of the level is from simple to deep, which makes players familiar with the operation method and increases their confidence in using the game.
-
-2�Good items (Q1, Q5, Q10): players' willingness to use, function integration needs to be improved. It is necessary to improve the playability and complexity of the game. At this stage, it is only the initial version, so give users a little simple feedback on the game, and the later version will increase the playability and complexity of the game.
+1. Project advantages (Q3, Q7, Q9, Q4, Q6): The game is easy to use and the threshold is low. The core operation is to control the direction and attack of the mouse movement with the right hand, and the movement of the character with the left hand. It adopts the common style of the industry, which reduces the cognitive cost of players. It only needs a brief introduction, and the novice teaching will be added to the starting interface. The difficulty of the level is from simple to deep, which makes players familiar with the operation method and increases their confidence in using the game.
+2. Good items (Q1, Q5, Q10): players' willingness to use, function integration needs to be improved. It is necessary to improve the playability and complexity of the game. At this stage, it is only the initial version, so give users a little simple feedback on the game, and the later version will increase the playability and complexity of the game.
 
 (1). Increase the types of weapons, from ordinary firearms at this stage to pistols, sniper rifles, daggers and grenades, etc.
 
 (2). As the level increases, new enemies and new mechanisms are added to improve the difficulty of the game.
 
-3�Differential items (Q2, Q8): Technicians are required to guide the problem. There is no self-group solution. The later sequence needs to be improved, because the interface has not been introduced at this stage, and technical personnel still need to introduce the gameplay, so it is necessary to add a normative introduction process to assist players in getting started. At the same time, the operation fault tolerance design is added. For example, the attack judgment range is expanded without precise positioning. Reduce the levels caused by players' operating errors, and reduce the need for help from the root cause.
+3. Differential items (Q2, Q8): Technicians are required to guide the problem. There is no self-group solution. The later sequence needs to be improved, because the interface has not been introduced at this stage, and technical personnel still need to introduce the gameplay, so it is necessary to add a normative introduction process to assist players in getting started. At the same time, the operation fault tolerance design is added. For example, the attack judgment range is expanded without precise positioning. Reduce the levels caused by players' operating errors, and reduce the need for help from the root cause.
 
 
 
@@ -348,11 +346,11 @@ function assert(condition, testName) {
 
 	if (condition) {
 	
-		console.log(`testing pass�${testName}`);
+		console.log(`testing pass: ${testName}`);
 	
 	} else {
 	
-		console.log(`testing fail�${testName}`);
+		console.log(`testing fail: ${testName}`);
 	
 	}
 
@@ -360,7 +358,7 @@ function assert(condition, testName) {
 
 resetPlayer();
 
-assert(player.x === 960 && player.y === 540 && player.hp === 10, “player’s initial HP=10�position=(960,540)�;
+assert(player.x === 960 && player.y === 540 && player.hp === 10, "player’s initial HP=10, position=(960,540)";
 
  
 
@@ -386,11 +384,11 @@ function assert(condition, testName) {
 
 	if (condition) {
 	
-		console.log(`testing pass�${testName}`);
+		console.log(`testing pass: ${testName}`);
 	
 	} else {
 	
-		console.log(`testing fail�${testName}`);
+		console.log(`testing fail: ${testName}`);
 	
 	}
 
