@@ -320,16 +320,23 @@ NASA:
 
 <img width="951" height="817" alt="image" src="https://github.com/user-attachments/assets/04c01bbd-5cc4-46f8-8208-6341cc988fbc" />
 
-| Jean         | 4.06 | 2.14 | 1    | 2.75 | 4    | 5     | 8    | 2.25 |
-| ------------ | ---- | ---- | ---- | ---- | ---- | ----- | ---- | ---- |
-| Shanl ey     | 3.75 | 2.41 | 1    | 2.00 | 3    | 5     | 9    | 3.00 |
-| Yuton g Liu  | 4.62 | 3.05 | 1    | 1.75 | 4.50 | 7.25  | 10   | 5.50 |
-| Chien Yu Kuo | 5.50 | 3.61 | 1    | 2.75 | 4.00 | 10.00 | 10   | 7.25 |
-| Hsin man Liu | 4.06 | 2.35 | 1    | 2.00 | 5.00 | 5.00  | 9    | 3.00 |
-| Chuc k       | 4.38 | 1.59 | 2    | 3.00 | 4.00 | 5.00  | 8    | 2.00 |
-| Frida        | 4.75 | 2.89 | 1    | 2.00 | 4.00 | 8.00  | 9    | 6.00 |
-| Jinni Li     | 4.81 | 3.06 | 1    | 1.00 | 5.00 | 7.25  | 10   | 6.25 |
 
+## NASA-TLX Workload Assessment
+Mean scores with standard deviation (n participants)  
+Scale: 1-10
+
+| participants | Mean  | Standard Deviation | Minimum | 25th Percentile | Median (50th Percentile) | 75th Percentile | Maximum | Interquartile Range (IQR) |
+| ------------ | ----- | ------------------ | ------- | --------------- | ----------------------- | --------------- | ------- | ------------------------- |
+| 1            | 3.88  | 1.89               | 1       | 2.75            | 4                       | 5               | 9       | 2.25                      |
+| 2            | 4.50  | 2.37               | 1       | 3.00            | 5                       | 5               | 10      | 2.00                      |
+| 3            | 4.06  | 2.14               | 1       | 2.75            | 4                       | 5               | 8       | 2.25                      |
+| 4            | 3.75  | 2.41               | 1       | 2.00            | 3                       | 5               | 9       | 3.00                      |
+| 5            | 4.62  | 3.05               | 1       | 1.75            | 4.50                    | 7.25            | 10      | 5.50                      |
+| 6            | 5.50  | 3.61               | 1       | 2.75            | 4.00                    | 10.00           | 10      | 7.25                      |
+| 7            | 4.06  | 2.35               | 1       | 2.00            | 5.00                    | 5.00            | 9       | 3.00                      |
+| 8            | 4.38  | 1.59               | 2       | 3.00            | 4.00                    | 5.00            | 8       | 2.00                      |
+| 9            | 4.75  | 2.89               | 1       | 2.00            | 4.00                    | 8.00            | 9       | 6.00                      |
+| 10           | 4.81  | 3.06               | 1       | 1.00            | 5.00                    | 7.25            | 10      | 6.25                      |
 
 
 In summary, the evaluation data of the above six core dimensions, as well as the discreteness and high and low score characteristics of the evaluator's score, from the three core directions of reducing unreasonable task load, improving player performance satisfaction, and reducing frustration, provide implementable optimization suggestions for the group's subsequent development, and adapt to the core attributes of the game "light experience, low threshold, high fun", as follows:
