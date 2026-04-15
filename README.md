@@ -3,10 +3,6 @@
 
 <img width="1920" height="1080" alt="MainMenu" src="https://github.com/user-attachments/assets/7d509195-b73f-4de7-8836-eb1c6b9c4b80" />
 
-🔗[Link of Latest version of the Game!]
-
-https://uob-comsm0166.github.io/2026-group-9/
-
 📝[Link of our Kanban board]
 
 (https://offjjx.atlassian.net/jira/software/projects/GROUP/boards/34?atlOrigin=eyJpIjoiYWU5Y2M0ZmY3Y2NmNDExNzgzNGQ3MmViMWU3OTEzMmEiLCJwIjoiaiJ9)
@@ -38,7 +34,7 @@ As your capabilities grow, the enemies and levels will
 continuously challenge your reflexes and tactical skills. 
 We strive to deliver a unique, heart-racing, and addictive experience for every player!
 
-—Purge or be purged. The choice is yours.—
+—Purge or be purged. The choice is yours.�
 Group 9 Developers
 
 📸[Snapshot of Latest version of the Game!]
@@ -65,17 +61,47 @@ GROUP PHOTO. Add a group photo here.
 
 ## Project Report
 
-### Introduction
+### Table of Contents
+
+- [1. Introduction](#introduction)
+- [2. Requirements](#requirements)
+  - [2.1 Conceptual Process](#conceptual-process)
+  - [2.2 User Story](#user-story)
+- [3. Design](#design)
+- [4. Implementation](#implementation)
+  - [4.1 The First Challenge: Optimizing Project Architecture](#optimizing-project-architecture)
+  - [4.2 The Second Challenge: Camera Tracking](#camera-tracking)
+  - [4.3 The Third Challenge: Enemy Module Design and Refinement](#enemy-module-design)
+- [5. Evaluation](#evaluation)
+  - [5.1 Qualitative Analysis: Think Aloud](#qualitative-analysis)
+  - [5.2 Quantitative Evaluation](#quantitative-evaluation)
+- [Process](#process)
+- [Conclusion](#conclusion)
+- [Contribution Statement](#contribution-statement)
+- [Additional Marks](#additional-marks)
+
+
+---
+
+<a id="introduction"></a>
+
+### 1.Introduction
 
 - This game is based on Vampire Survivors and expands on the original gameplay with richer content and more diverse mechanics. It is a top-down 2D survival game in which players only need to use the WASD keys to control the character’s movement and the mouse to point toward enemies; the character will then attack automatically without additional input. Enemies continuously spawn outside the player’s field of view and quickly move toward the character to launch attacks. Whenever the character takes damage, their health bar decreases, and if health reaches zero, the run ends.
 - The core innovation of our game lies in the deep integration of classic roguelike elements into the original structure. Once the game starts, it proceeds in real time without pausing, creating a tense and immersive experience. After defeating a certain number of enemies, players earn rewards such as new weapons, passive items, or buffs that enhance their combat ability. As time passes, they face increasingly powerful and numerous enemy waves. Each run features random upgrades and enemy combinations, ensuring that no two playthroughs feel the same. 
 
-### Requirements 
+---
+
+<a id="requirements"></a>
+
+### 2. Requirements 
 
 - 15% ~750 words
 - Early stages design. Ideation process. How did you decide as a team what to develop? Use case diagrams, user stories. 
 
-### Conceptual Process
+<a id="conceptual-process"></a>
+
+#### 2.1 Conceptual Process
 When brainstorming for this game, we first proposed various game genres, including board games, Snake, Tetris, and Air Combat. After discussion and voting, we decided to develop a 2D survival shooter game (similar to Vampire Survivors), and split its development and expansion into two paths: the player character and enemies.
 
 For the player, we planned to incorporate multiple enhancement mechanics such as leveling up, weapons, equipment, and skills. For enemies, we intended to add diverse offensive mechanics including different enemy types, enemy skills, and enemy spawn quantities. Gameplay would be expanded by allowing players to level up and obtain weapon drops by defeating enemies.
@@ -84,7 +110,9 @@ However, following further team discussion and negotiation, we realized that whi
 
 With these considerations, we decided to integrate player leveling and weapon drops into roguelike gameplay. By defeating a certain number of enemies or surviving for a set duration, players would randomly obtain various buffs or weapons. This approach prevents players from overfocusing on character systems while ensuring each playthrough feels fresh and distinct from the last.
 
-### User Story
+<a id="user-story"></a>
+
+#### 2.2 User Story
 | **Key Stakeholders** | **Epic** | **User Story** | **Acceptance Criteria** |
 | --- | --- | --- | --- |
 | Player | Epic 1: Core Survival & Combat System | As a player, I want to control my character's movement with WASD keys, so that I can navigate the game world flexibly to avoid enemies. | Acceptance Criteria: Given the game is in an active play state, when the player presses W/A/S/D keys respectively, then the character moves upward/left/down/right continuously; when the key is released, the character stops moving immediately. |
@@ -98,20 +126,93 @@ With these considerations, we decided to integrate player leveling and weapon dr
 | Player | Epic 3: Game State & End Conditions | As a player, I want the game to end when my health reaches 0, so that there is a clear failure condition and incentive to survive. | Acceptance Criteria: Given the character's health drops to 0, when the death condition is detected, then all game actions stop; a game over screen is displayed showing total enemies defeated, time survived, and highest level reached; the player can choose to restart a new run or return to the main menu. |
 | Player | Epic 3: Game State & End Conditions | As a player, I want to see real-time stats (kill count, time survived, current level), so that I can track my progress during the run. | Acceptance Criteria: Given the game is running (active or paused state), then a HUD (heads-up display) is always visible in the corner of the screen; the HUD updates in real time: kill count increments immediately when an enemy is defeated, time survived counts up by second, and level updates when the player unlocks rewards. |
 
-### Design
+---
+
+<a id="design"></a>
+
+### 3. Design
 
 - 15% ~750 words 
 - System architecture. Class diagrams, behavioural diagrams. 
 
-### Implementation
+---
 
-- 15% ~750 words
+<a id="implementation"></a>
 
-- Describe implementation of your game, in particular highlighting the TWO areas of *technical challenge* in developing your game. 
+### 4. Implementation
 
-### ✍️Evaluation💭
+Our game, *Kill that Virus*, is a top-down 2D survival shooter. Players control a cell moving through a large, scrolling map, defending against waves of enemies and navigating increasingly difficult levels.
 
-**Qualitative Analysis: Think Aloud**
+
+
+<a id="optimizing-project-architecture"></a>
+
+#### 4.1 The First Challenge: Optimizing Project Architecture
+
+Our initial codebase implemented a game prototype, allowing players to control a cell to move and shoot to defend against enemies. However, all the code was concentrated in a single JavaScript file, leading to high coupling and hindering subsequent team collaboration.
+
+Therefore, following object-oriented programming and modular design principles, we redesigned the project architecture and split the original code. We divided the previously mixed functions into multiple modules based on their responsibilities, such as input processing, enemy generation, level progression, UI rendering, and entity objects.
+
+The benefits of this approach are that different team members can be responsible for different modules, reducing merge conflicts and making subsequent debugging, adding new enemies, and incorporating new mechanics much easier. Through this refactoring, we adhered to the development principles of low coupling and high cohesion, gradually evolving the project from a single-file prototype into a more clearly structured and maintainable game application.
+
+
+
+<a id="camera-tracking"></a>
+
+#### 4.2 The second challenge: Camera tracking
+
+Our game map is much larger than the visible canvas, so the camera follows the player's movement, while enemies spawn outside the field of view. This presented several challenges:
+
+- Mouse aiming had to be correctly translated from screen space to world space;
+- Enemy spawn locations had to be around the player and not exceed the map boundaries;
+- All rendering had to be synchronized with camera movement.
+
+We solved this problem by introducing a camera offset system and always using world coordinates. Player movement, enemy positions, and bullet trajectories are all updated in world space, while rendering applies camera translation separately. For aiming, camera offset is used to correct the mouse position before calculating the bullet trajectory angle. For spawning, enemies spawn at a fixed distance around the player and are then confined to the world boundaries. This solution ensured smooth gameplay and consistent visuals even as map size, enemy numbers, and level complexity increased.
+
+
+
+<a id="enemy-module-design"></a>
+
+#### 4.3 The third challenge: Enemy module design and refinement
+
+As a shooter, the enemy module is undoubtedly a crucial part of the game mechanics. Through multiple iterations, we gradually refined the enemy mechanics and enriched the variety of enemies.
+
+Phase 1: Spawning, Chase, Collision, and Health Mechanisms
+
+First, we need to ensure the implementation of the most basic mechanics. This phase was accomplished using `spawnEnemies()` and `updateEnemiesAndCombat()`. In this phase, we implemented:
+
+- Enemies will periodically spawn outside the player's field of view.
+- Enemies will continuously move towards the player. When the distance between an enemy and the player is less than the sum of the radii of their respective areas, it is considered a collision; the enemy dies and disappears, and the player's health decreases.
+- When the distance between an enemy and a bullet fired by the player is less than the radius of the enemy's area, it is considered a collision; the bullet disappears, and the enemy's health decreases. When the enemy's health reaches 0, it dies and disappears.
+- Enemy health, spawn speed, and movement speed increase as the level progresses.
+
+Phase 2: New Enemies, New Mechanics
+
+Building on the achievements of the previous step, we must consider how to increase the fun of the enemies. This can be achieved by adding more enemies and implementing new mechanics. The achievements of this phase are as follows:
+
+- The const `ENEMY_POOL` was defined and populated in `enemy-pool.js`, defining three different enemy shapes and attributes: the *basic* enemy, the *tank* (high health but slow speed), and the *fast* enemy (low health but fast speed).
+- Particle effects and damage animations were introduced in `drawGameContent()`. When an enemy dies and disappears, a brief, scattered particle effect appears in its place; when an enemy collides with a bullet, it briefly turns white and flashes. These provide visual stimulation for the player.
+- The enemy spawn mechanism was modified. As the level progresses, there is a higher probability of spawning tanks and fast enemies, ensuring the game remains challenging.
+
+Phase Three: More and Better Enemies and New Sound Effects
+
+In the previous phase, although the enemy module was made more interesting, the simple, solid-color graphics were not aesthetically pleasing. Therefore, the next step is to optimize the art and music:
+
+- Two new enemies were introduced: the *sprinter*, which accelerates during a dash; and the *splitter*, which splits upon death.
+
+- Modified enemy appearance, replacing the original solid-color graphics with different 2D textures.
+
+- Plays a death sound effect when an enemy dies.
+
+---
+
+<a id="evaluation"></a>
+
+### 5. ✍️Evaluation💭
+
+<a id="qualitative-analysis"></a>
+
+#### 5.1 Qualitative Analysis: Think Aloud
 
 🤔User Observations:
 
@@ -140,7 +241,9 @@ Refining Game "Feel" (Juiciness): Compared to the current system where taking da
 
 
 
-**Quantitative Evaluation**
+<a id="quantitative-evaluation"></a>
+
+#### 5.2 Quantitative Evaluation
 
 SUS(System Usability Scale)
 
@@ -148,7 +251,7 @@ SUS is an internationally common user experience evaluation scale, which contain
 
 <img width="696" height="506" alt="image" src="https://github.com/user-attachments/assets/bbdc7755-c3b2-46e1-bd1e-f571e8f7c2cf" />
 
-Descriptive statistics： 
+Descriptive statistics�
 
 | **Question** **No.** | **Simplified** **Question Description**                    | **Reve rse Scor ing** | **M**   **ea** **n** **Sc or** **e** | **Me** **dia** **n** | **Stan dard** **Devia** **tion** | **Mini mum Score** | **Maxi mum Score** | **Rati** **ng** **Leve** **l** |
 | -------------------- | ---------------------------------------------------------- | --------------------- | ------------------------------------ | -------------------- | -------------------------------- | ------------------ | ------------------ | ------------------------------ |
@@ -163,15 +266,15 @@ Descriptive statistics：
 | 9    | I felt   very confident using the   system.                  | Yes  | 4.60 | 5.00 | 0.49 | 4    | 5    | Exce llent (4.5   +) |
 | 10   | I needed to learn a lot   of things before I could use this   system. | No   | 1.70 | 1.00 | 1.27 | 1    | 5    | Poor (<3.   0)       |
 
-1、 Project advantages (Q3, Q7, Q9, Q4, Q6): The game is easy to use and the threshold is low. The core operation is to control the direction and attack of the mouse movement with the right hand, and the movement of the character with the left hand. It adopts the common style of the industry, which reduces the cognitive cost of players. It only needs a brief introduction, and the novice teaching will be added to the starting interface. The difficulty of the level is from simple to deep, which makes players familiar with the operation method and increases their confidence in using the game.
+1�Project advantages (Q3, Q7, Q9, Q4, Q6): The game is easy to use and the threshold is low. The core operation is to control the direction and attack of the mouse movement with the right hand, and the movement of the character with the left hand. It adopts the common style of the industry, which reduces the cognitive cost of players. It only needs a brief introduction, and the novice teaching will be added to the starting interface. The difficulty of the level is from simple to deep, which makes players familiar with the operation method and increases their confidence in using the game.
 
-2、 Good items (Q1, Q5, Q10): players' willingness to use, function integration needs to be improved. It is necessary to improve the playability and complexity of the game. At this stage, it is only the initial version, so give users a little simple feedback on the game, and the later version will increase the playability and complexity of the game.
+2�Good items (Q1, Q5, Q10): players' willingness to use, function integration needs to be improved. It is necessary to improve the playability and complexity of the game. At this stage, it is only the initial version, so give users a little simple feedback on the game, and the later version will increase the playability and complexity of the game.
 
 (1). Increase the types of weapons, from ordinary firearms at this stage to pistols, sniper rifles, daggers and grenades, etc.
 
 (2). As the level increases, new enemies and new mechanisms are added to improve the difficulty of the game.
 
-3、 Differential items (Q2, Q8): Technicians are required to guide the problem. There is no self-group solution. The later sequence needs to be improved, because the interface has not been introduced at this stage, and technical personnel still need to introduce the gameplay, so it is necessary to add a normative introduction process to assist players in getting started. At the same time, the operation fault tolerance design is added. For example, the attack judgment range is expanded without precise positioning. Reduce the levels caused by players' operating errors, and reduce the need for help from the root cause.
+3�Differential items (Q2, Q8): Technicians are required to guide the problem. There is no self-group solution. The later sequence needs to be improved, because the interface has not been introduced at this stage, and technical personnel still need to introduce the gameplay, so it is necessary to add a normative introduction process to assist players in getting started. At the same time, the operation fault tolerance design is added. For example, the attack judgment range is expanded without precise positioning. Reduce the levels caused by players' operating errors, and reduce the need for help from the root cause.
 
 
 
@@ -231,11 +334,11 @@ let player = {};
 
 function resetPlayer() { 
 
-player.x = 960;
-
-player.y = 540;
-
-player.hp = 10;
+	player.x = 960;
+	
+	player.y = 540;
+	
+	player.hp = 10;
 
 }
 
@@ -243,21 +346,21 @@ player.hp = 10;
 
 function assert(condition, testName) { 
 
-if (condition) {
-
-console.log(`testing pass： ${testName}`);
-
-} else {
-
-console.log(`testing fail： ${testName}`);
-
-}
+	if (condition) {
+	
+		console.log(`testing pass�${testName}`);
+	
+	} else {
+	
+		console.log(`testing fail�${testName}`);
+	
+	}
 
 }
 
 resetPlayer();
 
-assert(player.x === 960 && player.y === 540 && player.hp === 10, “player’s initial HP=10、 position=(960,540)”);
+assert(player.x === 960 && player.y === 540 && player.hp === 10, “player’s initial HP=10�position=(960,540)�;
 
  
 
@@ -271,25 +374,25 @@ let player = { x: 960, y: 540 };
 
 function movePlayer(key) { 
 
-if (key === "D") {
-
-player.x += 4;
-
-}
+	if (key === "D") {
+	
+	player.x += 4;
+	
+	}
 
 }
 
 function assert(condition, testName) { 
 
-if (condition) {
-
-console.log(`testing pass： ${testName}`);
-
-} else {
-
-console.log(`testing fail： ${testName}`);
-
-}
+	if (condition) {
+	
+		console.log(`testing pass�${testName}`);
+	
+	} else {
+	
+		console.log(`testing fail�${testName}`);
+	
+	}
 
 }
 
@@ -299,7 +402,9 @@ movePlayer("D");
 
 assert(player.x === originalX + 4, "The player presses the D key and moves 4 units to the right");
 
+---
 
+<a id="process"></a>
 
 ### Process 
 
@@ -307,15 +412,27 @@ assert(player.x === originalX + 4, "The player presses the D key and moves 4 uni
 
 - Teamwork. How did you work together, what tools and methods did you use? Did you define team roles? Reflection on how you worked together. Be honest, we want to hear about what didn't work as well as what did work, and importantly how your team adapted throughout the project.
 
+---
+
+<a id="conclusion"></a>
+
 ### Conclusion
 
 - 10% ~500 words
 
 - Reflect on the project as a whole. Lessons learnt. Reflect on challenges. Future work, describe both immediate next steps for your current game and also what you would potentially do if you had chance to develop a sequel.
 
+---
+
+<a id="contribution-statement"></a>
+
 ### Contribution Statement
 
 - Provide a table of everyone's contribution, which *may* be used to weight individual grades. We expect that the contribution will be split evenly across team-members in most cases. Please let us know as soon as possible if there are any issues with teamwork as soon as they are apparent and we will do our best to help your team work harmoniously together.
+
+---
+
+<a id="additional-marks"></a>
 
 ### Additional Marks
 
