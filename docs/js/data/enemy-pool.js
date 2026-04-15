@@ -7,7 +7,7 @@ const ENEMY_POOL = {
         speed: 2.5,
         size: 30,
         contactDamage: 1,
-        color: [255, 0, 0],
+        color: [235, 62, 54],
         flashTimer: 0,
         imgKey: "enemy1" //new add for image
     },
@@ -19,7 +19,7 @@ const ENEMY_POOL = {
         speed: 3.0,
         size: 27,
         contactDamage: 1,
-        color: [255, 100, 0],
+        color: [19, 154, 220],
         flashTimer: 0,
         imgKey: "enemy2" //new for image 
     },
@@ -31,7 +31,7 @@ const ENEMY_POOL = {
         speed: 2.0,
         size: 50,
         contactDamage: 2,
-        color: [0, 0, 255],
+        color: [253, 209, 123],
         flashTimer: 0,
         imgKey: "enemy3"   //new add for image
      },
@@ -43,7 +43,7 @@ const ENEMY_POOL = {
         speed: 2.0,
         size: 40,
         contactDamage: 2,
-        color: [180, 0, 255],
+        color: [254, 195, 202],
         splitCount: 2,
         imgKey: "enemy4"    //new 
     },
@@ -55,7 +55,7 @@ const ENEMY_POOL = {
         speed: 1.6,
         size: 42,
         contactDamage: 3,
-        color: [255, 40, 120],
+        color: [0, 0, 0],
         sprintSpeed: 4.8,
         sprintPeriod: 25,
         imgKey: "enemy5" //new

@@ -32,3 +32,6 @@ let healValue = 5;
 let qDown = false;
 let eDown = false;
 let fDown = false;
+
+
+let enemyDeathSound;

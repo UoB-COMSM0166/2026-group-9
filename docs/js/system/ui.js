@@ -13,7 +13,7 @@ function drawWorld() {
 
 function drawGameContent() {
     // 畫主角
-     
+
     drawPlayer(); // new add 调用我们在player.js里写的图像绘制函数
 
     if (shieldOn) {
@@ -25,57 +25,29 @@ function drawGameContent() {
         pop();
     }
 
-    // drawHealthBar(player.x, player.y - 25, player.hp, 10, "green");
     drawHealthBar(player.x, player.y - 25, player.hp, player.maxHp, "green");
-    /* 畫敵人
-    for (let e of enemies) {
-        push();
-        noStroke();
-        // 敌人受伤闪烁
-        // todo 受伤动画选择
-        if (e.flashTimer > 0) {
-            if (e.flashTimer % 6 === 0) {
-                fill(255);
-            } else {
-                fill(e.color);
-            }
 
-            e.flashTimer--;
-        } else {
-            fill(e.color);
-        }
-        if (e.shape === "rect") {
-            rectMode(CENTER);
-            rect(e.x, e.y, e.size, e.size);
-        } else if (e.shape === "triangle") {
-            let r = e.size / 2;
-            // 等边三角形
-            triangle(
-                e.x, e.y - r,
-                e.x - r * 0.866, e.y + r * 0.5,
-                e.x + r * 0.866, e.y + r * 0.5
-            );
-        } else {
-            ellipse(e.x, e.y, e.size);
-        }
-        pop();
-        drawHealthBar(e.x, e.y - (e.size * 0.75), e.hp, e.maxHp, "red");
-    }*/
-    
     for (let e of enemies) {
         push();
         imageMode(CENTER);
-    // 受伤闪烁效果
+
+
         if (e.flashTimer > 0) {
-            tint(255, 150);
+            if (e.flashTimer % 6 === 0) {
+                tint(255, 150);
+            } else {
+                image(enemyImages[e.imgKey], e.x, e.y, e.size * 2, e.size * 2);
+            }
             e.flashTimer--;
+        } else {
+            image(enemyImages[e.imgKey], e.x, e.y, e.size * 2, e.size * 2);
         }
-    // 绘制敌人图片
-        image(enemyImages[e.imgKey], e.x, e.y, e.size*2, e.size*2);
+
         pop();
-    // 血条完全不动
+        // 血条完全不动
         drawHealthBar(e.x, e.y - (e.size * 0.75), e.hp, e.maxHp, "red");
     }
+
     // 畫子彈
     fill(255, 255, 0);
     for (let b of bullets) ellipse(b.x, b.y, 12);
