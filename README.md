@@ -125,7 +125,7 @@ With these considerations, we decided to integrate player leveling and weapon dr
 | Player | Epic 3: Game State & End Conditions | As a player, I want the game to end when my health reaches 0, so that there is a clear failure condition and incentive to survive. | Acceptance Criteria: Given the character's health drops to 0, when the death condition is detected, then all game actions stop; a game over screen is displayed showing total enemies defeated, time survived, and highest level reached; the player can choose to restart a new run or return to the main menu. |
 | Player | Epic 3: Game State & End Conditions | As a player, I want to see real-time stats (kill count, time survived, current level), so that I can track my progress during the run. | Acceptance Criteria: Given the game is running (active or paused state), then a HUD (heads-up display) is always visible in the corner of the screen; the HUD updates in real time: kill count increments immediately when an enemy is defeated, time survived counts up by second, and level updates when the player unlocks rewards. |
 
-✨The Game Twist✨
+#### 2.3✨The Game Twist✨
 
 Initial Concepts and Iterations
 Early in the development phase, we considered altering enemy AI behaviors or introducing complex environmental hazards as the primary "twist." However, playtesting revealed that the core gameplay already presented a significant challenge. We shifted our design philosophy from "mechanical overload" to "cognitive subversion." Instead of overwhelming players with impossible difficulty, we aimed for a "benevolent challenge"—a clever subversion of established mechanics akin to a brain teaser. This ensures that failure remains engaging and witty rather than purely frustrating, encouraging players to persist rather than quit.
@@ -146,6 +146,23 @@ Narrative-Mechanic Synergy: By grounding the control inversion in the story (ner
 Accessible Complexity: Rather than introducing complex system or difficult Boss patterns, we re-utilized the most fundamental interaction—movement—to create a new layer of depth. This makes the challenge intuitive to understand yet demanding to master.
 
 Validated Innovation: Through internal peer reviews and consultation with Teaching Assistants (TAs), this "Control Inversion" was recognized as a highly creative and effective twist. It successfully balances psychological tension with gameplay fairness, a milestone our team is particularly proud of.
+
+####2.4
+
+Stakeholder Analysis via Onion Diagram
+
+To ensure the successful delivery of Kill That Virus!, we conducted a stakeholder mapping exercise using an Onion Diagram. This allowed us to categorize individuals and entities based on their influence and proximity to the core system:
+
+The Core System: Represents the internal game logic, including the state machine and the narrative victory sequence.
+
+Direct Users & Team: Includes the Player, who seeks an engaging experience, and the Development Team, responsible for technical implementation and bug fixing.
+
+Project Environment: Primarily consists of TAs and Lecturers. Their requirements for "Object-Oriented Design" and "Game Twist" significantly shaped our architectural decisions, such as the implementation of the Control Inversion mechanic.
+
+External Environment: Encompasses global entities like Browser Vendors (Google/Chrome) and hosting platforms like GitHub Pages. Our design for asynchronous audio handling was a direct response to the Autoplay Policies enforced by this outermost layer.
+
+<img width="1920" height="1080" alt="未命名" src="https://github.com/user-attachments/assets/2c0329f3-e80d-49f7-95e7-a00a67973e77" />
+
 
 ---
 
