@@ -24,23 +24,26 @@ function updateEnemiesAndCombat() {
         } else {
             moveEnemyTowardPlayer(e, player);
         }
+
         // 被子彈擊中
         for (let j = bullets.length - 1; j >= 0; j--) {
             if (dist(bullets[j].x, bullets[j].y, e.x, e.y) < e.size / 2 + 5) {
-                //此处参数'amount'应传入武器伤害，由于武器模块未完成，此处暂时用字面量代替
-                damageEnemy(e, 2);
+                damageEnemy(e, bullets[j].damage || 2);
                 bullets.splice(j, 1);
                 break;
             }
         }
+
         // 與玩家碰撞
         let dPlayer = dist(player.x, player.y, e.x, e.y);
         if (dPlayer < (player.size + e.size) / 2) {
-            player.hp-=e.contactDamage;
-            enemies.splice(i, 1);
+            if (!shieldOn) {
+                player.hp -= e.contactDamage;
+                shakeTimer = 10;
+                redMaskAlpha = 150;
+            }
 
-            shakeTimer = 10;
-            redMaskAlpha = 150;
+            enemies.splice(i, 1);
 
         } else if (e.hp <= 0) {
             if (enemyDeathSound) {
@@ -61,10 +64,10 @@ function updateEnemiesAndCombat() {
                     enemies.push(child);
                 }
             }
+
             spawnDeathParticles(e.x, e.y, e.color);
             enemies.splice(i, 1);
             killCount++; // 擊殺數增加
         }
     }
 }
-

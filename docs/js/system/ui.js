@@ -13,61 +13,41 @@ function drawWorld() {
 
 function drawGameContent() {
     // 畫主角
-     
+
     drawPlayer(); // new add 调用我们在player.js里写的图像绘制函数
 
-
-    // drawHealthBar(player.x, player.y - 25, player.hp, 10, "green");
-    drawHealthBar(player.x, player.y - 25, player.hp, 20, "green");
-    /* 畫敵人
-    for (let e of enemies) {
+    if (shieldOn) {
         push();
-        noStroke();
-        // 敌人受伤闪烁
-        // todo 受伤动画选择
-        if (e.flashTimer > 0) {
-            if (e.flashTimer % 6 === 0) {
-                fill(255);
-            } else {
-                fill(e.color);
-            }
-
-            e.flashTimer--;
-        } else {
-            fill(e.color);
-        }
-        if (e.shape === "rect") {
-            rectMode(CENTER);
-            rect(e.x, e.y, e.size, e.size);
-        } else if (e.shape === "triangle") {
-            let r = e.size / 2;
-            // 等边三角形
-            triangle(
-                e.x, e.y - r,
-                e.x - r * 0.866, e.y + r * 0.5,
-                e.x + r * 0.866, e.y + r * 0.5
-            );
-        } else {
-            ellipse(e.x, e.y, e.size);
-        }
+        noFill();
+        stroke(0, 200, 255);
+        strokeWeight(4);
+        ellipse(player.x, player.y, player.size + 18);
         pop();
-        drawHealthBar(e.x, e.y - (e.size * 0.75), e.hp, e.maxHp, "red");
-    }*/
-    
+    }
+
+    drawHealthBar(player.x, player.y - 25, player.hp, player.maxHp, "green");
+
     for (let e of enemies) {
         push();
         imageMode(CENTER);
-    // 受伤闪烁效果
+
+
         if (e.flashTimer > 0) {
-            tint(255, 150);
+            if (e.flashTimer % 6 === 0) {
+                tint(255, 150);
+            } else {
+                image(enemyImages[e.imgKey], e.x, e.y, e.size * 2, e.size * 2);
+            }
             e.flashTimer--;
+        } else {
+            image(enemyImages[e.imgKey], e.x, e.y, e.size * 2, e.size * 2);
         }
-    // 绘制敌人图片
-        image(enemyImages[e.imgKey], e.x, e.y, e.size*2, e.size*2);
+
         pop();
-    // 血条完全不动
+        // 血条完全不动
         drawHealthBar(e.x, e.y - (e.size * 0.75), e.hp, e.maxHp, "red");
     }
+
     // 畫子彈
     fill(255, 255, 0);
     for (let b of bullets) ellipse(b.x, b.y, 12);
@@ -109,11 +89,26 @@ function drawUI() {
     textSize(20);
     textAlign(LEFT);
     text("Time: " + timer, 20, 30);
-    text("HP: " + player.hp, 20, 60);
+    text("HP: " + player.hp + " / " + player.maxHp, 20, 60);
+    text("Weapon: " + weaponMode.toUpperCase(), 20, 90);
+    text("Medkits: " + medkits, 20, 120);
+
+    if (shieldOn) {
+        fill(0, 255, 255);
+        text("Shield: ON", 20, 150);
+    } else if (shieldCDLeft > 0) {
+        fill(180);
+        text("Shield CD: " + ceil(shieldCDLeft / 60) + "s", 20, 150);
+    } else {
+        fill("lime");
+        text("Shield: READY", 20, 150);
+    }
+
+    fill(255);
     // 第一關隱藏殺敵進度，第二關才顯示
     if (currentLevel === 2) {
         fill(killCount >= VICTORY_KILLS_LV2 ? "lime" : "yellow");
-        text("Kills: " + killCount + " / " + VICTORY_KILLS_LV2, 20, 90);
+        text("Kills: " + killCount + " / " + VICTORY_KILLS_LV2, 20, 180);
     }
     // 關卡標題顯示 5 秒
     if (timer > levelDuration - 5) {
