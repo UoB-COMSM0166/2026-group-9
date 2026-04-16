@@ -147,7 +147,7 @@ Accessible Complexity: Rather than introducing complex system or difficult Boss 
 
 Validated Innovation: Through internal peer reviews and consultation with Teaching Assistants (TAs), this "Control Inversion" was recognized as a highly creative and effective twist. It successfully balances psychological tension with gameplay fairness, a milestone our team is particularly proud of.
 
-####2.4
+#### 2.4✨Stakeholders✨
 
 Stakeholder Analysis via Onion Diagram
 
