@@ -152,7 +152,13 @@ Scalability:
 
 This modularity ensures that adding new viral strains or narrative comic pages only requires configuration updates in the Data Layer (Pools) or index expansion in the Victory Module, without altering the core game loop.
 
-3.3 Behavioural Design:
+3.3: State Machine Diagram representing the Global Game Lifecycle.
+
+The State Machine Diagram shows the dynamic progression logic of Kill That Virus!. The system initializes at the START_MENU and transitions into a series of combat states (LEVEL_1 to LEVEL_3) based on kill count triggers. A significant state transition occurs upon completing Level 3, where the ProgressionManager hands over control to the showComicBook module. This architectural choice ensures that the narrative conclusion is treated as a distinct state, isolating the comic-rendering logic from the primary combat engine. Any failure state (HP ≤ 0) is globally handled by transitioning to GAME_OVER, allowing for a complete system reset back to the menu.
+
+<img width="1216" height="677" alt="messageImage_1776350569213" src="https://github.com/user-attachments/assets/63489d14-62b4-4b89-b485-c679a5b60f96" />
+
+3.3.1 Behavioural Design:
 
 While the class diagram shows the static structure of the system, the behavioural design explains how critical gameplay events—specifically the transition from intense combat to narrative conclusion—unfold over time. In our project, the most vital interaction is the Progression-to-Victory pipeline. 
 
@@ -162,11 +168,11 @@ The behavioural path begins when a valid collision results in an enemy's destruc
 
 [The sequence diagram above illustrates the interaction between key modules during the gameplay transition]
 
-3.3.1 Level Progression Logic:
+3.3.2 Level Progression Logic:
 
 The dynamic progression of the game is governed by the checkProgress() method, which periodically evaluates player performance metrics. For example, in Level 2, the system simultaneously monitors the survival timer and the kill count. Only when both criteria are met will the system execute the goToLevel3() transition.
 
-3.3.2 Post-Game Narrative Sequence:
+3.3.3 Post-Game Narrative Sequence:
 
 The victory sequence employs a sophisticated behavioural pattern based on Asynchronous Resource Handling and user input:
 
