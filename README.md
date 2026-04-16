@@ -152,7 +152,7 @@ Scalability:
 
 This modularity ensures that adding new viral strains or narrative comic pages only requires configuration updates in the Data Layer (Pools) or index expansion in the Victory Module, without altering the core game loop.
 
-3.3: State Machine Diagram representing the Global Game Lifecycle.
+3.3: State Machine Diagram representing the Lifecycle of Game.
 
 The State Machine Diagram shows the dynamic progression logic of Kill That Virus!. The system initializes at the START_MENU and transitions into a series of combat states (LEVEL_1 to LEVEL_3) based on kill count triggers. A significant state transition occurs upon completing Level 3, where the ProgressionManager hands over control to the showComicBook module. This architectural choice ensures that the narrative conclusion is treated as a distinct state, isolating the comic-rendering logic from the primary combat engine. Any failure state (HP ≤ 0) is globally handled by transitioning to GAME_OVER, allowing for a complete system reset back to the menu.
 
