@@ -501,11 +501,41 @@ assert(player.x === originalX + 4, "The player presses the D key and moves 4 uni
 
 ### Process 
 
-- 15% ~750 words
+- Process
 
-- Teamwork. How did you work together, what tools and methods did you use? Did you define team roles? Reflection on how you worked together. Be honest, we want to hear about what didn't work as well as what did work, and importantly how your team adapted throughout the project.
+In this game development project, our five group members from demand conception, user research, function realization to code optimization iteration, the whole process is constantly adjusted to complete the game version that can be run at present.
 
----
+1. Discussion process
+
+Throughout the whole process of game production, we have established a standardized and fixed rhythm of discussion and reporting to ensure the transparency of the progress and the timely resolution of problems. The team uniformly uses Jira to record the progress of tasks, update the development status, track pending tasks and bugs, and ensure that all work online can be checked and visualized. At the same time, offline, we regularly report on the progress after class every Tuesday, and report that everyone has completed the content every week, the need to coordinate resources, and the current difficulties encountered and discussed solutions. And cooperate with WhatsApp and other social software to communicate in time. Ensure that the program is clear, the responsibility is allocated, and the problem is not delayed or left behind. Effectively avoid rework and delay in progress.
+
+2. Use of collaborative tools
+
+| Tool          | Uses                                                                 |
+|---------------|----------------------------------------------------------------------|
+| Jira          | Task management, progress tracking, kanban synchronization, issue recording and follow-up |
+| Windows Paint | Game interface sketching, interaction diagram drawing, gameplay process mapping |
+| GitHub        | Code hosting, branch development, multi-person collaborative programming, version rollback |
+| J5            | Game logic development, function implementation, scene construction   |
+
+We use a variety of tools to support development, design, collaboration and version management. Each tool has a clear division of labor to improve the overall efficiency. Among them, GitHub is the most important, which can provide a multi-person collaborative programming platform, so that each member can leave traces of work and can be changed back. Readme documents and code explanation documents can be submitted for group members to browse at any time, which greatly improves work efficiency.
+
+Division of Labor Among Team Members
+
+In the early stage, we mainly focus on collective co-creation and democratic decision-making: the core gameplay, art style, plot framework and other contents of the game are determined through collective discussion, joint conception and voting to ensure that each member's ideas can be fully adopted. The README document of the project is also written and supplemented by team members, which ensures the consistency of the overall direction.
+
+In the late stage of development, in order to improve efficiency and reduce cross-dependence, we adopt the method of drawing labor + modular development to split the game into independent modules and clarify the responsibilities of each member. The specific division of labor is as follows:
+
+| Team Member    | Role                         | Module                              | Detailed Responsibilities                                                                 |
+|----------------|------------------------------|-------------------------------------|-------------------------------------------------------------------------------------------|
+| Jianjiang Yang | Player Character Development | Player Character & Auxiliary Systems| Implement character movement, attack, defense, healing and item systems; expand various attack methods and interaction logic |
+| Zhanyu Xu      | Enemy System Development     | Enemies (Minions + Boss)            | Design enemy AI, behavior patterns and attack methods; implement logic for level monsters and boss battles |
+| Yize Yang      | UI Development               | Interface & Game Mode Flow          | Create start interface, status bar, story mode flow for the first two levels, reward interface for endless roguelike mode, etc. |
+| Sinan Xu       | Art & Narrative Integration  | Art Assets & Storytelling           | Integrate visual effects, animations, images and map resources; build game scenes; improve plot text and presentation |
+| Jack Feng      | Level & Difficulty Design     | Level Flow & Difficulty Tuning      | Design flow, rhythm and difficulty curve for the first two story levels; implement generation logic, progressive difficulty rules and reward mechanism for the third endless mode |
+
+
+In GitHub collaboration, we develop by creating independent branches. Each member completes the development work in his own code file, and finally integrates it, which not only ensures that the development progress does not interfere with each other, but also makes the overall code structure more standardized and easy to maintain.
 
 <a id="conclusion"></a>
 
