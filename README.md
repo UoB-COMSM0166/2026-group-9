@@ -158,6 +158,7 @@ While the class diagram shows the static structure of the system, the behavioura
 
 The behavioural path begins when a valid collision results in an enemy's destruction, triggering a signal to the Progression Manager. Once the manager identifies that the kill count has reached the level-3 threshold, it executes the triggerGameWin sequence. This path involves a complex state shift: the combat loop is paused, the Ending BGM is initialized via a user-start audio prompt to satisfy browser security policies, and the Comic Controller takes over the rendering loop. The subsequent behaviour is driven by User Input: each mouse click propagates through the system to update the currentComicPage and reset the fadeAlpha for a smooth visual transition. This sequence demonstrates how a simple gameplay event (a kill) propagates through the system to become a state change and, finally, player-visible narrative feedback.
 
+<img width="1250" height="667" alt="messageImage_1776344301852" src="https://github.com/user-attachments/assets/a5ed252b-f02e-4a8f-ba09-629cd422abd5" />
 
 3.3.1 Level Progression Logic:
 
