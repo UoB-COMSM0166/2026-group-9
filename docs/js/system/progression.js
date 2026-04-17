@@ -49,11 +49,11 @@ function goToLevel3() {
 
 function updateGameState() {
     if (gameState === "LEVEL_1") {
-        playStageBGM(bgm_lvl1);
+        playStageBGM(bgm01);
     } else if (gameState === "LEVEL_2") {
-        playStageBGM(bgm_lvl2);
+        playStageBGM(bgm02);
     } else if (gameState === "LEVEL_3") {
-        playStageBGM(bgm_lvl3);
+        playStageBGM(bgm03);
 }
 }
 
