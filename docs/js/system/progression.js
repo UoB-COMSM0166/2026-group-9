@@ -48,15 +48,15 @@ function goToLevel3() {
 }
 
 function updateGameState() {
-    if(gameState === "PLAY") {
-    if (currentLevel === 1) {
-        bgm01.play();
-    } else if (currentLevel === 2) {
-        bgm02.paly();
-    } else if (currentLevel === 3) {
-        bgm03.play();
-    } else if(gameState === "START") {
-        bgm00.play();
+    if (gameState === "START") {
+        playStageBGM(bgmmenu); 
+    } else if (gameState === "PLAY") {
+        if (currentLevel === 1) {
+            playStageBGM(bgm01);
+        } else if (currentLevel === 2) {
+            playStageBGM(bgm02);
+        } else if (currentLevel === 3) {
+            playStageBGM(bgm03);
+        }
     }
-}
 }
