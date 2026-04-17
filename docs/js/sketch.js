@@ -29,8 +29,6 @@ function draw() {
     background(40);
 
     sceneSwitch();
-
-    updateAudio();
 }
 
 function updateGame() {
@@ -47,56 +45,4 @@ function updateGame() {
 
     checkProgress();
     checkGameOver();
-}
-
-// ... 這是你原本的 draw() ...
-function draw() {
-    background(40);
-    sceneSwitch();
-    updateAudio(); // 每秒執行 60 次，確保音樂狀態正確
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-function updateAudio() {
-    let targetBGM = null;
-
-     if (gameState === "PLAY") {
-        if (currentLevel === 1) targetBGM = bgm01;
-        else if (currentLevel === 2) targetBGM = bgm02;
-        else if (currentLevel === 3) targetBGM = bgm03;
-    } else if (gameState === "START") {
-        targetBGM = bgmmenu;
-    }
-    playStageBGM(targetBGM);
 }
