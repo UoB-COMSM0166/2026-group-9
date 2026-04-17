@@ -13,7 +13,7 @@ function playStageBGM(newBGM){
     currentPlayingBGM = newBGM;
     if(currentPlayingBGM){
         console.log("Playing new BGM");
-        currentPlayingBGM.loop();
+        currentPlayingBGM.play();
         currentPlayingBGM.setVolume(1.0);
     }
     else{

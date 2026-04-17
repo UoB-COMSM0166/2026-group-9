@@ -50,13 +50,13 @@ function goToLevel3() {
 function updateGameState() {
     if(gameState === "PLAY") {
     if (currentLevel === 1) {
-        bgm01.loop();
+        bgm01.play();
     } else if (currentLevel === 2) {
-        bgm02.loop();
+        bgm02.paly();
     } else if (currentLevel === 3) {
-        bgm03.loop();
+        bgm03.play();
     } else if(gameState === "START") {
-        bgm00.loop();
+        bgm00.play();
     }
 }
 }
