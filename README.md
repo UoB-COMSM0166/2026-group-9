@@ -1,7 +1,7 @@
 # 2026-group-9
 2026 COMSM0166 group 9
 
-<img width="1920" height="1080" alt="MainMenu" src="https://github.com/user-attachments/assets/7d509195-b73f-4de7-8836-eb1c6b9c4b80" />
+<img width="2816" height="1536" alt="MainMenuxx" src="https://github.com/user-attachments/assets/67b508d9-26b5-4efc-a537-fdf621297925" />
 
 📝[Link of our Kanban board]
 
