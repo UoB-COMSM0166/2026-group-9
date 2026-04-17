@@ -1,16 +1,16 @@
-let comicImages = []; // 存放10張圖
+let comicImages = []; 
 let currentComicPage = 0;
-let comicFadeAlpha = 0; // 控制黑色遮罩透明度
-let isFading = false; // 是否正在轉場中
-let comicActive = false; // 漫畫模式是否啟動
-let endingBGM; // 結尾音樂
+let comicFadeAlpha = 0; 
+let isFading = false; 
+let comicActive = false; 
+let endingBGM; 
 
 function preload() {
-    // 載入 10 張圖片，假設檔名是 comic0.png 到 comic9.png
+    
     for (let i = 0; i < 10; i++) {
         comicImages[i] = loadImage(`asset/image/Comic/C${i}.png`);
     }
-    endingBGM = loadSound('asset/BGM/Ending.mp3'); // 請確保路徑正確
+    endingBGM = loadSound('asset/BGM/Ending.mp3'); 
 }
 
 function draw() {
@@ -20,18 +20,18 @@ function draw() {
 }
 
 function showComicBook() {
-    background(0); // 漫畫底色為黑
+    background(0); 
     
-    // 1. 顯示目前的漫畫頁面
+    
     let img = comicImages[currentComicPage];
     if (img) {
-        let imgW = width * 0.8; // 縮放到螢幕 80% 寬
+        let imgW = width * 0.8; 
         let imgH = (img.height / img.width) * imgW;
         imageMode(CENTER);
         image(img, width / 2, height / 2, imgW, imgH);
     }
 
-    // 2. 處理淡入淡出 (黑色遮罩)
+    
     if (comicFadeAlpha > 0) {
         fill(0, comicFadeAlpha);
         noStroke();
@@ -41,7 +41,7 @@ function showComicBook() {
         comicFadeAlpha -= 4; 
     }
 
-    // 3. 提示文字
+    
     fill(255, 150);
     textAlign(CENTER);
     textSize(16);
@@ -50,20 +50,20 @@ function showComicBook() {
 
 function mousePressed() {
     if (gameState === "WIN") {
-    // 使用者點了第一下，聲音就合法了
-    userStartAudio(); // p5.js 專門用來處理瀏覽器權限的指令
+    
+    userStartAudio(); 
     if (endingBGM && !endingBGM.isPlaying()) {
         endingBGM.loop();
     }
 }
     if (gameState === "WIN") {
         if (mouseButton === LEFT) {
-            // 只要還沒到最後一張 (index 9)，就加 1
+            
             if (currentComicPage < 9) { 
                 currentComicPage++;
-                comicFadeAlpha = 100; // 翻頁時讓畫面閃一下黑，更有翻頁感
+                comicFadeAlpha = 100; 
             } else {
-                // 已經在最後一張了，可以執行回到主選單的邏輯
+                
                 gameState = "MENU";
             }
         } 

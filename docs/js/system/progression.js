@@ -47,4 +47,13 @@ function goToLevel3() {
     resetPlayer();
 }
 
+function updateGameState() {
+    if (gameState === "LEVEL_1") {
+        playStageBGM(bgm_lvl1);
+    } else if (gameState === "LEVEL_2") {
+        playStageBGM(bgm_lvl2);
+    } else if (gameState === "LEVEL_3") {
+        playStageBGM(bgm_lvl3);
+}
+}
 
