@@ -29,6 +29,8 @@ function draw() {
     background(40);
 
     sceneSwitch();
+
+    updateGameState();
 }
 
 function updateGame() {
