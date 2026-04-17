@@ -1,6 +1,9 @@
 let currentPlayingBGM = null;
 
 function playStageBGM(newBGM){
+    console.log("playStageBGM called with newBGM:", newBGM);
+    if(!newBGM){
+        console.error("empty BGM");return;}
     if(currentPlayingBGM == newBGM) return;
 
     if(currentPlayingBGM && currentPlayingBGM.isPlaying()){
