@@ -48,12 +48,15 @@ function goToLevel3() {
 }
 
 function updateGameState() {
+    if(gameState === "PLAY") {
     if (currentLevel === 1) {
         bgm01.loop();
     } else if (currentLevel === 2) {
         bgm02.loop();
     } else if (currentLevel === 3) {
         bgm03.loop();
+    } else if(gameState === "START") {
+        bgm00.loop();
+    }
 }
 }
-
