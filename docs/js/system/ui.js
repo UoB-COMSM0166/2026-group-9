@@ -164,4 +164,3 @@ function showEndScreen(msg) {
     textSize(40);
     text(msg, width / 2, height / 2);
 }
-；
