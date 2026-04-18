@@ -36,11 +36,11 @@ function drawGameContent() {
             if (e.flashTimer % 6 === 0) {
                 tint(255, 150);
             } else {
-                image(enemyImages[e.imgKey], e.x, e.y, e.size * 4, e.size * 2);
+                image(enemyImages[e.imgKey], e.x, e.y, e.size * 8, e.size * 2);
             }
             e.flashTimer--;
         } else {
-            image(enemyImages[e.imgKey], e.x, e.y, e.size * 4, e.size * 2);
+            image(enemyImages[e.imgKey], e.x, e.y, e.size * 8, e.size * 2);
         }
 
         pop();
