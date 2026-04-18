@@ -23,9 +23,9 @@ function drawPlayer() {
 
     image(
         playerImg,
-        player.x - player.size / 2,
+        player.x - player.size ,
         player.y - player.size / 2,
-        player.size,
+        player.size*2,
         player.size
     );
 }
