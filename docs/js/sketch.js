@@ -12,11 +12,11 @@ function preload() {
     enemyDeathSound = loadSound('asset/audio/enemy-death.wav');
 
     enemyImages = {};
-    enemyImages.enemy1 = loadImage('asset/enemy/enemy1.png');
-    enemyImages.enemy2 = loadImage('asset/enemy/enemy2.png');
-    enemyImages.enemy3 = loadImage('asset/enemy/enemy3.png');
-    enemyImages.enemy4 = loadImage('asset/enemy/enemy4.png');
-    enemyImages.enemy5 = loadImage('asset/enemy/enemy5.png');
+    enemyImages. = loadImage('asset/enemy/基礎敵人.png');
+    enemyImages.enemy2 = loadImage('asset/enemy/快跑敵人.png');
+    enemyImages.enemy3 = loadImage('asset/enemy/坦克敵人.png');
+    enemyImages.enemy4 = loadImage('asset/enemy/分裂敵人.png');
+    enemyImages.enemy5 = loadImage('asset/enemy/游移敵人.png');
  //new add
 }
 
