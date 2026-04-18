@@ -25,6 +25,7 @@ function setup() {
     resetPlayer();
 }
 
+
 function draw() {
     background(40);
 
