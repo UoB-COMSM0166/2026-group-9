@@ -36,11 +36,11 @@ function drawGameContent() {
             if (e.flashTimer % 6 === 0) {
                 tint(255, 150);
             } else {
-                image(enemyImages[e.imgKey], e.x, e.y, e.size * 6, e.size * 4);
+                image(enemyImages[e.imgKey], e.x, e.y, e.size * 2.5, e.size * 1.8);
             }
             e.flashTimer--;
         } else {
-            image(enemyImages[e.imgKey], e.x, e.y, e.size * 6, e.size * 4);
+            image(enemyImages[e.imgKey], e.x, e.y, e.size * 2.5, e.size * 1.8);
         }
 
         pop();
@@ -164,3 +164,4 @@ function showEndScreen(msg) {
     textSize(40);
     text(msg, width / 2, height / 2);
 }
+；
