@@ -19,10 +19,10 @@ function resetPlayer() {
 }
 
 function drawPlayer() {
-    if (!player || !playerImg) return;
+    if (!player || !currentPlayerImg) return;
 
     image(
-        playerImg,
+        currentPlayerImg,
         player.x - player.size / 2,
         player.y - player.size / 2,
         player.size,
