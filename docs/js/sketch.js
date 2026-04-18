@@ -4,6 +4,8 @@ let enemyImages={};
 function preload() {
     preloadAssets();
     playerImg = loadImage('asset/role/主角01.png');
+    playerImg2 = loadImage('asset/role/主角02.png');
+    playerImg3 = loadImage('asset/role/主角03.png');
     //new add for image
     for(let i = 0; i < 10; i++){
         comicImages[i] = loadImage(`asset/image/Comic/C${i}.png`);

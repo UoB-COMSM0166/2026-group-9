@@ -18,7 +18,7 @@ function resetPlayer() {
     medkits = 2;
 }
 
-function drawPlayer() {
+/*function drawPlayer() {
     if (!player || !playerImg) return;
 
     image(
@@ -26,6 +26,28 @@ function drawPlayer() {
         player.x - player.size ,
         player.y - player.size / 2,
         player.size*2,
+        player.size
+    );
+}
+    */
+function drawPlayer() {
+    if (!player) return;
+    
+    // 根据关卡选择对应图片
+    let imgToDraw = playerImg;  // 默认第一关
+    if (currentLevel === 2) {
+        imgToDraw = playerImg2;
+    } else if (currentLevel === 3) {
+        imgToDraw = playerImg3;
+    }
+    
+    if (!imgToDraw) return;  // 防止图片未加载
+    
+    image(
+        imgToDraw,
+        player.x - player.size,
+        player.y - player.size / 2,
+        player.size * 2,
         player.size
     );
 }
