@@ -1,18 +1,10 @@
-let playerImg; // new add for image
-let enemyImages={};
-// --- 這裡整合了你所有的全域變數，確保它們在程式一開始就存在 ---
-
-// 1. 圖片與資源變數
 let playerImg, playerImg2, playerImg3, bulletImg;
 let bgImg1, bgImg2, bgImg3, bgImg4;
-let enemyImages = {};
-let comicImages = []; // 重要！這行如果沒宣告，上面的 for 迴圈就會崩潰
+let enemyImages = {}; // 確保宣告為物件
+let comicImages = []; // 確保宣告為陣列
 
 // 2. 音效變數
 let bgm01, bgm02, bgm03, bgmmenu, endingBGM, enemyDeathSound;
-
-// 3. 其他全域狀態 (如果有的話)
-// let currentLevel, systemErrorOccurred; // 如果你這些變數也在用，記得確保它們有宣告
 
 function preload() {
     preloadAssets();
