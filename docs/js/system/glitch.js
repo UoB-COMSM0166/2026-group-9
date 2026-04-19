@@ -5,6 +5,7 @@ const GlitchManager = {
     speed: 15, // 稍微調慢一點，看起來會更像電腦錯亂
 
     toggle: function(status) {
+        console.log("DEBUG: GlitchManager 收到狀態請求，現在設定為:", status);
         this.isActive = status;
     },
 
