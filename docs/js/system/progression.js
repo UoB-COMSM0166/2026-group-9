@@ -60,3 +60,11 @@ function updateGameState() {
         }
     }
 }
+
+// 在你原有的邏輯檔案中 (例如 progression.js)
+function updateGameProgress() {
+
+    
+    let isThirdLevelGlitching = (currentLevel === 3 && systemErrorOccurred === true);
+    GlitchManager.toggle(isThirdLevelGlitching);
+}

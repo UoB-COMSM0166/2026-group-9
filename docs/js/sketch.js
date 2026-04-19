@@ -31,6 +31,18 @@ function draw() {
     sceneSwitch();
 
     updateGameState();
+
+    updateGameProgress();
+
+    GlitchManager.update();
+
+    drawMap();
+
+    drawEntities();
+    
+    if (currentLevel === 3){
+        GlitchManager.draw(bgImg4);
+    }
 }
 
 function updateGame() {
