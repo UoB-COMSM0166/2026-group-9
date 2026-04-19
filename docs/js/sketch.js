@@ -74,3 +74,18 @@ function drawMap() {
         image(bgImg3, 0, 0, width, height);
     }
 }
+
+function drawEntities() {
+    // 把你原本分散在 draw() 裡面畫玩家、敵人的代碼放進這裡
+    player.draw(); 
+    
+    for (let enemy of enemies) {
+        enemy.draw();
+    }
+    
+    for (let bullet of bullets) {
+        bullet.draw();
+    }
+    
+    // 如果你有其他的 UI 或道具，也可以放在這裡
+}
