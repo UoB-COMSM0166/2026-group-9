@@ -1,9 +1,7 @@
 let playerImg, playerImg2, playerImg3, bulletImg;
 let bgImg1, bgImg2, bgImg3, bgImg4;
-let enemyImages = {}; // 確保宣告為物件
-let comicImages = []; // 確保宣告為陣列
-
-// 2. 音效變數
+let enemyImages = {}; 
+let comicImages = []; 
 let bgm01, bgm02, bgm03, bgmmenu, endingBGM, enemyDeathSound;
 
 function preload() {
