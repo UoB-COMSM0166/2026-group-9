@@ -1,4 +1,3 @@
-let bgImg1, bgImg2, bgImg3;
 let player;
 let bullets = [];
 let enemies = [];
