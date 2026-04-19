@@ -17,9 +17,7 @@ const GlitchManager = {
         }
     },
 
-    // 這個 draw 已經做得很棒了，會自己處理抖動和透明度
     draw: function(img) {
-    // 1. 偵錯：先確認圖片有沒有載入成功
     if (!img) {
         console.error("DEBUG: 圖片 img 是空的 (undefined 或 null)！");
         return;
