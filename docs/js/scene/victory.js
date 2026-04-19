@@ -5,13 +5,6 @@ let isFading = false;
 let comicActive = false; 
 let endingBGM; 
 
-function preload() {
-    
-    for (let i = 0; i < 10; i++) {
-        comicImages[i] = loadImage(`asset/image/Comic/C${i}.png`);
-    }
-    endingBGM = loadSound('asset/BGM/Ending.mp3'); 
-}
 
 function draw() {
     if (gameState === "WIN") {

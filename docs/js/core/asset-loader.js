@@ -8,4 +8,9 @@ function preloadAssets() {
     bgm02 = loadSound('./asset/BGM/Level02.mp3');
     bgm03 = loadSound('./asset/BGM/Level03.mp3');
     bgmmenu = loadSound('./asset/BGM/StartMenu.mp3');
+
+    for (let i = 0; i < 10; i++) {
+        comicImages[i] = loadImage(`asset/image/Comic/C${i}.png`);
+    }
+    endingBGM = loadSound('asset/BGM/Ending.mp3'); 
 }
