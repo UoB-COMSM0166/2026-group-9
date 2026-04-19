@@ -11,7 +11,6 @@ function preload() {
     for(let i = 0; i < 10; i++){
         comicImages[i] = loadImage(`asset/image/Comic/C${i}.png`);
     }
-    endingBGM = loadSound('asset/BGM/Ending.mp3'); 
     enemyDeathSound = loadSound('asset/audio/enemy-death.wav');
 
     enemyImages = {};
