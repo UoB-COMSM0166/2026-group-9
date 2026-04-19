@@ -1,5 +1,4 @@
 let enemyImages = {}; 
-let comicImages = []; 
 
 function preload() {
     preloadAssets();
@@ -8,9 +7,6 @@ function preload() {
     playerImg3 = loadImage('asset/role/主角03.png');
     bulletImg = loadImage('asset/bullet/bullet.png'); 
     //new add for image
-    for(let i = 0; i < 10; i++){
-        comicImages[i] = loadImage(`asset/image/Comic/C${i}.png`);
-    }
     enemyDeathSound = loadSound('asset/audio/enemy-death.wav');
 
     enemyImages = {};
