@@ -3,17 +3,22 @@ function handlePlayerMovement() {
     let moveYMult = 1;
     let confusionMsg = "";
 
+
+    let shouldGlitch = false;
     if (currentLevel === 3) {
         if (timer <= 50 && timer > 45) {
             moveXMult = -1;
             confusionMsg = "WARNING: HORIZONTAL CONFUSION!\n警告:左右移動失調!";
+            shouldGlitch = true;
         } else if (timer <= 30 && timer > 25) {
             moveYMult = -1;
             confusionMsg = "WARNING: VERTICAL CONFUSION!\n警告:上下移動失調!";
+            shouldGlitch = true;
         } else if (timer <= 15 && timer > 10) {
             moveXMult = -1;
             moveYMult = -1;
             confusionMsg = "WARNING: COMPLETE CONFUSION!\n警告:全方位移動失調!";
+            shouldGlitch = true;
         }
     }
 
