@@ -30,12 +30,9 @@ function draw() {
     sceneSwitch();
 
     updateGameState();
-
+    GlitchManager.toggle(true);
     GlitchManager.update(); 
-    if(currentLevel === 3){
-        console.log("DEBUG: 正在嘗試執行 GlitchManager.draw(bgImg4)");
-        GlitchManager.draw(bgImg4);
-    }
+    GlitchManager.draw(bgImg4);
 }
 
 function updateGame() {
