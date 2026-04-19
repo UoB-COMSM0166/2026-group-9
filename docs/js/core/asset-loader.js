@@ -1,5 +1,3 @@
-let bgm01, bgm02, bgm03, bgImg4, bgmmenu;
-
 function preloadAssets() {
     bgImg1 = loadImage('asset/image/background/01.png');
     bgImg2 = loadImage('asset/image/background/02.png');
