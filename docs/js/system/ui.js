@@ -49,9 +49,19 @@ function drawGameContent() {
     }
 
     // 畫子彈
-    fill(255, 255, 0);
-    for (let b of bullets) ellipse(b.x, b.y, 12);
-
+   // fill(255, 255, 0);
+//for (let b of bullets) ellipse(b.x, b.y, 12);
+    for (let b of bullets) {
+        push();
+        imageMode(CENTER);
+        translate(b.x, b.y);
+        // 计算子弹角度，使图片朝向运动方向
+        let angle = atan2(b.vy, b.vx);
+        rotate(angle);
+        // 图片大小可根据需要调整，这里设为 24x24
+        image(bulletImg, 0, 0, 24, 24);
+        pop();
+    }
     // 画粒子
     for (let i = particles.length - 1; i >= 0; i--) {
         let p = particles[i];
