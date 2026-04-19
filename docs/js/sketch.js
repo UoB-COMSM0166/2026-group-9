@@ -32,8 +32,10 @@ function draw() {
     updateGameState();
 
     GlitchManager.update(); 
-
-    GlitchManager.draw(bgImg4);
+    if(currentLevel === 3){
+        console.log("DEBUG: 正在嘗試執行 GlitchManager.draw(bgImg4)");
+        GlitchManager.draw(bgImg4);
+    }
 }
 
 function updateGame() {
@@ -50,29 +52,4 @@ function updateGame() {
 
     checkProgress();
     checkGameOver();
-}
-
-function drawMap() {
-    if (currentLevel === 1) {
-        image(bgImg1, 0, 0, width, height);
-    } else if (currentLevel === 2) {
-        image(bgImg2, 0, 0, width, height);
-    } else if (currentLevel === 3) {
-        image(bgImg3, 0, 0, width, height);
-    }
-}
-
-function drawEntities() {
-    // 把你原本分散在 draw() 裡面畫玩家、敵人的代碼放進這裡
-    player.draw(); 
-    
-    for (let enemy of enemies) {
-        enemy.draw();
-    }
-    
-    for (let bullet of bullets) {
-        bullet.draw();
-    }
-    
-    // 如果你有其他的 UI 或道具，也可以放在這裡
 }
