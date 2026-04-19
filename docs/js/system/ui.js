@@ -27,7 +27,7 @@ function drawGameContent() {
 
     drawHealthBar(player.x, player.y - 25, player.hp, player.maxHp, "green");
 
-    for (let e of enemies) {
+  /*  for (let e of enemies) {
         push();
         imageMode(CENTER);
 
@@ -36,22 +36,60 @@ function drawGameContent() {
             if (e.flashTimer % 6 === 0) {
                 tint(255, 150);
             } else {
-                image(enemyImages[e.imgKey], e.x, e.y, e.size * 2, e.size * 2);
+                image(enemyImages[e.imgKey], e.x, e.y, e.size * 2.5, e.size * 1.8);
             }
             e.flashTimer--;
         } else {
-            image(enemyImages[e.imgKey], e.x, e.y, e.size * 2, e.size * 2);
+            image(enemyImages[e.imgKey], e.x, e.y, e.size * 2.5, e.size * 1.8);
         }
 
         pop();
         // 血条完全不动
         drawHealthBar(e.x, e.y - (e.size * 0.75), e.hp, e.maxHp, "red");
+    } */
+    for (let e of enemies) {
+        push();
+        imageMode(CENTER);
+    
+    // 计算图片缩放系数
+        let widthScale = 2.5;
+        let heightScale = 1.8;
+        if (e.type === "tank") {
+            widthScale = 1.8;   // 坦克宽度缩小一些
+            heightScale = 1.3;  // 高度也相应调整
+        }
+    
+        let imgW = e.size * widthScale;
+        let imgH = e.size * heightScale;
+    
+        if (e.flashTimer > 0) {
+            if (e.flashTimer % 6 === 0) {
+                tint(255, 150);
+            } else {
+                image(enemyImages[e.imgKey], e.x, e.y, imgW, imgH);
+            }
+            e.flashTimer--;
+        } else {
+            image(enemyImages[e.imgKey], e.x, e.y, imgW, imgH);
+        }
+        pop();
+        drawHealthBar(e.x, e.y - (e.size * 0.75), e.hp, e.maxHp, "red");
     }
 
     // 畫子彈
-    fill(255, 255, 0);
-    for (let b of bullets) ellipse(b.x, b.y, 12);
-
+   // fill(255, 255, 0);
+//for (let b of bullets) ellipse(b.x, b.y, 12);
+    for (let b of bullets) {
+        push();
+        imageMode(CENTER);
+        translate(b.x, b.y);
+        // 计算子弹角度，使图片朝向运动方向
+        let angle = atan2(b.vy, b.vx);
+        rotate(angle);
+        // 图片大小可根据需要调整，这里设为 24x24
+        image(bulletImg, 0, 0, 46,46);
+        pop();
+    }
     // 画粒子
     for (let i = particles.length - 1; i >= 0; i--) {
         let p = particles[i];
