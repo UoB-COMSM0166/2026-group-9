@@ -33,8 +33,8 @@ const GlitchManager = {
     tint(255, this.alpha);
     let jitterX = random(-3, 3);
     let jitterY = random(-3, 3);
-    imageMode(CENTER);
-    image(img, width/2 + jitterX, height/2 + jitterY, width * 0.8, (img.height/img.width) * (width * 0.8));
+    imageMode(CORNER);
+    image(img, 0 + jitterX, 0 + jitterY, width, height);
     noTint();
     pop();
 }

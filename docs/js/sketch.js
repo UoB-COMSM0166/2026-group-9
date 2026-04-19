@@ -30,7 +30,6 @@ function draw() {
     sceneSwitch();
 
     updateGameState();
-    GlitchManager.toggle(true);
     GlitchManager.update(); 
     GlitchManager.draw(bgImg4);
 }
