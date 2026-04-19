@@ -8,6 +8,7 @@ const GlitchManager = {
         console.log("DEBUG: GlitchManager 收到狀態請求，現在設定為:", status);
         this.isActive = status;
     },
+    
 
     update: function() {
         if (this.isActive) {
@@ -37,5 +38,18 @@ const GlitchManager = {
     image(img, 0 + jitterX, 0 + jitterY, width, height);
     noTint();
     pop();
-}
-}
+},
+    checkStatus: function(timer, level) {
+        if (level !== 3) {
+            this.toggle(false);
+            return;
+        }
+
+        // 判斷是否在發作時間
+        let isGlitchTime = (timer <= 50 && timer > 45) || 
+                           (timer <= 30 && timer > 25) || 
+                           (timer <= 15 && timer > 10);
+
+        this.toggle(isGlitchTime);
+    },
+};

@@ -30,8 +30,11 @@ function draw() {
     sceneSwitch();
 
     updateGameState();
+    GlitchManager.checkStatus(timer, currentLevel);
     GlitchManager.update(); 
-    GlitchManager.draw(bgImg4);
+    if(currentLevel === 3){
+        GlitchManager.draw(bgImg4);
+    }
 }
 
 function updateGame() {
