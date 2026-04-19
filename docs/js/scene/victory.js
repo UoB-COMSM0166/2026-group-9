@@ -1,3 +1,4 @@
+let comicImages = []; 
 let currentComicPage = 0;
 let comicFadeAlpha = 0; 
 let isFading = false; 

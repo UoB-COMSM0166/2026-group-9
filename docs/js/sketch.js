@@ -1,8 +1,5 @@
-let playerImg, playerImg2, playerImg3, bulletImg;
-let bgImg1, bgImg2, bgImg3, bgImg4;
 let enemyImages = {}; 
 let comicImages = []; 
-let bgm01, bgm02, bgm03, bgmmenu, endingBGM, enemyDeathSound;
 
 function preload() {
     preloadAssets();
