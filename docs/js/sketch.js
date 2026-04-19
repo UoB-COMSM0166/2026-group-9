@@ -49,6 +49,17 @@ function draw() {
     }
 }
 
+
+function drawMap() {
+    if (currentLevel === 1) {
+        image(bgImg1, 0, 0, width, height);
+    } else if (currentLevel === 2) {
+        image(bgImg2, 0, 0, width, height);
+    } else if (currentLevel === 3) {
+        image(bgImg3, 0, 0, width, height);
+    }
+}
+
 function updateGame() {
 
 
