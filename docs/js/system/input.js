@@ -10,6 +10,7 @@ function handlePlayerMovement() {
             moveXMult = -1;
             confusionMsg = "WARNING: HORIZONTAL CONFUSION!\n警告:左右移動失調!";
             shouldGlitch = true;
+            console.log("DEBUG: 觸發左右錯亂！shouldGlitch = true");
         } else if (timer <= 30 && timer > 25) {
             moveYMult = -1;
             confusionMsg = "WARNING: VERTICAL CONFUSION!\n警告:上下移動失調!";
