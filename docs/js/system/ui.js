@@ -59,7 +59,7 @@ function drawGameContent() {
         let angle = atan2(b.vy, b.vx);
         rotate(angle);
         // 图片大小可根据需要调整，这里设为 24x24
-        image(bulletImg, 0, 0, 24, 24);
+        image(bulletImg, 0, 0, 36，36);
         pop();
     }
     // 画粒子
