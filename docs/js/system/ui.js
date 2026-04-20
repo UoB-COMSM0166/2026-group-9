@@ -126,7 +126,12 @@ function drawUI() {
     fill(255);
     textSize(20);
     textAlign(LEFT);
-    text("Time: " + timer, 20, 30);
+    if (gameMode === "STORY") {
+        text("Time: " + timer, 20, 30);
+    } else {
+        const survivedSec = floor(rogue.survivedFrames / 60);
+        text("Survive: " + survivedSec + "s", 20, 30);
+    }
     text("HP: " + player.hp + " / " + player.maxHp, 20, 60);
     text("Weapon: " + weaponMode.toUpperCase(), 20, 90);
     text("Medkits: " + medkits, 20, 120);
@@ -144,12 +149,12 @@ function drawUI() {
 
     fill(255);
     // 第一關隱藏殺敵進度，第二關才顯示
-    if (currentLevel === 2) {
+    if (gameMode === "STORY" && currentLevel === 2) {
         fill(killCount >= VICTORY_KILLS_LV2 ? "lime" : "yellow");
         text("Kills: " + killCount + " / " + VICTORY_KILLS_LV2, 20, 180);
     }
     // 關卡標題顯示 5 秒
-    if (timer > levelDuration - 5) {
+    if (gameMode === "STORY" && timer > levelDuration - 5) {
         push();
         textAlign(CENTER, CENTER);
 
@@ -178,6 +183,7 @@ function drawUI() {
 
 //溫度計進度條
 function drawThermometer(posX, posY) {
+    if (gameMode !== "STORY" || levelDuration <= 0) return;
     let barWidth = 15;
     let barHeight = 200;
     let circleSize = 35;
@@ -188,10 +194,125 @@ function drawThermometer(posX, posY) {
     ellipse(posX, posY + barHeight, circleSize, circleSize);
     rectMode(CENTER);
     rect(posX, posY + barHeight / 2, barWidth, barHeight, 10);
-    fill(255, 50, 50);
+    // 方向键颠倒/混乱时 -> 温度计变蓝
+    if (uiThermometerCold) fill(60, 140, 255);
+    else fill(255, 50, 50);
     ellipse(posX, posY + barHeight, circleSize - 8, circleSize - 8);
     rectMode(CORNER);
     rect(posX - barWidth / 2 + 3, (posY + barHeight) - barHeight * progress, barWidth - 6, barHeight * progress, 2);
+    pop();
+}
+
+function showPostComicChoiceScreen() {
+    background(10);
+    push();
+    fill(255);
+    textAlign(CENTER, CENTER);
+    textSize(32);
+    text("THE END?", width / 2, height * 0.22);
+    textSize(18);
+    fill(220);
+    text("Choose what to do next", width / 2, height * 0.30);
+    pop();
+
+    const btns = getPostComicButtons();
+    for (const b of btns) drawButton(b);
+}
+
+function getPostComicButtons() {
+    const w = 360;
+    const h = 70;
+    const gap = 24;
+    const x = width / 2 - w / 2;
+    const y1 = height * 0.44;
+    const y2 = y1 + h + gap;
+
+    return [
+        {
+            x, y: y1, w, h,
+            label: "Restart (Level 1)",
+            onClick: () => restartStoryFromLevel1()
+        },
+        {
+            x, y: y2, w, h,
+            label: "Enter Roguelike",
+            onClick: () => startRoguelikeMode()
+        }
+    ];
+}
+
+function drawButton(b) {
+    const hover = mouseX >= b.x && mouseX <= b.x + b.w && mouseY >= b.y && mouseY <= b.y + b.h;
+    push();
+    rectMode(CORNER);
+    noStroke();
+    fill(hover ? 70 : 45);
+    rect(b.x, b.y, b.w, b.h, 14);
+    stroke(hover ? 255 : 160);
+    noFill();
+    rect(b.x, b.y, b.w, b.h, 14);
+    noStroke();
+    fill(255);
+    textAlign(CENTER, CENTER);
+    textSize(20);
+    text(b.label, b.x + b.w / 2, b.y + b.h / 2);
+    pop();
+}
+
+function drawBuffSelectionOverlay() {
+    if (!rogue.buffChoices) return;
+
+    push();
+    fill(0, 170);
+    noStroke();
+    rect(0, 0, width, height);
+
+    fill(255);
+    textAlign(CENTER, CENTER);
+    textSize(26);
+    text("Choose one Buff", width / 2, height * 0.18);
+    textSize(16);
+    fill(220);
+    text("Survive longer to get more choices", width / 2, height * 0.24);
+    pop();
+
+    const cards = getBuffCardsLayout();
+    for (let i = 0; i < cards.length; i++) {
+        drawBuffCard(cards[i], rogue.buffChoices[i]);
+    }
+}
+
+function getBuffCardsLayout() {
+    const w = 240;
+    const h = 170;
+    const gap = 26;
+    const totalW = w * 3 + gap * 2;
+    const startX = width / 2 - totalW / 2;
+    const y = height * 0.40;
+    return [
+        { x: startX + 0 * (w + gap), y, w, h },
+        { x: startX + 1 * (w + gap), y, w, h },
+        { x: startX + 2 * (w + gap), y, w, h }
+    ];
+}
+
+function drawBuffCard(r, choice) {
+    const hover = mouseX >= r.x && mouseX <= r.x + r.w && mouseY >= r.y && mouseY <= r.y + r.h;
+    push();
+    noStroke();
+    fill(hover ? 65 : 40);
+    rect(r.x, r.y, r.w, r.h, 16);
+    stroke(hover ? 255 : 130);
+    noFill();
+    rect(r.x, r.y, r.w, r.h, 16);
+    noStroke();
+    fill(255);
+    textAlign(CENTER, TOP);
+    textSize(18);
+    text(choice.title, r.x + r.w / 2, r.y + 16);
+    fill(220);
+    textSize(14);
+    text(choice.desc, r.x + r.w / 2, r.y + 56, r.w - 24, r.h - 70);
     pop();
 }
 

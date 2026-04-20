@@ -1,4 +1,5 @@
-let enemyImages = {}; 
+let playerImg; // new add for image
+let enemyImages={};
 
 function preload() {
     preloadAssets();
@@ -7,6 +8,10 @@ function preload() {
     playerImg3 = loadImage('asset/role/主角03.png');
     bulletImg = loadImage('asset/bullet/bullet.png'); 
     //new add for image
+    for(let i = 0; i < 10; i++){
+        comicImages[i] = loadImage(`asset/image/Comic/C${i}.png`);
+    }
+    endingBGM = loadSound('asset/BGM/Ending.mp3'); 
     enemyDeathSound = loadSound('asset/audio/enemy-death.wav');
 
     enemyImages = {};
@@ -30,15 +35,11 @@ function draw() {
     sceneSwitch();
 
     updateGameState();
-    GlitchManager.checkStatus(timer, currentLevel);
-    GlitchManager.update(); 
-    if(currentLevel === 3){
-        GlitchManager.draw(bgImg4);
-    }
 }
 
 function updateGame() {
-
+    // Buff 三選一時，暫停遊戲更新（畫面在 scene-manager 中仍會繪製）
+    if (gameState !== "PLAY") return;
 
     handlePlayerMovement();
     handleShooting();
