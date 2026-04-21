@@ -1,11 +1,26 @@
 function updateTimer() {
     // 計時器邏輯
-    if (frameCount % 60 === 0 && timer > 0) timer--;
+    if (gameState !== "PLAY") return;
+
+    if (gameMode === "STORY") {
+        if (frameCount % 60 === 0 && timer > 0) timer--;
+    } else if (gameMode === "ROGUELIKE") {
+        // roguelike: 無限生存，時間往上累加
+        rogue.survivedFrames++;
+
+        // 每生存 20 秒 -> 進入 Buff 三選一 (暫停遊戲)
+        const survivedSec = floor(rogue.survivedFrames / 60);
+        if (survivedSec >= rogue.nextBuffAtSec) {
+            triggerBuffSelection();
+            rogue.nextBuffAtSec += 20;
+        }
+    }
 }
 
 function checkProgress() {
     // --- 關鍵修改：通關判定邏輯 ---
     if (gameState !== "PLAY") return;
+    if (gameMode !== "STORY") return;
     if (timer <= 0) {
         if (currentLevel === 1) {
             // 第一關：只要時間到就進下一關
@@ -27,6 +42,7 @@ function checkGameOver() {
 }
 
 function goToLevel2() {
+    gameMode = "STORY";
     currentLevel = 2;
     levelDuration = 25;
     timer = 25;
@@ -37,6 +53,7 @@ function goToLevel2() {
 }
 
 function goToLevel3() {
+    gameMode = "STORY";
     currentLevel = 3;
     levelDuration = 60; // 設定通關時間一分鐘
     timer = 60;
@@ -47,8 +64,46 @@ function goToLevel3() {
     resetPlayer();
 }
 
+function restartStoryFromLevel1() {
+    gameMode = "STORY";
+    currentLevel = 1;
+    levelDuration = 15;
+    timer = 15;
+    killCount = 0;
+    enemies = [];
+    bullets = [];
+    particles = [];
+    // buff 相關清空
+    baseFireRate = 200;
+    fireRateReduction = 0;
+    bulletDamageBonus = 0;
+    resetPlayer();
+    gameState = "PLAY";
+}
+
+function startRoguelikeMode() {
+    gameMode = "ROGUELIKE";
+    // 用第一關背景即可（你也可以之後做專用背景）
+    currentLevel = 1;
+    // story timer 不再使用，但保留為 0 避免 UI 混淆
+    levelDuration = 0;
+    timer = 0;
+    killCount = 0;
+    enemies = [];
+    bullets = [];
+    particles = [];
+    baseFireRate = 200;
+    fireRateReduction = 0;
+    bulletDamageBonus = 0;
+    rogue.survivedFrames = 0;
+    rogue.nextBuffAtSec = 20;
+    rogue.buffChoices = null;
+    resetPlayer();
+    gameState = "PLAY";
+}
+
 function updateGameState() {
-    if (gameState === "START") {
+    if (gameState === "START" || gameState === "HELP" || gameState === "MODE_SELECT") {
         playStageBGM(bgmmenu); 
     } else if (gameState === "PLAY") {
         if (currentLevel === 1) {
@@ -59,12 +114,4 @@ function updateGameState() {
             playStageBGM(bgm03);
         }
     }
-}
-
-// 在你原有的邏輯檔案中 (例如 progression.js)
-function updateGameProgress() {
-
-    
-    let isThirdLevelGlitching = (currentLevel === 3 && systemErrorOccurred === true);
-    GlitchManager.toggle(isThirdLevelGlitching);
 }

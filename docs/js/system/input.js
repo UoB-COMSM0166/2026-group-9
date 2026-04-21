@@ -1,28 +1,28 @@
 function handlePlayerMovement() {
+    if (!player) return;
     let moveXMult = 1;
     let moveYMult = 1;
-    let confusionMsg = "";
+    uiThermometerCold = false;
 
-
-    let shouldGlitch = false;
     if (currentLevel === 3) {
         if (timer <= 50 && timer > 45) {
             moveXMult = -1;
-            confusionMsg = "WARNING: HORIZONTAL CONFUSION!\n警告:左右移動失調!";
+            uiThermometerCold = true;
         } else if (timer <= 30 && timer > 25) {
             moveYMult = -1;
-            confusionMsg = "WARNING: VERTICAL CONFUSION!\n警告:上下移動失調!";
+            uiThermometerCold = true;
         } else if (timer <= 15 && timer > 10) {
             moveXMult = -1;
             moveYMult = -1;
-            confusionMsg = "WARNING: COMPLETE CONFUSION!\n警告:全方位移動失調!";
+            uiThermometerCold = true;
         }
     }
 
-    if (keyIsDown(65)) player.x -= 4 * moveXMult;
-    if (keyIsDown(68)) player.x += 4 * moveXMult;
-    if (keyIsDown(87)) player.y -= 4 * moveYMult;
-    if (keyIsDown(83)) player.y += 4 * moveYMult;
+    const spd = player.speed || 4;
+    if (keyIsDown(65)) player.x -= spd * moveXMult;
+    if (keyIsDown(68)) player.x += spd * moveXMult;
+    if (keyIsDown(87)) player.y -= spd * moveYMult;
+    if (keyIsDown(83)) player.y += spd * moveYMult;
 
     player.x = constrain(player.x, 0, WORLD_W);
     player.y = constrain(player.y, 0, WORLD_H);
@@ -33,13 +33,6 @@ function handlePlayerMovement() {
 
     handleExtraInput();
     updateExtraStatus();
-
-    if (confusionMsg !== "") {
-        fill(255, 0, 0);
-        textSize(30);
-        textAlign(CENTER);
-        text(confusionMsg, width / 2, height / 2, 100);
-    }
 }
 
 function handleExtraInput() {
@@ -92,7 +85,8 @@ function updateExtraStatus() {
 
 function handleShooting() {
     // 自動射擊邏輯：按住滑鼠且過了冷卻時間
-    if (mouseIsPressed && millis() - lastShotTime > fireRate) {
+    const effectiveFireRate = max(60, baseFireRate - fireRateReduction);
+    if (mouseIsPressed && millis() - lastShotTime > effectiveFireRate) {
         let camX = constrain(width / 2 - player.x, -(WORLD_W - width), 0);
         let camY = constrain(height / 2 - player.y, -(WORLD_H - height), 0);
 
@@ -105,7 +99,7 @@ function handleShooting() {
                 y: player.y,
                 vx: cos(angle) * 10,
                 vy: sin(angle) * 10,
-                damage: 2
+                damage: 2 + bulletDamageBonus
             });
         } else {
             let spread = 0.2;
@@ -115,7 +109,7 @@ function handleShooting() {
                 y: player.y,
                 vx: cos(angle - spread) * 10,
                 vy: sin(angle - spread) * 10,
-                damage: 1
+                damage: 1 + bulletDamageBonus
             });
 
             bullets.push({
@@ -123,7 +117,7 @@ function handleShooting() {
                 y: player.y,
                 vx: cos(angle) * 10,
                 vy: sin(angle) * 10,
-                damage: 1
+                damage: 1 + bulletDamageBonus
             });
 
             bullets.push({
@@ -131,7 +125,7 @@ function handleShooting() {
                 y: player.y,
                 vx: cos(angle + spread) * 10,
                 vy: sin(angle + spread) * 10,
-                damage: 1
+                damage: 1 + bulletDamageBonus
             });
         }
 

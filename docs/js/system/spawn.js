@@ -1,12 +1,43 @@
 function spawnEnemies() {
-    let config = WAVE_CONFIG[currentLevel];
-    if (!config) return;
+    if (gameState !== "PLAY") return;
 
-    if (frameCount % config.spawnRate === 0) {
+    if (gameMode === "STORY") {
+        let config = WAVE_CONFIG[currentLevel];
+        if (!config) return;
+
+        if (frameCount % config.spawnRate === 0) {
+            let spawnPos = getSpawnPosition();
+            let enemyType = pickEnemyType(config.enemyWeights);
+            let newEnemy = createEnemy(enemyType, spawnPos.x, spawnPos.y);
+            enemies.push(newEnemy);
+        }
+        return;
+    }
+
+    // --- Roguelike: 隨時間刷怪越來越多 ---
+    const survivedSec = floor(rogue.survivedFrames / 60);
+    const difficulty = floor(survivedSec / 20); // 每 20 秒提升一段
+
+    // 生成頻率：從 45f 開始，逐步降到 10f
+    const spawnRateFrames = max(10, 45 - difficulty * 3);
+    if (frameCount % spawnRateFrames !== 0) return;
+
+    // 每次生成的數量：1 -> 2 -> 3...
+    const batch = 1 + floor(difficulty / 2);
+
+    // 敵人種類權重（越後面越難）
+    const weights = [
+        { type: "basic", weight: max(10, 55 - difficulty * 5) },
+        { type: "fast", weight: min(35, 20 + difficulty * 3) },
+        { type: "tank", weight: min(35, 15 + difficulty * 2) },
+        { type: "splitter", weight: min(20, difficulty * 2) },
+        { type: "sprinter", weight: min(20, max(0, (difficulty - 2) * 2)) }
+    ].filter(w => w.weight > 0);
+
+    for (let n = 0; n < batch; n++) {
         let spawnPos = getSpawnPosition();
-        let enemyType = pickEnemyType(config.enemyWeights);
+        let enemyType = pickEnemyType(weights);
         let newEnemy = createEnemy(enemyType, spawnPos.x, spawnPos.y);
-
         enemies.push(newEnemy);
     }
 }
