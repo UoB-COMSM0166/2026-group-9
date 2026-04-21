@@ -19,7 +19,7 @@ function preload() {
 }
 
 function setup() {
-    createCanvas(960, 540);
+    createCanvas(1080, 660);
     resetPlayer();
 }
 
