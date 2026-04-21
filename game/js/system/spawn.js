@@ -43,72 +43,25 @@ function spawnEnemies() {
 }
 
 function getSpawnPosition() {
-    let cam = getCameraOffset();
-    let viewLeft = -cam.x;
-    let viewTop = -cam.y;
-    let viewRight = viewLeft + width;
-    let viewBottom = viewTop + height;
-    let candidates = [];
-    let verticalMin = max(MARGIN_DISTANCE, viewTop);
-    let verticalMax = min(WORLD_H - MARGIN_DISTANCE, viewBottom);
-    let horizontalMin = max(MARGIN_DISTANCE, viewLeft);
-    let horizontalMax = min(WORLD_W - MARGIN_DISTANCE, viewRight);
+    let angle, spawnX, spawnY;
+    let isValidSpawn = false;
+    let maxAttempts = 10;
 
-    if (viewLeft - MARGIN_DISTANCE >= MARGIN_DISTANCE) {
-        candidates.push({
-            side: "left",
-            x: viewLeft - MARGIN_DISTANCE,
-            yMin: verticalMin,
-            yMax: verticalMax
-        });
-    }
+    while (!isValidSpawn && maxAttempts > 0) {
+        angle = random(TWO_PI);
+        spawnX = player.x + cos(angle) * SPAWN_DISTANCE;
+        spawnY = player.y + sin(angle) * SPAWN_DISTANCE;
 
-    if (viewRight + MARGIN_DISTANCE <= WORLD_W - MARGIN_DISTANCE) {
-        candidates.push({
-            side: "right",
-            x: viewRight + MARGIN_DISTANCE,
-            yMin: verticalMin,
-            yMax: verticalMax
-        });
-    }
-
-    if (viewTop - MARGIN_DISTANCE >= MARGIN_DISTANCE) {
-        candidates.push({
-            side: "top",
-            xMin: horizontalMin,
-            xMax: horizontalMax,
-            y: viewTop - MARGIN_DISTANCE
-        });
-    }
-
-    if (viewBottom + MARGIN_DISTANCE <= WORLD_H - MARGIN_DISTANCE) {
-        candidates.push({
-            side: "bottom",
-            xMin: horizontalMin,
-            xMax: horizontalMax,
-            y: viewBottom + MARGIN_DISTANCE
-        });
-    }
-
-    if (candidates.length > 0) {
-        let choice = random(candidates);
-
-        if (choice.side === "left" || choice.side === "right") {
-            return {
-                x: choice.x,
-                y: random(choice.yMin, choice.yMax)
-            };
+        if (spawnX >= 0 && spawnX <= WORLD_W - MARGIN_DISTANCE &&
+            spawnY >= 0 && spawnY <= WORLD_H - MARGIN_DISTANCE) {
+            isValidSpawn = true;
         }
-
-        return {
-            x: random(choice.xMin, choice.xMax),
-            y: choice.y
-        };
+        maxAttempts--;
     }
 
     return {
-        x: constrain(player.x + SPAWN_DISTANCE, MARGIN_DISTANCE, WORLD_W - MARGIN_DISTANCE),
-        y: constrain(player.y, MARGIN_DISTANCE, WORLD_H - MARGIN_DISTANCE)
+        x: constrain(spawnX, 0, WORLD_W - MARGIN_DISTANCE),
+        y: constrain(spawnY, 0, WORLD_H - MARGIN_DISTANCE)
     };
 }
 

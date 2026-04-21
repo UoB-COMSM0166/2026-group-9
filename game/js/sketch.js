@@ -24,7 +24,7 @@ function preload() {
 }
 
 function setup() {
-    createCanvas(1080, 660);
+    createCanvas(960, 540);
     resetPlayer();
 }
 
