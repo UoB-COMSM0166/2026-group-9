@@ -1,4 +1,4 @@
-function showStartMenuScreen() {
+/*function showStartMenuScreen() {
     background(12);
 
     push();
@@ -13,6 +13,31 @@ function showStartMenuScreen() {
 
     const btns = getStartMenuButtons();
     for (const b of btns) drawButton(b);
+}
+*/
+function showStartMenuScreen()
+{
+    if(mainMenuBg)
+    {
+        Image(mainMenuBg,0,0,width,height);
+    }
+    else
+    {
+        background(12);
+    }
+    push();
+    fill(255);
+    textAlign(CENTER,CENTER);
+    textSize(44);
+    text("Kill That Virus", width / 2, height * 0.22);
+    textSize(16);
+    fill(210);
+    text("ver 0.1", width / 2, height * 0.30);
+    pop();
+
+    const btns = getStartMenuButtons();
+    for (const b of btns) drawButton(b);
+}
 }
 
 function getStartMenuButtons() {
