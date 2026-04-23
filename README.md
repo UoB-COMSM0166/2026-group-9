@@ -180,6 +180,9 @@ Our class design follows the principle of responsibility separation to manage th
 
 The most important design decision was to decouple the victory narrative from the core combat logic. Instead of embedding ending triggers inside every enemy destruction function, we implemented a centralized Progression Manager. This manager monitors state changes and triggers the WIN state only when specific thresholds are met. This keeps the codebase clean, reduces redundancy, and allows us to adjust level difficulty (e.g., required kills) in one central location without affecting the underlying combat mechanics.
 
+<img width="5506" height="5205" alt="Game Engine Architecture-2026-04-23-140625" src="https://github.com/user-attachments/assets/c9f39b2b-7c2b-4bbb-b307-bb3066ab95a9" />
+
+
 
 Key Design Patterns:
 
