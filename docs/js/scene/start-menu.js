@@ -1,52 +1,42 @@
-/*function showStartMenuScreen() {
-    background(12);
 
-    push();
-    fill(255);
-    textAlign(CENTER, CENTER);
-    textSize(44);
-    text("Kill That Virus", width / 2, height * 0.22);
-    textSize(16);
-    fill(210);
-    text("ver 0.1", width / 2, height * 0.30);
-    pop();
-
-    const btns = getStartMenuButtons();
-    for (const b of btns) drawButton(b);
-}
-*/
 function showStartMenuScreen()
 {
     if(mainMenuBg)
     {
-        Image(mainMenuBg,0,0,width,height);
+        image(mainMenuBg,0,0,width,height);
     }
     else
     {
         background(12);
     }
+
     push();
+    noStroke();
+    fill(0, 120);          
+    rect(width * (2/3-0.05) , 0, width / 3, height);
+    pop();
+    push();
+    textAlign(RIGHT,CENTER);
+
     fill(255);
-    textAlign(CENTER,CENTER);
     textSize(44);
-    text("Kill That Virus", width / 2, height * 0.22);
+    text("Kill That Virus", width-88, height*0.28);
     textSize(16);
     fill(210);
-    text("ver 0.1", width / 2, height * 0.30);
+    text("ver 0.1", width-200, height*0.36);
     pop();
 
     const btns = getStartMenuButtons();
     for (const b of btns) drawButton(b);
 }
-}
 
 function getStartMenuButtons() {
-    const w = 360;
-    const h = 70;
+    const w = 300;
+    const h = 80;
     const gap = 22;
-    const x = width / 2 - w / 2;
-    const y1 = height * 0.42;
-    const y2 = y1 + h + gap;
+    const x = width-80-w;
+    const y1 = height*0.48;
+    const y2 = y1+h+gap;
 
     return [
         { x, y: y1, w, h, label: "Start", onClick: () => { gameState = "MODE_SELECT"; } },
@@ -115,8 +105,11 @@ function getHelpButtons() {
 }
 
 function showModeSelectScreen() {
-    background(12);
-
+    if (mainMenuBg) {
+        image(mainMenuBg, 0, 0, width, height);
+    } else {
+        background(12);
+    }
     push();
     fill(255);
     textAlign(CENTER, CENTER);
