@@ -18,13 +18,11 @@ Across both modes, players can enjoy the following signature features crafted by
 
 ☣️Diverse Arsenal: A wide variety of weapons to choose from.
 
-🧪Miraculous Items: Power-ups with unique and awesome effects.
+🧪Miraculous Powers: Power-ups with unique and awesome effects.
 
 ✏️Hand-Drawn Environments: Game scenes 100% hand-painted by our development team.
 
 💀Escalating Challenges: Enemies that grow increasingly difficult as you progress.
-
-😈Intense Boss Fights: Heart-pounding encounters against massive pathogens.
 
 📗Educational Trivia: Fun facts and insights into how the human body works.
 
