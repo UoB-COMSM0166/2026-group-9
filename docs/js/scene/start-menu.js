@@ -110,14 +110,23 @@ function showModeSelectScreen() {
     } else {
         background(12);
     }
+
+    // 右侧三分之一区域变暗（与开始菜单一致）
+    push();
+    noStroke();
+    fill(0, 120);
+    rect(width *(2 / 3-0.07),0,width/3,height);
+    pop();
+
     push();
     fill(255);
-    textAlign(CENTER, CENTER);
+    textAlign(RIGHT, CENTER);
     textSize(34);
-    text("Select Mode", width / 2, height * 0.22);
+    text("Select Mode", width -130, height * 0.22);
     textSize(16);
     fill(210);
-    text("Story: clear stages | Roguelike: endless survival + choose 1 of 3 buffs", width / 2, height * 0.30);
+    text("Story: clear stages ", width - 150, height * 0.30);
+    text("Roguelike: endless survival+ choose 1 of 3 buffs", width - 48, height * 0.36);
     pop();
 
     const btns = getModeSelectButtons();
@@ -125,10 +134,10 @@ function showModeSelectScreen() {
 }
 
 function getModeSelectButtons() {
-    const w = 420;
-    const h = 70;
+    const w = 300;
+    const h = 60;
     const gap = 22;
-    const x = width / 2 - w / 2;
+    const x = width -80- w;
     const y1 = height * 0.42;
     const y2 = y1 + h + gap;
     const y3 = y2 + h + gap;
