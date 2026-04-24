@@ -15,7 +15,7 @@ function updateBullets() {
 }
 
 function updateEnemiesAndCombat() {
-    // 敵人追逐與碰撞
+    // enemies chase and collide
     for (let i = enemies.length - 1; i >= 0; i--) {
         let e = enemies[i];
 
@@ -25,7 +25,7 @@ function updateEnemiesAndCombat() {
             moveEnemyTowardPlayer(e, player);
         }
 
-        // 被子彈擊中
+        // hit by bullet
         for (let j = bullets.length - 1; j >= 0; j--) {
             if (dist(bullets[j].x, bullets[j].y, e.x, e.y) < e.size / 2 + 5) {
                 damageEnemy(e, bullets[j].damage || 2);
@@ -34,7 +34,7 @@ function updateEnemiesAndCombat() {
             }
         }
 
-        // 與玩家碰撞
+        // collide with the player
         let dPlayer = dist(player.x, player.y, e.x, e.y);
         if (dPlayer < (player.size + e.size) / 2) {
             if (!shieldOn) {
@@ -47,9 +47,11 @@ function updateEnemiesAndCombat() {
 
         } else if (e.hp <= 0) {
             if (enemyDeathSound) {
-                // 随机音频速率，改变音调
+                // amplify the sound
+                enemyDeathSound.setVolume(1.4);
+                // random audio rate, change pitch
                 enemyDeathSound.rate(random(0.9, 1.1));
-                // 当前音频播放完后再播放下一个音频
+                // play the next audio after the current audio finishes
                 enemyDeathSound.playMode('sustain');
                 enemyDeathSound.play();
             }
@@ -67,7 +69,7 @@ function updateEnemiesAndCombat() {
 
             spawnDeathParticles(e.x, e.y, e.color);
             enemies.splice(i, 1);
-            killCount++; // 擊殺數增加
+            killCount++; // kills increased
         }
     }
 }

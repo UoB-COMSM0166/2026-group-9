@@ -23,7 +23,7 @@ function playStageBGM(newBGM) {
     
     if (currentPlayingBGM) {
         console.log("Playing new BGM in loop mode");
-        currentPlayingBGM.setVolume(1.0); 
+        currentPlayingBGM.setVolume(0.6);
         currentPlayingBGM.play();        
     } else {
         console.log("No BGM object found to play");
