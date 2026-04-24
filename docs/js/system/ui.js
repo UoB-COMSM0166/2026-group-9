@@ -13,10 +13,17 @@ function drawWorld() {
 
 function drawGameContent() {
     // 畫主角
+    if (shieldOn && shieldImg) {
+        push();
+        imageMode(CENTER);
+        let shieldSize = player.size + 80;  // 比玩家略大，可自行调整
+        image(shieldImg, player.x, player.y, shieldSize, shieldSize);
+        pop();
+    }
 
     drawPlayer(); // new add 调用我们在player.js里写的图像绘制函数
 
-    if (shieldOn) {
+  /*  if (shieldOn) {
         push();
         noFill();
         stroke(0, 200, 255);
@@ -24,6 +31,7 @@ function drawGameContent() {
         ellipse(player.x, player.y, player.size + 18);
         pop();
     }
+        */
 
     drawHealthBar(player.x, player.y - 25, player.hp, player.maxHp, "green");
 
@@ -76,9 +84,6 @@ function drawGameContent() {
         drawHealthBar(e.x, e.y - (e.size * 0.75), e.hp, e.maxHp, "red");
     }
 
-    // 畫子彈
-   // fill(255, 255, 0);
-//for (let b of bullets) ellipse(b.x, b.y, 12);
     for (let b of bullets) {
         push();
         imageMode(CENTER);

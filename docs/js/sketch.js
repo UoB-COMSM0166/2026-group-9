@@ -1,6 +1,6 @@
 let playerImg; // new add for image
 let enemyImages={};
-
+let shieldImg; 
 function preload() {
     preloadAssets();
     playerImg = loadImage('asset/image/role/player01.png');
@@ -21,6 +21,7 @@ function preload() {
     enemyImages.enemy4 = loadImage('asset/image/enemy/splitter.png');
     enemyImages.enemy5 = loadImage('asset/image/enemy/sprinter.png');
  //new add
+    shieldImg = loadImage('asset/bullet/淡黄色手绘蜂窝护盾设计.png');
 }
 
 function setup() {
