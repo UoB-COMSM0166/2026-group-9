@@ -540,6 +540,40 @@ In GitHub collaboration, we develop by creating independent branches. Each membe
 
 <a id="conclusion"></a>
 
+# 7. Sustainability Analysis: The Five Dimensions
+
+## 7.1 Technical Dimension
+This dimension focuses on the "Maintainability," "Extensibility," and "Resource Efficiency" of the software.
+
+* **Modular Architecture and Maintainability:** The project logic is partitioned into 19 core modules (e.g., combat.js, spawn.js), demonstrating high-cohesion and low-coupling design principles. [cite_start]This reduces the Technical Debt generated during system evolution[cite: 185].
+* **Data-Driven Design and Extensibility:** By decoupling configuration through *enemy-pool.js* and *wave.js*, we have achieved flexible system scalability. [cite_start]This design aligns with the Extensibility metric in software sustainability, ensuring that adding new features in the future will not cause architectural collapse[cite: 48, 182].
+* **Efficiency Optimization:** Optimizations of particle systems and rendering paths in *ui.js* and *combat.js* effectively reduced CPU utilization, implementing the efficiency principles of Green Coding.
+
+## 7.2 Individual Dimension
+This dimension focuses on the user's "Health," "Privacy," and "Agency."
+
+* **User Agency:** The "Pick 1 of 3" Buff system in Roguelike mode (*victory.js*) provides players with strategic choices, enhancing their sense of control and engagement in the game.
+* **Experience and Safety:** Through real-time UI feedback (e.g., *drawHealthBar* and *uiThermometerCold*), we ensure players maintain a clear understanding of the game state, reducing frustration. This contributes to maintaining user psychological health and game enjoyment.
+
+## 7.3 Social Dimension
+This dimension focuses on "Sense of Community" and "Participation and Communication."
+
+* **Community Engagement and Connectivity:** Our vision includes a "Multiplayer Mode," aimed at building social connections between players through technology, thereby strengthening the "Sense of Community".
+* **Narrative Participation:** By guiding players through the game's world via comics (*showComicBook*), we facilitate resonance and deep communication regarding the scenarios created by the developers, promoting social participation.
+
+## 7.4 Economic Dimension
+This dimension focuses on "Value," "Innovation," and "Governance."
+
+* **Long-term Commercial Value:** The planned "Monetization Strategy" and "Transmedia Franchise Development" fall under Innovation and R&D. This is not merely for short-term profit, but to build a sustainable, long-term economic business model.
+* **Supply Chain Awareness:** As discussed in the lecture materials, our Phase 2 planning includes potential collaborative partnerships with external brands. This reflects a long-term management mindset regarding the business ecosystem and Value Chain.
+
+## 7.5 Environmental Dimension
+This dimension focuses on "Resource Utilization" and "Energy Efficiency."
+
+* **Efficient Resource Utilization:** During development, we implemented image compression and asset preloading (*asset-loader.js*) to minimize the loading of redundant resources, representing a direct reduction in the software's environmental impact.
+* **System Design Awareness:** Consistent with course recommendations, we optimized image processing and computational logic to achieve the goal of "Min resources, Max utilization."
+
+
 ### Conclusion
 
 - 10% ~500 words
