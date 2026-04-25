@@ -7,6 +7,11 @@ let endingBGM;
 
 function showComicBook() {
     background(0); 
+
+    if (currentPlayingBGM !== null) { 
+            stopAllBGM(); 
+            currentPlayingBGM = null;
+        }
     
     
     let img = comicImages[currentComicPage];
@@ -44,10 +49,6 @@ function mousePressed() {
 
     // WIN: 漫畫翻頁
     if (gameState === "WIN") {
-        if (currentPlayingBGM !== null) { 
-            stopAllBGM(); 
-            currentPlayingBGM = null;
-        }
         userStartAudio();
         if (endingBGM && !endingBGM.isPlaying()) {
             endingBGM.loop();
