@@ -29,3 +29,10 @@ function playStageBGM(newBGM) {
         console.log("No BGM object found to play");
     }
 }
+
+function stopAllBGM() {
+    bgmmenu.stop();
+    bgm01.stop();
+    bgm02.stop();
+    bgm03.stop();
+}
