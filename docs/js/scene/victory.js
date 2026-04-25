@@ -44,7 +44,10 @@ function mousePressed() {
 
     // WIN: 漫畫翻頁
     if (gameState === "WIN") {
-        currentPlayingBGM = null; 
+        if (currentPlayingBGM !== null) { 
+            stopAllBGM(); 
+            currentPlayingBGM = null;
+        }
         userStartAudio();
         if (endingBGM && !endingBGM.isPlaying()) {
             endingBGM.loop();
