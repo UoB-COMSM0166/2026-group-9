@@ -12,8 +12,9 @@ function showComicBook() {
             stopAllBGM(); 
             currentPlayingBGM = null;
         }
-    
-    
+
+    // IMPORTANT: keep drawing state local (imageMode, rectMode, etc.)
+    push();
     let img = comicImages[currentComicPage];
     if (img) {
         let imgW = width * 0.8; 
@@ -22,7 +23,6 @@ function showComicBook() {
         image(img, width / 2, height / 2, imgW, imgH);
     }
 
-    
     if (comicFadeAlpha > 0) {
         fill(0, comicFadeAlpha);
         noStroke();
@@ -32,11 +32,11 @@ function showComicBook() {
         comicFadeAlpha -= 4; 
     }
 
-    
     fill(255, 150);
     textAlign(CENTER);
     textSize(16);
     text("Left Click: Next | Right Click: Previous", width / 2, height - 30);
+    pop();
 }
 
 function mousePressed() {

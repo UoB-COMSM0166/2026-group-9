@@ -24,8 +24,11 @@ function handlePlayerMovement() {
     if (keyIsDown(87)) player.y -= spd * moveYMult;
     if (keyIsDown(83)) player.y += spd * moveYMult;
 
-    player.x = constrain(player.x, 0, WORLD_W);
-    player.y = constrain(player.y, 0, WORLD_H);
+    // 以贴图中心为基准，按贴图半径限制移动范围，防止进入地图外黑边
+    const halfW = player.size;       // drawPlayer: width = player.size * 2
+    const halfH = player.size / 2;   // drawPlayer: height = player.size
+    player.x = constrain(player.x, halfW, WORLD_W - halfW);
+    player.y = constrain(player.y, halfH, WORLD_H - halfH);
 
     // 按o进入第二关，按p进入第三关
     if (keyIsDown(79)) goToLevel2();

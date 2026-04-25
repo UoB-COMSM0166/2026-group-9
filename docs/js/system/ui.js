@@ -2,6 +2,8 @@ function drawWorld() {
     push();
     let cam = getCameraOffset();
     translate(cam.x, cam.y);
+    // 防止其他场景（如漫画）修改全局 imageMode 导致地图绘制偏移
+    imageMode(CORNER);
     // 根據當前關卡顯示背景
     if (currentLevel === 1) image(bgImg1, 0, 0, WORLD_W, WORLD_H);
     else if (currentLevel === 2) image(bgImg2, 0, 0, WORLD_W, WORLD_H);
@@ -121,35 +123,225 @@ function drawHealthBar(x, y, curr, max, col) {
 }
 
 function drawUI() {
-    fill(255);
-    textSize(20);
-    textAlign(LEFT);
-    if (gameMode === "STORY") {
-        text("Time: " + timer, 20, 30);
-    } else {
-        const survivedSec = floor(rogue.survivedFrames / 60);
-        text("Survive: " + survivedSec + "s", 20, 30);
-    }
-    text("HP: " + player.hp + " / " + player.maxHp, 20, 60);
-    text("Weapon: " + weaponMode.toUpperCase(), 20, 90);
-    text("Medkits: " + medkits, 20, 120);
+    // ---- HUD (top-left) ----
+    const pad = 14;
+    const x0 = 16;
+    const y0 = 16;
+    const w = 320;
+    const h = 156;
+    const r = 16;
 
+    const hpRatio = (player.maxHp > 0) ? constrain(player.hp / player.maxHp, 0, 1) : 0;
+
+    const isStory = gameMode === "STORY";
+    const mainTimeLabel = isStory ? "TIME" : "SURVIVE";
+    const mainTimeValue = isStory ? `${max(0, timer)}s` : `${floor(rogue.survivedFrames / 60)}s`;
+    const timeRatio = (isStory && levelDuration > 0)
+        ? constrain(timer / levelDuration, 0, 1)
+        : 1;
+
+    // shield status + ratio
+    let shieldLabel = "READY";
+    let shieldColor = color(70, 240, 150);
+    let shieldRatio = 1;
     if (shieldOn) {
-        fill(0, 255, 255);
-        text("Shield: ON", 20, 150);
+        shieldLabel = "ON";
+        shieldColor = color(0, 220, 255);
+        shieldRatio = 1;
     } else if (shieldCDLeft > 0) {
-        fill(180);
-        text("Shield CD: " + ceil(shieldCDLeft / 60) + "s", 20, 150);
-    } else {
-        fill("lime");
-        text("Shield: READY", 20, 150);
+        shieldLabel = `${ceil(shieldCDLeft / 60)}s`;
+        shieldColor = color(200);
+        shieldRatio = constrain(1 - (shieldCDLeft / shieldCD), 0, 1);
     }
 
+    function roundedPanel(x, y, w, h, radius) {
+        push();
+        noStroke();
+        fill(0, 120);
+        rect(x + 3, y + 4, w, h, radius);
+        fill(20, 20, 25, 200);
+        rect(x, y, w, h, radius);
+        stroke(255, 80);
+        noFill();
+        rect(x, y, w, h, radius);
+        pop();
+    }
+
+    function tinyLabel(txt, x, y) {
+        push();
+        noStroke();
+        fill(255, 170);
+        textAlign(LEFT, TOP);
+        textSize(12);
+        textStyle(BOLD);
+        text(txt, x, y);
+        pop();
+    }
+
+    function pill(txt, x, y, bgCol) {
+        push();
+        const tw = textWidth(txt);
+        const ph = 22;
+        const pw = tw + 16;
+        noStroke();
+        fill(bgCol);
+        rect(x, y, pw, ph, 999);
+        fill(255);
+        textAlign(LEFT, CENTER);
+        textSize(12);
+        textStyle(BOLD);
+        text(txt, x + 8, y + ph / 2);
+        pop();
+        return pw;
+    }
+
+    function bar(x, y, w, h, ratio, fillCol) {
+        push();
+        noStroke();
+        fill(255, 40);
+        rect(x, y, w, h, 999);
+        fill(fillCol);
+        rect(x, y, w * ratio, h, 999);
+        pop();
+    }
+
+    function heartIcon(x, y, s, colFill) {
+        push();
+        translate(x, y);
+        noStroke();
+        fill(colFill);
+        beginShape();
+        vertex(0, s * 0.35);
+        bezierVertex(-s * 0.55, -s * 0.05, -s * 0.35, -s * 0.55, 0, -s * 0.25);
+        bezierVertex(s * 0.35, -s * 0.55, s * 0.55, -s * 0.05, 0, s * 0.35);
+        endShape(CLOSE);
+        pop();
+    }
+
+    roundedPanel(x0, y0, w, h, r);
+
+    // Row 1: TIME/SURVIVE + status badges
+    tinyLabel(mainTimeLabel, x0 + pad, y0 + pad - 2);
+    push();
     fill(255);
-    // 第一關隱藏殺敵進度，第二關才顯示
+    textAlign(LEFT, TOP);
+    textSize(18);
+    textStyle(BOLD);
+    text(mainTimeValue, x0 + pad, y0 + pad + 12);
+    pop();
+
+    // status badge when controls are inverted/confused
+    let badgeX = x0 + w - pad;
+    push();
+    textSize(12);
+    textStyle(BOLD);
+    if (uiThermometerCold) {
+        const label = "CONFUSED";
+        const bw = textWidth(label) + 16;
+        badgeX -= bw;
+        noStroke();
+        fill(60, 140, 255, 220);
+        rect(badgeX, y0 + pad, bw, 22, 999);
+        fill(255);
+        textAlign(LEFT, CENTER);
+        text(label, badgeX + 8, y0 + pad + 11);
+    }
+    pop();
+
+    // time bar (story only)
+    if (isStory && levelDuration > 0) {
+        bar(x0 + pad, y0 + 52, w - pad * 2, 10, timeRatio, color(255, 200, 200));
+    } else {
+        bar(x0 + pad, y0 + 52, w - pad * 2, 10, 1, color(180, 180, 200));
+    }
+
+    // Row 2: HP
+    const hpY = y0 + 72;
+    heartIcon(x0 + pad + 8, hpY + 10, 18, color(255, 90, 110));
+    tinyLabel("HP", x0 + pad + 26, hpY + 2);
+    push();
+    fill(255);
+    textAlign(LEFT, TOP);
+    textSize(14);
+    textStyle(BOLD);
+    text(`${player.hp} / ${player.maxHp}`, x0 + pad + 26, hpY + 16);
+    pop();
+    bar(x0 + pad + 140, hpY + 12, w - pad * 2 - 140, 12, hpRatio, color(90, 255, 140));
+
+    // Row 3: Weapon + Medkits + Shield
+    const rowY = y0 + 112;
+    push();
+    fill(255, 170);
+    textAlign(LEFT, TOP);
+    textSize(12);
+    textStyle(BOLD);
+    text("WEAPON", x0 + pad, rowY);
+    pop();
+    push();
+    textSize(12);
+    textStyle(BOLD);
+    const weaponText = weaponMode ? weaponMode.toUpperCase() : "NORMAL";
+    const weaponW = pill(weaponText, x0 + pad, rowY + 18, color(120, 80, 255, 200));
+    pop();
+
+    // medkits
+    push();
+    fill(255, 170);
+    textAlign(LEFT, TOP);
+    textSize(12);
+    textStyle(BOLD);
+    text("MEDKITS", x0 + pad + weaponW + 14, rowY);
+    pop();
+    push();
+    const mkX = x0 + pad + weaponW + 14;
+    const mkY = rowY + 18;
+    const mkLabel = `x${medkits}`;
+    pill(mkLabel, mkX, mkY, color(45, 45, 55, 220));
+    pop();
+
+    // shield (right)
+    push();
+    const shTxt = `SHIELD ${shieldLabel}`;
+    textSize(12);
+    textStyle(BOLD);
+    const shW = textWidth(shTxt) + 16;
+    const shX = x0 + w - pad - shW;
+    const shY = rowY + 18;
+    noStroke();
+    fill(red(shieldColor), green(shieldColor), blue(shieldColor), 190);
+    rect(shX, shY, shW, 22, 999);
+    // cooldown progress overlay
+    if (!shieldOn && shieldCDLeft > 0) {
+        fill(0, 110);
+        rect(shX + shW * shieldRatio, shY, shW * (1 - shieldRatio), 22, 999);
+    }
+    fill(10);
+    textAlign(LEFT, CENTER);
+    text(shTxt, shX + 8, shY + 11);
+    pop();
+
+    // 第一關隱藏殺敵進度，第二關才顯示（保留原逻辑，但放在面板下方一点）
     if (gameMode === "STORY" && currentLevel === 2) {
+        push();
+        const yy = y0 + h + 10;
+        const ww = 240;
+        const hh = 28;
+        const xx = x0;
+        noStroke();
+        fill(0, 120);
+        rect(xx + 3, yy + 3, ww, hh, 12);
+        fill(20, 20, 25, 200);
+        rect(xx, yy, ww, hh, 12);
+        stroke(255, 70);
+        noFill();
+        rect(xx, yy, ww, hh, 12);
+        noStroke();
         fill(killCount >= VICTORY_KILLS_LV2 ? "lime" : "yellow");
-        text("Kills: " + killCount + " / " + VICTORY_KILLS_LV2, 20, 180);
+        textAlign(CENTER, CENTER);
+        textSize(13);
+        textStyle(BOLD);
+        text(`KILLS ${killCount} / ${VICTORY_KILLS_LV2}`, xx + ww / 2, yy + hh / 2);
+        pop();
     }
     // 關卡標題顯示 5 秒
     if (gameMode === "STORY" && timer > levelDuration - 5) {
@@ -175,30 +367,6 @@ function drawUI() {
         text(title, width / 2, height / 2);
         pop();
     }
-
-    drawThermometer(900, 100);
-}
-
-//溫度計進度條
-function drawThermometer(posX, posY) {
-    if (gameMode !== "STORY" || levelDuration <= 0) return;
-    let barWidth = 15;
-    let barHeight = 200;
-    let circleSize = 35;
-    let progress = (levelDuration - timer) / levelDuration;
-    push();
-    noStroke();
-    fill(255);
-    ellipse(posX, posY + barHeight, circleSize, circleSize);
-    rectMode(CENTER);
-    rect(posX, posY + barHeight / 2, barWidth, barHeight, 10);
-    // 方向键颠倒/混乱时 -> 温度计变蓝
-    if (uiThermometerCold) fill(60, 140, 255);
-    else fill(255, 50, 50);
-    ellipse(posX, posY + barHeight, circleSize - 8, circleSize - 8);
-    rectMode(CORNER);
-    rect(posX - barWidth / 2 + 3, (posY + barHeight) - barHeight * progress, barWidth - 6, barHeight * progress, 2);
-    pop();
 }
 
 function showPostComicChoiceScreen() {
@@ -308,9 +476,6 @@ function drawBuffCard(r, choice) {
     textAlign(CENTER, TOP);
     textSize(18);
     text(choice.title, r.x + r.w / 2, r.y + 16);
-    fill(220);
-    textSize(14);
-    text(choice.desc, r.x + r.w / 2, r.y + 56, r.w - 24, r.h - 70);
     pop();
 }
 

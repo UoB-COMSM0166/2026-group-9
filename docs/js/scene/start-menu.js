@@ -77,7 +77,7 @@ function showHelpScreen() {
         "  E: Shield (cooldown)",
         "  F: Use medkit (heal)",
         "",
-        'Tip: If the controls become "inverted/confused", the thermometer on the right turns blue.'
+        'Tip: If the controls become "inverted/confused", a CONFUSED badge appears on the HUD.'
     ];
 
     let tx = panelX + 26;
