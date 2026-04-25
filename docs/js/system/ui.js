@@ -13,25 +13,18 @@ function drawWorld() {
 
 function drawGameContent() {
     // 畫主角
+    drawPlayer(); // new add 调用我们在player.js里写的图像绘制函数
+
     if (shieldOn && shieldImg) {
         push();
         imageMode(CENTER);
         let shieldSize = player.size + 80;  // 比玩家略大，可自行调整
+        tint(255,150);
         image(shieldImg, player.x, player.y, shieldSize, shieldSize);
         pop();
     }
 
-    drawPlayer(); // new add 调用我们在player.js里写的图像绘制函数
-
-  /*  if (shieldOn) {
-        push();
-        noFill();
-        stroke(0, 200, 255);
-        strokeWeight(4);
-        ellipse(player.x, player.y, player.size + 18);
-        pop();
-    }
-        */
+    
 
     drawHealthBar(player.x, player.y - 25, player.hp, player.maxHp, "green");
 

@@ -1,10 +1,25 @@
 
 // 你的原有重置函数，完全不动
 function resetPlayer() {
-    player = {
+    let size;
+    if(currentLevel==1) 
+    {
+        size=80;
+    }
+    else if(currentLevel==2)
+    {
+        size=100;
+    }
+    else if(currentLevel==3)
+    {
+        size=200;
+    }
+    else size=80;
+    player ={
         x: WORLD_W / 2,
         y: WORLD_H / 2,
-        size: 100,
+        size: size,
+    
         hp: 80,
         maxHp: 80,
         speed: 4

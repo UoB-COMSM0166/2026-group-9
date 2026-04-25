@@ -21,9 +21,6 @@ function showStartMenuScreen()
     fill(255);
     textSize(44);
     text("Kill That Virus", width-88, height*0.28);
-    textSize(16);
-    fill(210);
-    text("ver 0.1", width-200, height*0.36);
     pop();
 
     const btns = getStartMenuButtons();
