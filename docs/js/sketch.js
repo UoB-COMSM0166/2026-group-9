@@ -21,7 +21,7 @@ function preload() {
     enemyImages.enemy4 = loadImage('asset/image/enemy/splitter.png');
     enemyImages.enemy5 = loadImage('asset/image/enemy/sprinter.png');
  //new add
-    shieldImg = loadImage('asset/bullet/淡黄色手绘蜂窝护盾设计.png');
+    shieldImg = loadImage('asset/bullet/保护膜设计.png');
 }
 
 function setup() {
