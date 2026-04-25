@@ -7,6 +7,11 @@ let endingBGM;
 
 function showComicBook() {
     background(0); 
+
+    if (currentPlayingBGM !== null) { 
+            stopAllBGM(); 
+            currentPlayingBGM = null;
+        }
     
     
     let img = comicImages[currentComicPage];

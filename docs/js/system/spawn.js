@@ -89,10 +89,10 @@ function getSpawnPosition() {
             y: viewBottom + MARGIN_DISTANCE
         });
     }
-
+    // randomly select a candidate
     if (candidates.length > 0) {
         let choice = random(candidates);
-
+        // decide generation location
         if (choice.side === "left" || choice.side === "right") {
             return {
                 x: choice.x,
@@ -127,7 +127,7 @@ function pickEnemyType(enemyWeights) {
 }
 
 function spawnDeathParticles(x, y, color) {
-    // 粒子数量
+    // number of particles
     let count = 10;
     for (let i = 0; i < count; i++) {
         let angle = random(TWO_PI);

@@ -12,19 +12,15 @@ function createEnemy(type, x, y) {
         contactDamage: template.contactDamage,
         color: template.color,
         speed: template.speed,
+        flashTimer: template.flashTimer || 0,
+        imgKey: template.imgKey,
 
         splitCount: template.splitCount || 0,
-
         sprintPeriod: template.sprintPeriod || 0,
         sprintSpeed: template.sprintSpeed,
         sprintTimer: 0,
         sprintDx: 0,
-        sprintDy: 0,
-        // add for image
-        imgKey: template.imgKey, 
-    
-        // add for image
-        flashTimer: template.flashTimer || 0 
+        sprintDy: 0
     };
 }
 
@@ -34,7 +30,6 @@ function moveEnemyTowardPlayer(enemy, player) {
     let direction = p5.Vector.sub(playerPos, enemyPos);
     direction.normalize();
 
-    // let spd = currentLevel === 1 ? enemy.speed : enemy.speed * 1.25;
     direction.mult(enemy.speed);
 
     enemy.x += direction.x;

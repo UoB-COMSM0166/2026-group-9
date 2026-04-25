@@ -44,8 +44,8 @@ function checkGameOver() {
 function goToLevel2() {
     gameMode = "STORY";
     currentLevel = 2;
-    levelDuration = 25;
-    timer = 25;
+    levelDuration = 45;
+    timer = 45;
     killCount = 0; // 重置第二關的殺敵數
     enemies = [];
     bullets = [];
@@ -67,8 +67,8 @@ function goToLevel3() {
 function restartStoryFromLevel1() {
     gameMode = "STORY";
     currentLevel = 1;
-    levelDuration = 15;
-    timer = 15;
+    levelDuration = 30;
+    timer = 30;
     killCount = 0;
     enemies = [];
     bullets = [];
