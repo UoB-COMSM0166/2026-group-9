@@ -35,8 +35,4 @@ function stopAllBGM() {
     if (bgm01) bgm01.stop();
     if (bgm02) bgm02.stop();
     if (bgm03) bgm03.stop();
-    
-    if (typeof endingBGM !== 'undefined' && endingBGM) {
-        endingBGM.stop();
-    }
 }
