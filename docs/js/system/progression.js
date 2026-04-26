@@ -5,10 +5,8 @@ function updateTimer() {
     if (gameMode === "STORY") {
         if (frameCount % 60 === 0 && timer > 0) timer--;
     } else if (gameMode === "ROGUELIKE") {
-        // roguelike: 無限生存，時間往上累加
         rogue.survivedFrames++;
 
-        // 每生存 20 秒 -> 進入 Buff 三選一 (暫停遊戲)
         const survivedSec = floor(rogue.survivedFrames / 60);
         if (survivedSec >= rogue.nextBuffAtSec) {
             triggerBuffSelection();
@@ -18,15 +16,12 @@ function updateTimer() {
 }
 
 function checkProgress() {
-    // --- 關鍵修改：通關判定邏輯 ---
     if (gameState !== "PLAY") return;
     if (gameMode !== "STORY") return;
     if (timer <= 0) {
         if (currentLevel === 1) {
-            // 第一關：只要時間到就進下一關
             goToLevel2();
         } else if (currentLevel === 2) {
-            // 第二關：時間到「且」殺敵滿 20
             if (killCount >= VICTORY_KILLS_LV2) {
                 goToLevel3();
             } else gameState = "GAMEOVER";
@@ -46,7 +41,7 @@ function goToLevel2() {
     currentLevel = 2;
     levelDuration = 45;
     timer = 45;
-    killCount = 0; // 重置第二關的殺敵數
+    killCount = 0; 
     enemies = [];
     bullets = [];
     resetPlayer();
@@ -55,10 +50,10 @@ function goToLevel2() {
 function goToLevel3() {
     gameMode = "STORY";
     currentLevel = 3;
-    levelDuration = 60; // 設定通關時間一分鐘
+    levelDuration = 60; 
     timer = 60;
     killCount = 0;
-    VICTORY_KILLS_LV3 = 45; // 新增一個變數來存第三關目標
+    VICTORY_KILLS_LV3 = 45; 
     enemies = [];
     bullets = [];
     resetPlayer();
@@ -83,9 +78,7 @@ function restartStoryFromLevel1() {
 
 function startRoguelikeMode() {
     gameMode = "ROGUELIKE";
-    // 用第一關背景即可（你也可以之後做專用背景）
     currentLevel = 1;
-    // story timer 不再使用，但保留為 0 避免 UI 混淆
     levelDuration = 0;
     timer = 0;
     killCount = 0;

@@ -40,7 +40,6 @@ function showComicBook() {
 }
 
 function mousePressed() {
-    // START/HELP/MODE_SELECT: 菜单按钮点击
     if (gameState === "START" || gameState === "HELP" || gameState === "MODE_SELECT") {
         userStartAudio();
         uiHandleStartMenusClick();
@@ -59,7 +58,8 @@ function mousePressed() {
                 currentComicPage++;
                 comicFadeAlpha = 100;
             } else {
-                // 漫畫看完 -> 進入選擇分支
+                stopAllBGM(); 
+                currentPlayingBGM = null;
                 gameState = "POST_COMIC";
             }
         } else if (mouseButton === RIGHT) {
@@ -68,7 +68,6 @@ function mousePressed() {
         return;
     }
 
-    // POST_COMIC: 兩個按鈕（重開第一關 / 進肉鴿）
     if (gameState === "POST_COMIC") {
         const btns = getPostComicButtons();
         for (const b of btns) {
@@ -80,7 +79,6 @@ function mousePressed() {
         return;
     }
 
-    // BUFF_SELECT: 點選其中一個 buff
     if (gameState === "BUFF_SELECT") {
         if (!rogue.buffChoices) return;
         const cards = getBuffCardsLayout();
@@ -98,7 +96,7 @@ function triggerGameWin() {
     userStartAudio
     gameState = "WIN";
     currentComicPage = 0;
-    comicFadeAlpha = 255; // 從全黑開始
+    comicFadeAlpha = 255; 
     
     // 播放音樂
     if (endingBGM && !endingBGM.isPlaying()) {
@@ -128,7 +126,6 @@ function generateBuffChoices(count) {
     const pool = getBuffPool();
     const picked = [];
 
-    // 允許同種類 buff 重複，但若同種類出現多次 -> 數值必須不同
     const seenValuesById = new Map(); // id -> Set(valueKey)
 
     while (picked.length < count) {
