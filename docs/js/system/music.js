@@ -31,8 +31,12 @@ function playStageBGM(newBGM) {
 }
 
 function stopAllBGM() {
-    bgmmenu.stop();
-    bgm01.stop();
-    bgm02.stop();
-    bgm03.stop();
+    if (bgmmenu) bgmmenu.stop();
+    if (bgm01) bgm01.stop();
+    if (bgm02) bgm02.stop();
+    if (bgm03) bgm03.stop();
+    
+    if (typeof endingBGM !== 'undefined' && endingBGM) {
+        endingBGM.stop();
+    }
 }

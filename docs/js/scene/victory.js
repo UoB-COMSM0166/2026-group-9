@@ -50,7 +50,7 @@ function mousePressed() {
     if (gameState === "WIN") {
         userStartAudio();
         if (endingBGM && !endingBGM.isPlaying()) {
-            endingBGM.loop();
+            endingBGM.play();
         }
 
         if (mouseButton === LEFT) {
@@ -58,8 +58,7 @@ function mousePressed() {
                 currentComicPage++;
                 comicFadeAlpha = 100;
             } else {
-                stopAllBGM(); 
-                currentPlayingBGM = null;
+                stopAllBGM();
                 gameState = "POST_COMIC";
             }
         } else if (mouseButton === RIGHT) {
@@ -100,7 +99,7 @@ function triggerGameWin() {
     
     // 播放音樂
     if (endingBGM && !endingBGM.isPlaying()) {
-        endingBGM.loop(); 
+        endingBGM.play(); 
     }
 }
 
