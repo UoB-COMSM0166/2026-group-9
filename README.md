@@ -37,12 +37,11 @@ Group 9 Developers
 
 📸[Snapshot of Latest version of the Game!]
 
-![messageImage_1773355627386](https://github.com/user-attachments/assets/bc6467a4-8cf6-4ad3-b1dc-55f7babb7f24)
-
+<img width="500" height="306" alt="GG" src="https://github.com/user-attachments/assets/30bbfdd6-388f-4230-8add-5f080297b00a" />
 
 🎮[Demo video!]
 
-![新增專案](https://github.com/user-attachments/assets/bf459aad-1ec8-4561-bec8-25a3b12d70c9)
+https://youtu.be/OePKgiWGkU8
 
 
 ## Your Group
