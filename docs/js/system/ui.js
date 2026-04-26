@@ -128,7 +128,7 @@ function drawUI() {
     const x0 = 16;
     const y0 = 16;
     const w = 320;
-    const h = 156;
+    const h = 118;
     const r = 16;
 
     const hpRatio = (player.maxHp > 0) ? constrain(player.hp / player.maxHp, 0, 1) : 0;
@@ -218,18 +218,6 @@ function drawUI() {
         pop();
     }
 
-    roundedPanel(x0, y0, w, h, r);
-
-    // Row 1: TIME/SURVIVE + status badges
-    tinyLabel(mainTimeLabel, x0 + pad, y0 + pad - 2);
-    push();
-    fill(255);
-    textAlign(LEFT, TOP);
-    textSize(18);
-    textStyle(BOLD);
-    text(mainTimeValue, x0 + pad, y0 + pad + 12);
-    pop();
-
     // status badge when controls are inverted/confused
     let badgeX = x0 + w - pad;
     push();
@@ -248,99 +236,119 @@ function drawUI() {
     }
     pop();
 
-    // time bar (story only)
-    if (isStory && levelDuration > 0) {
-        bar(x0 + pad, y0 + 52, w - pad * 2, 10, timeRatio, color(255, 200, 200));
-    } else {
-        bar(x0 + pad, y0 + 52, w - pad * 2, 10, 1, color(180, 180, 200));
-    }
-
-    // Row 2: HP
-    const hpY = y0 + 72;
-    heartIcon(x0 + pad + 8, hpY + 10, 18, color(255, 90, 110));
-    tinyLabel("HP", x0 + pad + 26, hpY + 2);
+    // HP
+    const statusLabelX = x0;
+    const hpY = y0 + 8;
+    const hpBarX = x0 + 38;
+    const hpBarY = hpY;
+    const hpBarW = 260;
+    const hpBarH = 18;
     push();
-    fill(255);
-    textAlign(LEFT, TOP);
-    textSize(14);
-    textStyle(BOLD);
-    text(`${player.hp} / ${player.maxHp}`, x0 + pad + 26, hpY + 16);
-    pop();
-    bar(x0 + pad + 140, hpY + 12, w - pad * 2 - 140, 12, hpRatio, color(90, 255, 140));
-
-    // Row 3: Weapon + Medkits + Shield
-    const rowY = y0 + 112;
-    push();
-    fill(255, 170);
-    textAlign(LEFT, TOP);
-    textSize(12);
-    textStyle(BOLD);
-    text("WEAPON", x0 + pad, rowY);
-    pop();
-    push();
-    textSize(12);
-    textStyle(BOLD);
-    const weaponText = weaponMode ? weaponMode.toUpperCase() : "NORMAL";
-    const weaponW = pill(weaponText, x0 + pad, rowY + 18, color(120, 80, 255, 200));
-    pop();
-
-    // medkits
-    push();
-    fill(255, 170);
-    textAlign(LEFT, TOP);
-    textSize(12);
-    textStyle(BOLD);
-    text("MEDKITS", x0 + pad + weaponW + 14, rowY);
-    pop();
-    push();
-    const mkX = x0 + pad + weaponW + 14;
-    const mkY = rowY + 18;
-    const mkLabel = `x${medkits}`;
-    pill(mkLabel, mkX, mkY, color(45, 45, 55, 220));
-    pop();
-
-    // shield (right)
-    push();
-    const shTxt = `SHIELD ${shieldLabel}`;
-    textSize(12);
-    textStyle(BOLD);
-    const shW = textWidth(shTxt) + 16;
-    const shX = x0 + w - pad - shW;
-    const shY = rowY + 18;
     noStroke();
-    fill(red(shieldColor), green(shieldColor), blue(shieldColor), 190);
-    rect(shX, shY, shW, 22, 999);
-    // cooldown progress overlay
-    if (!shieldOn && shieldCDLeft > 0) {
-        fill(0, 110);
-        rect(shX + shW * shieldRatio, shY, shW * (1 - shieldRatio), 22, 999);
-    }
-    fill(10);
+    fill(255, 170);
     textAlign(LEFT, CENTER);
-    text(shTxt, shX + 8, shY + 11);
+    textSize(13);
+    textStyle(BOLD);
+    text("Hp", statusLabelX, hpBarY + hpBarH / 2);
+    fill(255, 55);
+    rect(hpBarX, hpBarY, hpBarW, hpBarH, 8);
+    fill(90, 255, 140);
+    rect(hpBarX, hpBarY, hpBarW * hpRatio, hpBarH, 8);
+    fill(255);
+    textAlign(RIGHT, CENTER);
+    textSize(13);
+    textStyle(BOLD);
+    text(`${player.hp} / ${player.maxHp}`, hpBarX + hpBarW, hpBarY + hpBarH / 2);
     pop();
 
-    // 第一關隱藏殺敵進度，第二關才顯示（保留原逻辑，但放在面板下方一点）
-    if (gameMode === "STORY" && currentLevel === 2) {
+    // Skill
+    const skillY = y0 + 50;
+    const skillGap = 82;
+    const bulletUiImg = weaponMode === "spread" ? bullet3Img : bullet1Img;
+    drawSkill("Q", "Bullet", bulletUiImg, x0, skillY);
+    drawSkill("E", "Shield", shieldIconImg, x0 + skillGap, skillY);
+    drawSkill("F", "Medkit", medkitIconImg, x0 + skillGap * 2, skillY);
+
+    function drawSkill(key, label, img, x, y) {
+        const iconSize = 30;
+
         push();
-        const yy = y0 + h + 10;
-        const ww = 240;
-        const hh = 28;
-        const xx = x0;
         noStroke();
-        fill(0, 120);
-        rect(xx + 3, yy + 3, ww, hh, 12);
-        fill(20, 20, 25, 200);
-        rect(xx, yy, ww, hh, 12);
-        stroke(255, 70);
-        noFill();
-        rect(xx, yy, ww, hh, 12);
-        noStroke();
-        fill(killCount >= VICTORY_KILLS_LV2 ? "lime" : "yellow");
-        textAlign(CENTER, CENTER);
-        textSize(13);
+        fill(255, 170);
+        textAlign(CENTER, TOP);
+        textSize(11);
         textStyle(BOLD);
-        text(`KILLS ${killCount} / ${VICTORY_KILLS_LV2}`, xx + ww / 2, yy + hh / 2);
+        text(label, x + 32, y);
+
+        fill(255);
+        textAlign(CENTER, CENTER);
+        textSize(16);
+        text(key, x + 9, y + 32);
+
+        imageMode(CENTER);
+        if (img) {
+            image(img, x + 39, y + 32, iconSize, iconSize);
+        } else {
+            fill(255, 60);
+            ellipse(x + 39, y + 32, iconSize);
+        }
+
+        if (label === "Medkit") {
+            fill(255);
+            textAlign(LEFT, CENTER);
+            textSize(13);
+            textStyle(BOLD);
+            text(`x${medkits}`, x + 58, y + 32);
+        }
+        pop();
+
+        // time
+        push();
+        const timerW = 300;
+        const timerH = 86;
+        const timerX = width / 2 - timerW / 2;
+        const timerY = 16;
+        const timeColor = timeRatio <= 0.25 && isStory ? color(255, 90, 90) : color(255, 220, 140);
+
+        noStroke();
+        fill(255, 165);
+        textAlign(CENTER, TOP);
+        textSize(11);
+        textStyle(BOLD);
+        text(mainTimeLabel, timerX + timerW / 2, timerY + 10);
+
+        fill(255);
+        textSize(34);
+        text(mainTimeValue, timerX + timerW / 2, timerY + 25);
+
+        const progressX = timerX + 18;
+        const progressY = timerY + timerH - 18;
+        const progressW = timerW - 36;
+        const progressH = 8;
+
+        noStroke();
+        fill(255, 35);
+        rect(progressX, progressY, progressW, progressH, 8);
+        fill(timeColor);
+        rect(progressX, progressY, progressW * timeRatio, progressH, 8);
+        pop();
+    }
+
+    // kill
+    if (gameMode === "STORY" && currentLevel >= 2) {
+        const targetKills = currentLevel === 2 ? VICTORY_KILLS_LV2 : VICTORY_KILLS_LV3;
+        const reachedTarget = killCount >= targetKills;
+
+        push();
+        noStroke();
+        textAlign(LEFT, TOP);
+        textStyle(BOLD);
+        textSize(12);
+        fill(255, 170);
+        text("Kill", statusLabelX, skillY + 50);
+        textSize(18);
+        fill(reachedTarget ? "lime" : "yellow");
+        text(`${killCount} / ${targetKills}`, statusLabelX, skillY + 66);
         pop();
     }
     // 關卡標題顯示 5 秒
@@ -390,8 +398,9 @@ function getPostComicButtons() {
     const h = 70;
     const gap = 24;
     const x = width / 2 - w / 2;
-    const y1 = height * 0.44;
+    const y1 = height * 0.38;
     const y2 = y1 + h + gap;
+    const y3 = y2 + h + gap;
 
     return [
         {
@@ -403,6 +412,15 @@ function getPostComicButtons() {
             x, y: y2, w, h,
             label: "Enter Roguelike",
             onClick: () => startRoguelikeMode()
+        },
+        {
+            x, y: y3, w, h,
+            label: "Back to Start",
+            onClick: () => {
+                stopAllBGM();
+                currentPlayingBGM = null;
+                gameState = "START";
+            }
         }
     ];
 }

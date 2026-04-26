@@ -20,8 +20,14 @@ function preload() {
     enemyImages.enemy3 = loadImage('asset/image/enemy/tank.png');
     enemyImages.enemy4 = loadImage('asset/image/enemy/splitter.png');
     enemyImages.enemy5 = loadImage('asset/image/enemy/sprinter.png');
- //new add
-    shieldImg = loadImage('asset/bullet/保护膜设计.png');
+    //new add
+    shieldImg = loadImage('asset/image/bullet/shield.png');
+
+    // ui
+    bullet1Img = loadImage('asset/image/ui/bullet1.png');
+    bullet3Img = loadImage('asset/image/ui/bullet3.png');
+    medkitIconImg = loadImage('asset/image/ui/medkitIcon.png');
+    shieldIconImg = loadImage('asset/image/ui/shieldIcon.png');
 }
 
 function setup() {

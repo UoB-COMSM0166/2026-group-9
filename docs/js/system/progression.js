@@ -26,13 +26,14 @@ function checkProgress() {
                 goToLevel3();
             } else gameState = "GAMEOVER";
         } else if (currentLevel === 3) {
-            if (killCount >= 45) triggerGameWin();
+            if (killCount >= VICTORY_KILLS_LV3) triggerGameWin();
             else gameState = "GAMEOVER";
         }
     }
 }
 
 function checkGameOver() {
+    if (gameState !== "PLAY") return;
     if (player.hp <= 0) gameState = "GAMEOVER";
 }
 
@@ -53,7 +54,6 @@ function goToLevel3() {
     levelDuration = 60; 
     timer = 60;
     killCount = 0;
-    VICTORY_KILLS_LV3 = 45; 
     enemies = [];
     bullets = [];
     resetPlayer();

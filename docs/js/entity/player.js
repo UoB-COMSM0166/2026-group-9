@@ -4,15 +4,15 @@ function resetPlayer() {
     let size;
     if(currentLevel==1) 
     {
-        size=80;
+        size=75;
     }
     else if(currentLevel==2)
     {
-        size=100;
+        size=90;
     }
     else if(currentLevel==3)
     {
-        size=200;
+        size=160;
     }
     else size=80;
     player ={

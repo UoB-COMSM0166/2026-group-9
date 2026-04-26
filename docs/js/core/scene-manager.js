@@ -18,13 +18,13 @@ function sceneSwitch() {
         showComicBook();
     } else if (gameState === "POST_COMIC") {
         showPostComicChoiceScreen();
+    } else if (gameState === "GAMEOVER") {
+        showGameOverScreen();
     } else if (gameState === "BUFF_SELECT") {
         // 暫停更新，但仍顯示當前畫面 + overlay
         drawWorld();
         drawUI();
         drawBuffSelectionOverlay();
-    } else {
-        showEndScreen("CELL DESTROYED");
     }
     if (redMaskAlpha > 0){
         fill(255, 0, 0, redMaskAlpha);

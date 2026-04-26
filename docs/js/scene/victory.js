@@ -78,6 +78,11 @@ function mousePressed() {
         return;
     }
 
+    if (gameState === "GAMEOVER") {
+        handleGameOverMousePressed();
+        return;
+    }
+
     if (gameState === "BUFF_SELECT") {
         if (!rogue.buffChoices) return;
         const cards = getBuffCardsLayout();
