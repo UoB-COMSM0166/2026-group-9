@@ -4,7 +4,7 @@ function updateObjects() {
 }
 
 function updateBullets() {
-    // 子彈移動
+
     for (let i = bullets.length - 1; i >= 0; i--) {
         bullets[i].x += bullets[i].vx;
         bullets[i].y += bullets[i].vy;

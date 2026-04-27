@@ -50,7 +50,7 @@ function draw() {
 }
 
 function updateGame() {
-    // Buff 三選一時，暫停遊戲更新（畫面在 scene-manager 中仍會繪製）
+
     if (gameState !== "PLAY") return;
 
     handlePlayerMovement();

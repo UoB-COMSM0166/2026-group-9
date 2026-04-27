@@ -1,5 +1,5 @@
 
-// 你的原有重置函数，完全不动
+
 function resetPlayer() {
     let size;
     if(currentLevel==1) 
@@ -49,19 +49,19 @@ function resetPlayer() {
 function drawPlayer() {
     if (!player) return;
     
-    // 根据关卡选择对应图片
-    let imgToDraw = playerImg;  // 默认第一关
+
+    let imgToDraw = playerImg;
     if (currentLevel === 2) {
         imgToDraw = playerImg2;
     } else if (currentLevel === 3) {
         imgToDraw = playerImg3;
     }
     
-    if (!imgToDraw) return;  // 防止图片未加载
+    if (!imgToDraw) return;
 
-    // 以 player.x / player.y 作为“角色中心点”，确保：
-    // - 镜头跟随时角色出现在画面正中央
-    // - 贴图位置与子弹发射位置（同为 player.x / player.y）严格一致
+
+
+
     push();
     imageMode(CENTER);
     image(

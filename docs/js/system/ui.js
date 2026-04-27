@@ -2,9 +2,9 @@ function drawWorld() {
     push();
     let cam = getCameraOffset();
     translate(cam.x, cam.y);
-    // 防止其他场景（如漫画）修改全局 imageMode 导致地图绘制偏移
+
     imageMode(CORNER);
-    // 根據當前關卡顯示背景
+
     if (currentLevel === 1) image(bgImg1, 0, 0, WORLD_W, WORLD_H);
     else if (currentLevel === 2) image(bgImg2, 0, 0, WORLD_W, WORLD_H);
     else image(bgImg3, 0, 0, WORLD_W, WORLD_H);
@@ -14,13 +14,13 @@ function drawWorld() {
 }
 
 function drawGameContent() {
-    // 畫主角
-    drawPlayer(); // new add 调用我们在player.js里写的图像绘制函数
+
+    drawPlayer();
 
     if (shieldOn && shieldImg) {
         push();
         imageMode(CENTER);
-        let shieldSize = player.size + 80;  // 比玩家略大，可自行调整
+        let shieldSize = player.size + 80;
         tint(255,150);
         image(shieldImg, player.x, player.y, shieldSize, shieldSize);
         pop();
@@ -47,19 +47,19 @@ function drawGameContent() {
         }
 
         pop();
-        // 血条完全不动
+
         drawHealthBar(e.x, e.y - (e.size * 0.75), e.hp, e.maxHp, "red");
     } */
     for (let e of enemies) {
         push();
         imageMode(CENTER);
     
-    // 计算图片缩放系数
+
         let widthScale = 2.5;
         let heightScale = 1.8;
         if (e.type === "tank") {
-            widthScale = 1.8;   // 坦克宽度缩小一些
-            heightScale = 1.3;  // 高度也相应调整
+            widthScale = 1.8;
+            heightScale = 1.3;
         }
     
         let imgW = e.size * widthScale;
@@ -83,14 +83,14 @@ function drawGameContent() {
         push();
         imageMode(CENTER);
         translate(b.x, b.y);
-        // 计算子弹角度，使图片朝向运动方向
+
         let angle = atan2(b.vy, b.vx);
         rotate(angle);
-        // 图片大小可根据需要调整，这里设为 24x24
+
         image(bulletImg, 0, 0, 46,46);
         pop();
     }
-    // 画粒子
+
     for (let i = particles.length - 1; i >= 0; i--) {
         let p = particles[i];
         p.x += p.spdX;
@@ -110,7 +110,7 @@ function drawGameContent() {
     }
 }
 
-// 也许可以根据敌人体型大小修改血条整体大小
+
 function drawHealthBar(x, y, curr, max, col) {
     push();
     rectMode(CENTER);
@@ -351,7 +351,7 @@ function drawUI() {
         text(`${killCount} / ${targetKills}`, statusLabelX, skillY + 66);
         pop();
     }
-    // 關卡標題顯示 5 秒
+
     if (gameMode === "STORY" && timer > levelDuration - 5) {
         push();
         textAlign(CENTER, CENTER);

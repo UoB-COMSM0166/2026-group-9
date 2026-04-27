@@ -14,18 +14,18 @@ function spawnEnemies() {
         return;
     }
 
-    // --- Roguelike: 隨時間刷怪越來越多 ---
-    const survivedSec = floor(rogue.survivedFrames / 60);
-    const difficulty = floor(survivedSec / 20); // 每 20 秒提升一段
 
-    // 生成頻率：從 45f 開始，逐步降到 10f
+    const survivedSec = floor(rogue.survivedFrames / 60);
+    const difficulty = floor(survivedSec / 20);
+
+
     const spawnRateFrames = max(10, 45 - difficulty * 3);
     if (frameCount % spawnRateFrames !== 0) return;
 
-    // 每次生成的數量：1 -> 2 -> 3...
+
     const batch = 1 + floor(difficulty / 2);
 
-    // 敵人種類權重（越後面越難）
+
     const weights = [
         { type: "basic", weight: max(10, 55 - difficulty * 5) },
         { type: "fast", weight: min(35, 20 + difficulty * 3) },

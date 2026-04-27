@@ -108,7 +108,7 @@ function showModeSelectScreen() {
         background(12);
     }
 
-    // 右侧三分之一区域变暗（与开始菜单一致）
+
     push();
     noStroke();
     fill(0, 120);

@@ -21,7 +21,7 @@ function sceneSwitch() {
     } else if (gameState === "GAMEOVER") {
         showGameOverScreen();
     } else if (gameState === "BUFF_SELECT") {
-        // 暫停更新，但仍顯示當前畫面 + overlay
+
         drawWorld();
         drawUI();
         drawBuffSelectionOverlay();

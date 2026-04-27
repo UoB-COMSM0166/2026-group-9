@@ -46,7 +46,7 @@ function mousePressed() {
         return;
     }
 
-    // WIN: 漫畫翻頁
+
     if (gameState === "WIN") {
         userStartAudio();
         if (endingBGM && !endingBGM.isPlaying()) {
@@ -102,7 +102,7 @@ function triggerGameWin() {
     currentComicPage = 0;
     comicFadeAlpha = 255; 
     
-    // 播放音樂
+
     if (endingBGM && !endingBGM.isPlaying()) {
         endingBGM.play(); 
     }

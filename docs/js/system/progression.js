@@ -1,5 +1,5 @@
 function updateTimer() {
-    // 計時器邏輯
+
     if (gameState !== "PLAY") return;
 
     if (gameMode === "STORY") {
@@ -68,7 +68,7 @@ function restartStoryFromLevel1() {
     enemies = [];
     bullets = [];
     particles = [];
-    // buff 相關清空
+
     baseFireRate = 200;
     fireRateReduction = 0;
     bulletDamageBonus = 0;
