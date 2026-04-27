@@ -265,12 +265,18 @@ function drawUI() {
     const skillY = y0 + 50;
     const skillGap = 82;
     const bulletUiImg = weaponMode === "spread" ? bullet3Img : bullet1Img;
+    const shieldCooling = !shieldOn && shieldCDLeft > 0;
     drawSkill("Q", "Bullet", bulletUiImg, x0, skillY);
-    drawSkill("E", "Shield", shieldIconImg, x0 + skillGap, skillY);
+    drawSkill("E", "Shield", shieldIconImg, x0 + skillGap, skillY, {
+        active: shieldOn,
+        cooldownText: shieldCooling ? `${ceil(shieldCDLeft / 60)}s` : ""
+    });
     drawSkill("F", "Medkit", medkitIconImg, x0 + skillGap * 2, skillY);
 
-    function drawSkill(key, label, img, x, y) {
+    function drawSkill(key, label, img, x, y, options = {}) {
         const iconSize = 30;
+        const iconX = x + 39;
+        const iconY = y + 32;
 
         push();
         noStroke();
@@ -283,14 +289,30 @@ function drawUI() {
         fill(255);
         textAlign(CENTER, CENTER);
         textSize(16);
-        text(key, x + 9, y + 32);
+        text(key, x + 9, iconY);
 
         imageMode(CENTER);
         if (img) {
-            image(img, x + 39, y + 32, iconSize, iconSize);
+            image(img, iconX, iconY, iconSize, iconSize);
         } else {
             fill(255, 60);
-            ellipse(x + 39, y + 32, iconSize);
+            ellipse(iconX, iconY, iconSize);
+        }
+
+        if (options.active) {
+            noFill();
+            stroke(0, 220, 255);
+            strokeWeight(2);
+            ellipse(iconX, iconY, iconSize + 8, iconSize + 8);
+        }
+
+        if (options.cooldownText) {
+            noStroke();
+            fill(255, 210);
+            textAlign(CENTER, TOP);
+            textSize(11);
+            textStyle(BOLD);
+            text(options.cooldownText, iconX, iconY + iconSize / 2 + 5);
         }
 
         if (label === "Medkit") {
@@ -298,7 +320,7 @@ function drawUI() {
             textAlign(LEFT, CENTER);
             textSize(13);
             textStyle(BOLD);
-            text(`x${medkits}`, x + 58, y + 32);
+            text(`x${medkits}`, x + 58, iconY);
         }
         pop();
 
