@@ -34,18 +34,6 @@ function resetPlayer() {
     medkits = 2;
 }
 
-/*function drawPlayer() {
-    if (!player || !playerImg) return;
-
-    image(
-        playerImg,
-        player.x - player.size ,
-        player.y - player.size / 2,
-        player.size*2,
-        player.size
-    );
-}
-    */
 function drawPlayer() {
     if (!player) return;
     
