@@ -140,6 +140,15 @@ External Environment: Encompasses global entities like Browser Vendors (Google/C
 
 <img width="1920" height="1080" alt="未命名" src="https://github.com/user-attachments/assets/2c0329f3-e80d-49f7-95e7-a00a67973e77" />
 
+💡Presentation Script: The Glitch System & Inverted Controls💡
+"Our game's most distinctive feature is the 'Glitch System.' Far from being a mere aesthetic choice, it represents true system-level corruption. When triggered, the system does not merely distort the screen; it actively erodes the core input-output loop by forcing 'Inverted Controls.' Suddenly, the player’s muscle memory—typically their greatest asset in survival games—becomes their most challenging obstacle.
+
+From an HCI perspective, this design induces what we define as a 'Mental Model Collapse.' By reversing the expected outcome of a player's action, we force them to actively inhibit habitual, reflexive responses. This requires the user to instantly re-learn the inverted logic, adapting under immense cognitive pressure. It bridges the gap between simply playing a game and experiencing a simulated system breakdown, making the player feel the true anxiety of a system under viral siege.
+
+Technically, we achieved this through an event-driven architecture that dynamically remaps control inputs in real-time. This allows us to manipulate the game state and control schemes without compromising our modular codebase, showcasing our ability to handle complex state transitions while keeping the design clean and scalable. We rely on this modularity to ensure the system remains responsive, even during intense, glitch-induced combat states where every millisecond counts.
+
+We chose the Glitch System as a core mechanic because it elevates gameplay beyond artificial difficulty inflation. It transforms 'system failure' into a rigorous test of cognitive agility. By forcing players to fight their own instincts, we turn the game's architecture into a powerful narrative tool, proving that the most compelling experiences often lie where the system breaks. This synthesis of technical execution and human-computer interaction design—where we intentionally challenge the user's understanding of the interface—is the heartbeat of our project, Kill That Virus!. It demonstrates our commitment to not just creating a functional game, but crafting an interactive experience that tests the very limits of user adaptation."
+
 ---
 
 <a id="design"></a>
