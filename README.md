@@ -140,6 +140,7 @@ External Environment: Encompasses global entities like Browser Vendors (Google/C
 
 <img width="1920" height="1080" alt="未命名" src="https://github.com/user-attachments/assets/2c0329f3-e80d-49f7-95e7-a00a67973e77" />
 
+
 💡Presentation Script: The Glitch System & Inverted Controls💡
 "Our game's most distinctive feature is the 'Glitch System.' Far from being a mere aesthetic choice, it represents true system-level corruption. When triggered, the system does not merely distort the screen; it actively erodes the core input-output loop by forcing 'Inverted Controls.' Suddenly, the player’s muscle memory—typically their greatest asset in survival games—becomes their most challenging obstacle.
 
