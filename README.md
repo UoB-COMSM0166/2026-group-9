@@ -118,6 +118,8 @@ With these considerations, we decided to integrate player leveling and weapon dr
 <a id="user-story"></a>
 
 ### 2.2 User Story
+Kill That Virus! (KTV) is a high-intensity roguelike survival game centered on core combat mechanics and a modular progression system. The system architecture is built around distinct functional Epics, including a core survival combat loop and dynamic progression that scales difficulty based on player performance. A key focus of the gameplay is maintaining constant tension, supported by features such as off-screen enemy spawning and real-time HUD statistics. To ensure a compelling player experience, the game utilizes threshold-based reward systems and randomized weapon combinations to keep each run unique. Finally, the project integrates distinct game states to effectively manage the transition from intense combat into a structured narrative-driven victory sequence.
+
 <img width="1143" height="642" alt="01" src="https://github.com/user-attachments/assets/2facee7c-fe9e-434b-82ae-f86a31ced699" />
 <img width="1144" height="672" alt="02" src="https://github.com/user-attachments/assets/40e3b476-f31b-47db-ac7c-c0e6fbdf4c21" />
 
