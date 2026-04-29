@@ -289,38 +289,9 @@ In the previous phase, although the enemy module was made more interesting, the 
 
 <a id="qualitative-analysis"></a>
 
-### 5.1 Qualitative Analysis: Think Aloud
-
-**🤔User Observations:**
-
-Attack Frequency: Players complained that having to click the mouse for every single attack was exhausting due to the high frequency of repetitive actions.
-
-Game Guidance: Players suggested adding various in-game instructions to reduce the sense of confusion during their first playthrough.
-
-Visual Feedback (Projectiles): Players recommended adding flight trajectories (trails) to attacks for better visual identification and clarity.
-
-Impact Feedback (Damage): Players suggested adding screen shake and prominent warning effects when taking damage to enhance the overall gameplay experience and feel.
-
-Tutorial Level: Players suggested implementing a tutorial stage to help them better understand the mechanics and objectives of the game.
-
-**✨Analysis Outcome:**
-
-Optimizing Attack Mechanics: The most frequent feedback received was regarding the "one click, one attack" constraint. Players found constant clicking tedious, especially when facing large swarms of enemies. To resolve this and improve immersion, we will implement an auto-fire feature that allows continuous weapon use by holding down the mouse button.
-
-Improving Intuitive Design: Requests for both game instructions and tutorial levels reflect a core issue: the current gameplay experience is not intuitive enough. While this can be addressed through tutorials, we aim to prioritize improving the UI/UX design and providing clearer on-screen guidance to create a more seamless learning curve.
-
-Enhancing Visual Clarity: Suggestions for prominent flight trajectories indicate that our current object rendering and visual emphasis need improvement. We will adopt this feedback by using high-contrast, vivid color palettes for future weapons and adding visual trails where necessary to improve tracking.
-
-Refining Game "Feel" (Juiciness): Compared to the current system where taking damage only results in a numerical HP deduction, adding screen shake and visual alerts will significantly improve the "game feel" and sensory feedback. We have decided to implement these features in the next update.
-
-- One quantitative evaluation (of your choice) 
-- Description of how code was tested. 
 
 
-
-<a id="quantitative-evaluation"></a>
-
-### 5.2 Quantitative Evaluation
+### 5. Quantitative Evaluation
 
 **SUS(System Usability Scale):**
 
@@ -343,15 +314,14 @@ Descriptive statistics:
 | 9    | I felt   very confident using the   system.                  | Yes  | 4.60 | 5.00 | 0.49 | 4    | 5    | Exce llent (4.5   +) |
 | 10   | I needed to learn a lot   of things before I could use this   system. | No   | 1.70 | 1.00 | 1.27 | 1    | 5    | Poor (<3.   0)       |
 
-1. Project advantages (Q3, Q7, Q9, Q4, Q6): The game is easy to use and the threshold is low. The core operation is to control the direction and attack of the mouse movement with the right hand, and the movement of the character with the left hand. It adopts the common style of the industry, which reduces the cognitive cost of players. It only needs a brief introduction, and the novice teaching will be added to the starting interface. The difficulty of the level is from simple to deep, which makes players familiar with the operation method and increases their confidence in using the game.
-2. Good items (Q1, Q5, Q10): players' willingness to use, function integration needs to be improved. It is necessary to improve the playability and complexity of the game. At this stage, it is only the initial version, so give users a little simple feedback on the game, and the later version will increase the playability and complexity of the game.
+Project advantages (Q3, Q7, Q9, Q4, Q6): The game is easy to use and the threshold is low. It adopts the common style of the industry, which reduces the cognitive cost of players. It only needs a brief introduction, and the novice teaching will be added to the starting interface. 
+Good items (Q1, Q5, Q10): players' willingness to use, function integration needs to be improved. It is necessary to improve the playability and complexity of the game. At this stage, the later version will increase the playability and complexity of the game：
 
 (1). Increase the types of weapons, from ordinary firearms at this stage to pistols, sniper rifles, daggers and grenades, etc.
 
 (2). As the level increases, new enemies and new mechanisms are added to improve the difficulty of the game.
 
-3. Differential items (Q2, Q8): Technicians are required to guide the problem. There is no self-group solution. The later sequence needs to be improved, because the interface has not been introduced at this stage, and technical personnel still need to introduce the gameplay, so it is necessary to add a normative introduction process to assist players in getting started. At the same time, the operation fault tolerance design is added. For example, the attack judgment range is expanded without precise positioning. Reduce the levels caused by players' operating errors, and reduce the need for help from the root cause.
-
+3. Differential items (Q2, Q8):because the interface has not been introduced at this stage, and technical personnel still need to introduce the gameplay, so it is necessary to add a normative introduction process to assist players in getting started. At the same time, the operation fault tolerance design is added.
 
 
 **NASA:**
@@ -381,27 +351,21 @@ In summary, the evaluation data of the above six core dimensions, as well as the
 
 1. High time pressure
 
-The overall score of the time pressure dimension in the evaluation is high, which is one of the core load points, indicating that the task promotion rhythm, operation response window, level timing settings, etc. of the current game are beyond the adaptation range of some players, resulting in urgent negative experiences for players. The difficulty of the primary level has been reduced,
+The overall score of the time pressure dimension in the evaluation is high, indicating that the task promotion rhythm, operation response window, level timing settings, etc. of the current game are beyond the adaptation range of some players, resulting in urgent negative experiences for players. The difficulty of the primary level has been reduced,
 
 Optimize the level timing design: cancel the forced timing of non-core links (such as scene exploration and prop selection), and only set reasonable timing in the core challenge links; and the timing threshold refers to the completion speed setting of the evaluator with a low score, and reserve buffer time.
 
 2. Differentiated and high value of frustration , Effort and Performance Satisfaction do not match
 
-The frustration dimension score is highly discrete (some evaluators score up to 10 points), and it is inversely related to "self-performance satisfaction", indicating that the player's negative emotions mainly come from the high cost of failure, lack of feedback, and the rapid increase in difficulty, which is a key problem affecting the retention of the game. The player's investment has not been The positive return should be reduced, thus reducing the game experience.
+The frustration score is highly scattered, This suggests that negative emotions mainly come from high failure costs, insufficient feedback, and sharp difficulty spikes, which hurt player retention. Too little positive payoff for the effort invested degrades the overall experience.
+Optimize the failure/retry system to reduce sunk cost: after failing a level, let players restart from a key checkpoint instead of the very beginning.
+Add more immediate positive feedback throughout: when players complete small actions — correct clicks, item pickups, mini-objectives — reinforce them with visual effects, short sound cues, and light numerical rewards, rather than only after the level. Even on mistakes, give gentle hints instead of accusatory messages.
 
-Optimize the failure replay mechanism to reduce the sunk cost: after failing to break through the level, you don't need to start from the beginning, and you can revive from the key node of the current level.
 
-Increase instant positive feedback in the whole process: When players complete small operations, such as clicking correctly, collecting props, and unlocking small goals, they give feedback through visual effects, short sound effects, and light numerical rewards, rather than just feedback after the end of the level; even if the operation is wrong, only gentle hints are given to avoid negative accusation copywriting.
-Conceptual Process
-When brainstorming for this game, we first proposed various game genres, including board games, Snake, Tetris, and Air Combat. After discussion and voting, we decided to develop a 2D survival shooter game (similar to Vampire Survivors), and split its development and expansion into two paths: the player character and enemies.
-For the player, we planned to incorporate multiple enhancement mechanics such as leveling up, weapons, equipment, and skills. For enemies, we intended to add diverse offensive mechanics including different enemy types, enemy skills, and enemy spawn quantities. Gameplay would be expanded by allowing players to level up and obtain weapon drops by defeating enemies.
-However, following further team discussion and negotiation, we realized that while leveling up and looting equipment from enemies both serve to strengthen the player, the drop rate and power of loot would heavily affect in-game enjoyment. Overpowered weapon drops would deprive players of fun, while underpowered ones would ruin the experience. Additionally, integrating player level bonuses into the weapon system would complicate numerical balancing. We also wanted to avoid overwhelming players with complex character progression systems, and instead let them focus more on the thrill of combat.
-With these considerations, we decided to integrate player leveling and weapon drops into roguelike gameplay. By defeating a certain number of enemies or surviving for a set duration, players would randomly obtain various buffs or weapons. This approach prevents players from overfocusing on character systems while ensuring each playthrough feels fresh and distinct from the last.
 3. The score for the evaluator is very discrete.
 
-The scoring standard difference in all dimensions is high, indicating that the game experience of different players varies greatly. The mini-game lacks universal experience design and needs to take into account the needs of different players.
-
-Do layered design for players to realize the basic experience of "thousands of people and thousands of faces": when entering the game for the first time, players can choose the difficulty or skip the preliminary test level. Unify the core interaction logic, reduce experience deviations, let players form operating habits, and reduce experience deviations caused by interaction inconsistency.
+The scoring standard difference in all dimensions is high, indicating that the game experience of different players varies greatly.
+Do layered design for players: when entering the game for the first time, players can choose the difficulty or skip the preliminary test level. Unify the core interaction logic, reduce experience deviations, let players form operating habits, and reduce experience deviations caused by interaction inconsistency.
 
 
 
@@ -467,6 +431,8 @@ assert(player.x === originalX + 4, "The player presses the D key and moves 4 uni
 ---
 
 <a id="process"></a>
+
+
 
 ## 6. Process 
 
