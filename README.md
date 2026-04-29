@@ -60,8 +60,7 @@ https://youtu.be/OePKgiWGkU8
 - [2. Requirements](#requirements)
   - [2.1 Conceptual Process](#conceptual-process)
   - [2.2 User Story](#user-story)
-  - [2.3 The Game Twist](#the-game-twist)
-  - [2.4 Stakeholders](#stakeholders)
+  - [2.3 Stakeholders](#stakeholders)
 - [3. Design](#design)
   - [3.1 Architecture Overview](#architecture-overview)
   - [3.2 Class Design](#class-design)
@@ -131,30 +130,6 @@ With these considerations, we decided to integrate player leveling and weapon dr
 | Player | Epic 3: Game State & End Conditions | As a player, I want to pause/resume the game at any time, so that I can take breaks without losing my progress. | Acceptance Criteria: Given the game is in an active play state, when the player presses the pause key (e.g., "P"), then all enemy movement/attacks, character actions, and progression timers stop; the pause menu is displayed. Given the game is paused, when the player presses the pause key again or clicks "Resume" in the menu, then all game elements resume from the exact state before pausing. |
 | Player | Epic 3: Game State & End Conditions | As a player, I want the game to end when my health reaches 0, so that there is a clear failure condition and incentive to survive. | Acceptance Criteria: Given the character's health drops to 0, when the death condition is detected, then all game actions stop; a game over screen is displayed showing total enemies defeated, time survived, and highest level reached; the player can choose to restart a new run or return to the main menu. |
 | Player | Epic 3: Game State & End Conditions | As a player, I want to see real-time stats (kill count, time survived, current level), so that I can track my progress during the run. | Acceptance Criteria: Given the game is running (active or paused state), then a HUD (heads-up display) is always visible in the corner of the screen; the HUD updates in real time: kill count increments immediately when an enemy is defeated, time survived counts up by second, and level updates when the player unlocks rewards. |
-
-### 2.3✨The Game Twist✨
-
-<a id="the-game-twist"></a>
-
-Initial Concepts and Iterations
-Early in the development phase, we considered altering enemy AI behaviors or introducing complex environmental hazards as the primary "twist." However, playtesting revealed that the core gameplay already presented a significant challenge. We shifted our design philosophy from "mechanical overload" to "cognitive subversion." Instead of overwhelming players with impossible difficulty, we aimed for a "benevolent challenge"—a clever subversion of established mechanics akin to a brain teaser. This ensures that failure remains engaging and witty rather than purely frustrating, encouraging players to persist rather than quit.
-
-The Final Solution: Neurological Interference
-The final Game Twist is seamlessly integrated into the narrative of the third level. As the host’s body becomes critically infected, the Central Nervous System (CNS) begins to fail, leading to pathologically induced Control Interference. This manifests as dynamic input remapping at specific intervals:
-
-10–20s: Vertical Inversion (Up/Down swap).
-
-30–40s: Horizontal Inversion (Left/Right swap).
-
-Final Phase: Total Control Inversion (180-degree remapping).
-
-🧬Benefits and Rationale🧬
-
-Narrative-Mechanic Synergy: By grounding the control inversion in the story (nervous system failure), we created a cohesive experience where the mechanics reinforce the desperation of the narrative. This drives player curiosity regarding the underlying lore.
-
-Accessible Complexity: Rather than introducing complex system or difficult Boss patterns, we re-utilized the most fundamental interaction—movement—to create a new layer of depth. This makes the challenge intuitive to understand yet demanding to master.
-
-Validated Innovation: Through internal peer reviews and consultation with Teaching Assistants (TAs), this "Control Inversion" was recognized as a highly creative and effective twist. It successfully balances psychological tension with gameplay fairness, a milestone our team is particularly proud of.
 
 ### 2.4✨Stakeholders✨
 
