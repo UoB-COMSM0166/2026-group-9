@@ -7,7 +7,7 @@
 
 ## ☣️KTV☣️
 
-> KTV☣️:Kill that Virus is a Roguelike game inspired by Vampire Survivors and Plague Inc. 
+> KTV☣️: Kill that Virus is a Roguelike game inspired by Vampire Survivors and Plague Inc. 
 > You play as a single cell within the human body, 
 > on a mission to purge all foreign pathogens and impurities. 
 > Players can dive into the Story Mode to experience a meticulously designed plot full of twists and turns, 
@@ -67,7 +67,7 @@
     - [3.3.2 Level Progression Logic](#level-progression-logic)
     - [3.3.3 Post-Game Narrative Sequence](#post-game-narrative-sequence)
 - [4. Implementation](#implementation)
-  - [4.1 The First Challenge: Optimizing Project Architecture](#optimizing-project-architecture)
+  - [4.1 The First Challenge: Camera Tracking](#camera-tracking)
   - [4.2 The Second Challenge: Enemy Module Design and Refinement](#enemy-module-design)
 - [5. Evaluation](#evaluation)
   - [5.1 SUS System Usability Scale](#sus-system-usability-scale)
@@ -129,10 +129,9 @@ Kill That Virus! (KTV) is a high-intensity roguelike survival game centered on c
 <img width="1143" height="642" alt="01" src="https://github.com/user-attachments/assets/2facee7c-fe9e-434b-82ae-f86a31ced699" />
 <img width="1144" height="672" alt="02" src="https://github.com/user-attachments/assets/40e3b476-f31b-47db-ac7c-c0e6fbdf4c21" />
 
+<a id="stakeholders"></a>
 
 ### 2.3✨Stakeholders✨
-
-<a id="stakeholders"></a>
 
 Stakeholder Analysis via Onion Diagram
 
@@ -148,7 +147,7 @@ External Environment: Encompasses global entities like Browser Vendors (Google/C
 
 <img width="1920" height="1080" alt="未命名" src="https://github.com/user-attachments/assets/2c0329f3-e80d-49f7-95e7-a00a67973e77" />
 
-💡Game Twist: The Glitch System & Inverted Controls💡 "Our game's most distinctive feature is the 'Glitch System.' Far from being a mere aesthetic choice, it represents true system-level corruption. When triggered, the system does not merely distort the screen; it actively erodes the core input-output loop by forcing 'Inverted Controls.' Suddenly, the player’s muscle memory—typically their greatest asset in survival games—becomes their most challenging obstacle.
+💡Game Twist: The Glitch System & Inverted Controls💡: "Our game's most distinctive feature is the 'Glitch System.' Far from being a mere aesthetic choice, it represents true system-level corruption. When triggered, the system does not merely distort the screen; it actively erodes the core input-output loop by forcing 'Inverted Controls.' Suddenly, the player’s muscle memory—typically their greatest asset in survival games—becomes their most challenging obstacle.
 
 From an HCI perspective, this design induces what we define as a 'Mental Model Collapse.' By reversing the expected outcome of a player's action, we force them to actively inhibit habitual, reflexive responses. This requires the user to instantly re-learn the inverted logic, adapting under immense cognitive pressure. It bridges the gap between simply playing a game and experiencing a simulated system breakdown, making the player feel the true anxiety of a system under viral siege.
 
@@ -162,13 +161,13 @@ We chose the Glitch System as a core mechanic because it elevates gameplay beyon
 
 <a id="architecture-overview"></a>
 
-### 3.1 Architecture Overview:
+### 3.1 Architecture Overview
 
 Our system architecture adheres to a fundamental core principle: every functional component and gameplay mechanic must remain highly focused on Kill That Virus! to eliminate functional redundancy. This focused architectural approach ensures a transparent and direct relationship between specific event triggers, real-time player feedback, and seamless system state transitions. For instance, as a player successfully eliminates enemies, the resulting state change—specifically kill count accumulation—directly drives the progression into subsequent levels. This hierarchical and highly interdependent design allows the entire system to be effectively decomposed into manageable, modular subsystems rather than adhering to a complex, monolithic, and hard-to-maintain codebase.
 
 <a id="class-design"></a>
 
-### 3.2 Class Design:
+### 3.2 Class Design
 
 Our class design prioritizes the principle of responsibility separation to manage the inherent complexity of a multi-stage infection battle. The Game Controller acts as the orchestrator, coordinating the main execution loop and overseeing the high-level gameState. The Player class encapsulates critical functionality, including movement physics, infection status (HP), and direct interactions with viral enemies. A dedicated Progression Component, operating within the system layer, serves as the single source of truth for the current kill count and various level thresholds, effectively translating gameplay performance into definitive state transitions. Other classes, such as the combat engine, represent domain-specific entities with their own autonomous update and collision behaviors. Finally, the UI/Victory layer, which encompasses the showComicBook module, presents the narrative conclusion and provides essential UI feedback based on these internal system states.
 
@@ -190,7 +189,7 @@ This modularity ensures that adding new viral strains or narrative comic pages o
 
 <a id="state-machine-diagram"></a>
 
-### 3.3: State Machine Diagram representing the Lifecycle of Game.
+### 3.3: State Machine Diagram representing the Lifecycle of Game
 
 The State Machine Diagram shows the dynamic progression logic of Kill That Virus!. The system initializes at the START_MENU and transitions into a series of combat states (LEVEL_1 to LEVEL_3) based on kill count triggers. A significant state transition occurs upon completing Level 3, where the ProgressionManager hands over control to the showComicBook module. This architectural choice ensures that the narrative conclusion is treated as a distinct state, isolating the comic-rendering logic from the primary combat engine. Any failure state (HP ≤ 0) is globally handled by transitioning to GAME_OVER, allowing for a complete system reset back to the menu.
 
@@ -198,7 +197,7 @@ The State Machine Diagram shows the dynamic progression logic of Kill That Virus
 
 <a id="behavioural-design"></a>
 
-#### 3.3.1 Behavioural Design:
+#### 3.3.1 Behavioural Design
 
 While the class diagram depicts the static structure, the behavioral design explains how critical gameplay events unfold. In our project, the most vital interaction is the Progression-to-Victory pipeline. This path begins when a valid collision results in an enemy's destruction, triggering a signal to the Progression Manager. Once identified that the kill count has reached the level-3 threshold, the system executes the triggerGameWin sequence. This involves a complex state shift: the combat loop is paused, the Ending BGM is initialized via user-start audio to satisfy browser security policies, and the Comic Controller assumes control of the rendering loop. This sequence demonstrates how a gameplay event propagates to become a state change and narrative feedback.
 
@@ -208,13 +207,13 @@ While the class diagram depicts the static structure, the behavioral design expl
 
 <a id="level-progression-logic"></a>
 
-#### 3.3.2 Level Progression Logic:
+#### 3.3.2 Level Progression Logic
 
 The dynamic progression of the game is governed by the checkProgress() method, which periodically evaluates performance metrics. In Level 2, for example, the system simultaneously monitors both the survival timer and the kill count, executing the goToLevel3() transition only when all criteria are met.
 
 <a id="post-game-narrative-sequence"></a>
 
-#### 3.3.3 Post-Game Narrative Sequence:
+#### 3.3.3 Post-Game Narrative Sequence
 
 The victory sequence employs asynchronous resource handling and user input. Upon reaching the final threshold, the Progression Manager signals the VictoryScene. To comply with browser security regarding autoplaying audio, we implement userStartAudio() during the first user interaction to unlock the context for the Ending BGM. Furthermore, we implemented a Fade-to-Black algorithm using a comicFadeAlpha variable in the update loop for smooth visual transitions. To ensure Atomicity, assets are loaded asynchronously, and showComicBook() is only invoked by sceneSwitch() once the isLoaded state is confirmed, preventing narrative gaps.
 
@@ -228,37 +227,41 @@ Our game, *Kill that Virus(KTV)*, is a top-down 2D survival shooter. Players con
 
 
 
-<a id="optimizing-project-architecture"></a>
+<a id="camera-tracking"></a>
 
-### 4.1 The First Challenge: Optimizing Project Architecture
+### 4.1 The First Challenge: Camera Tracking
 
-Our initial codebase implemented a game prototype, allowing players to control a cell to move and shoot to defend against enemies. However, all the code was concentrated in a single JavaScript file, leading to high coupling and hindering subsequent team collaboration.
+Our game map is much larger than the visible canvas, so the camera must follow the player while only showing part of the world. This created a technical challenge because the game had to manage two coordinate systems at the same time: *world coordinates* and *screen coordinates*. Player movement, enemy positions, bullets, and collision detection all happen in world space, But the canvas only displays the area currently covered by the camera!
 
-Therefore, following object-oriented programming and modular design principles, we redesigned the project architecture and split the original code. We divided the previously mixed functions into multiple modules based on their responsibilities, such as input processing, enemy generation, level progression, UI rendering, and entity objects.
+This caused several problems:
 
-The benefits of this approach are that different team members can be responsible for different modules, reducing merge conflicts and making subsequent debugging, adding new enemies, and incorporating new mechanics much easier. Through this refactoring, we adhered to the development principles of low coupling and high cohesion, gradually evolving the project from a single-file prototype into a more clearly structured and maintainable game application.
+- Mouse aiming had to be converted correctly from screen space to world space. 
+- Enemy spawning had to happen outside the visible canvas but still remain inside the map boundaries. 
+- Player movement also had to be limited by the world size rather than the canvas size. 
+- All enemies, bullets, and background elements needed to stay visually synchronized while the camera was moving.
+
+We solved this by introducing a camera offset system. The camera offset is calculated from the player’s position, allowing the player to stay near the center of the screen during normal movement. At the edges of the map, the offset is constrained so the camera does not show empty space outside the edge of map.
+
+All gameplay logic, including movement, enemy AI, bullet trajectories, and collision checks, is updated in world coordinates. Rendering is handled separately by applying the camera translation before drawing the world. UI elements are drawn after this step, so they stay fixed on the screen. For mouse aiming, we adjust the mouse position using the camera offset before calculating the bullet angle.
+
+This solution made movement, aiming, spawning, and rendering consistent across a larger map, and provided a stable foundation for later enemy and level systems.
 
 
 
 <a id="enemy-module-design"></a>
 
-### 4.2 The second challenge: Enemy module design and refinement
+### 4.2 The Second challenge: Enemy module design and refinement
 
 As a shooter, the enemy module is undoubtedly a crucial part of the game mechanics. Through multiple iterations, we gradually refined the enemy mechanics and enriched the variety of enemies.
 
-**Phase 1: Spawning, Chase, Collision, Camera tracking and Health Mechanisms**
+**Phase 1: Spawning, Chase, Collision, and Health Mechanisms**
 
-First, we need to ensure the implementation of the most basic mechanics. This phase was accomplished using `spawnEnemies()` and `updateEnemiesAndCombat()`. Our game map is much larger than the visible canvas, so the camera follows the player's movement, while enemies spawn outside the field of view. In this phase, we implemented:
+First, we need to ensure the implementation of the most basic mechanics. This phase was accomplished using `spawnEnemies()` and `updateEnemiesAndCombat()`. In this phase, we implemented:
 
-- Mouse aiming had to be correctly translated from screen space to world space;
-- Enemy spawn locations had to be around the player and not exceed the map boundaries;
-- All rendering had to be synchronized with camera movement.
 - Enemies will periodically spawn outside the player's field of view.
 - Enemies will continuously move towards the player. When the distance between an enemy and the player is less than the sum of the radii of their respective areas, it is considered a collision; the enemy dies and disappears, and the player's health decreases.
 - When the distance between an enemy and a bullet fired by the player is less than the radius of the enemy's area, it is considered a collision; the bullet disappears, and the enemy's health decreases. When the enemy's health reaches 0, it dies and disappears.
 - Enemy health, spawn speed, and movement speed increase as the level progresses.
-
-We solved this problem by introducing a camera offset system and always using world coordinates. Player movement, enemy positions, and bullet trajectories are all updated in world space, while rendering applies camera translation separately. For aiming, camera offset is used to correct the mouse position before calculating the bullet trajectory angle. For spawning, enemies spawn at a fixed distance around the player and are then confined to the world boundaries. This solution ensured smooth gameplay and consistent visuals even as map size, enemy numbers, and level complexity increased.
 
 **Phase 2: New Enemies, New Mechanics**
 
@@ -268,7 +271,7 @@ Building on the achievements of the previous step, we must consider how to incre
 - Particle effects and damage animations were introduced in `drawGameContent()`. When an enemy dies and disappears, a brief, scattered particle effect appears in its place; when an enemy collides with a bullet, it briefly turns white and flashes. These provide visual stimulation for the player.
 - The enemy spawn mechanism was modified. As the level progresses, there is a higher probability of spawning tanks and fast enemies, ensuring the game remains challenging.
 
-**Phase Three: More and Better Enemies and New Sound Effects**
+**Phase 3: More and Better Enemies and New Sound Effects**
 
 In the previous phase, although the enemy module was made more interesting, the simple, solid-color graphics were not aesthetically pleasing. Therefore, the next step is to optimize the art and music:
 
@@ -309,10 +312,10 @@ Descriptive statistics:
 | 9    | I felt   very confident using the   system.                  | Yes  | 4.60 | 5.00 | 0.49 | 4    | 5    | Exce llent (4.5   +) |
 | 10   | I needed to learn a lot   of things before I could use this   system. | No   | 1.70 | 1.00 | 1.27 | 1    | 5    | Poor (<3.   0)       |
 
-Project advantages (Q3, Q7, Q9, Q4, Q6): 
+**Project advantages (Q3, Q7, Q9, Q4, Q6):** 
 
 The game is easy to use and the threshold is low. It adopts the common style of the industry, which reduces the cognitive cost of players. It only needs a brief introduction, and the novice teaching will be added to the starting interface. 
-Good items (Q1, Q5, Q10): 
+**Good items (Q1, Q5, Q10):** 
 
 players' willingness to use, function integration needs to be improved. It is necessary to improve the playability and complexity of the game. 
 
@@ -322,7 +325,7 @@ At this stage, the later version will increase the playability and complexity of
 
 (2). As the level increases, new enemies and new mechanisms are added to improve the difficulty of the game.
 
-(3). Differential items (Q2, Q8):because the interface has not been introduced at this stage, and technical personnel still need to introduce the gameplay, so it is necessary to add a normative introduction process to assist players in getting started. At the same time, the operation fault tolerance design is added.
+(3). Differential items (Q2, Q8): because the interface has not been introduced at this stage, and technical personnel still need to introduce the gameplay, so it is necessary to add a normative introduction process to assist players in getting started. At the same time, the operation fault tolerance design is added.
 
 
 <a id="nasa"></a>
@@ -401,7 +404,7 @@ function assert(condition, testName) {
 
 resetPlayer();
 
-assert(player.x === 960 && player.y === 540 && player.hp === 10, "player’s initial HP=10, position=(960,540)";
+assert(player.x === 960 && player.y === 540 && player.hp === 10, "player’s initial HP=10, position=(960,540)");
 ```
 
 
@@ -555,9 +558,9 @@ If given the opportunity to develop a sequel, we hope to expand upon the current
 
 | Team Member     | Contribution |
 | --------------- | ------------ |
-| Jack Feng       | 1.0          |
-| Zhanyu Xu       | 1.0          |
-| Sinan Xu        | 1.0          |
+| Jack Feng       | 1.2          |
+| Zhanyu Xu       | 1.2          |
+| Sinan Xu        | 1.1          |
 | Yize Yang       | 1.0          |
 | Jianjiang Yang  | 1.0          |
 
