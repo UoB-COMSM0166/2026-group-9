@@ -1,11 +1,9 @@
 # 2026-group-9
-2026 COMSM0166 group 9
+> 2026 COMSM0166 group 9
 
 <img width="2816" height="1536" alt="MainMenuxx" src="https://github.com/user-attachments/assets/67b508d9-26b5-4efc-a537-fdf621297925" />
 
-📝[Link of our Kanban board]
-
-(https://offjjx.atlassian.net/jira/software/projects/GROUP/boards/34?atlOrigin=eyJpIjoiYWU5Y2M0ZmY3Y2NmNDExNzgzNGQ3MmViMWU3OTEzMmEiLCJwIjoiaiJ9)
+📝[Link of our Kanban board](https://offjjx.atlassian.net/jira/software/projects/GROUP/boards/34?atlOrigin=eyJpIjoiYWU5Y2M0ZmY3Y2NmNDExNzgzNGQ3MmViMWU3OTEzMmEiLCJwIjoiaiJ9)
 
 ## ☣️KTV☣️
 
@@ -35,7 +33,7 @@
 
 <img width="500" height="306" alt="GG" src="https://github.com/user-attachments/assets/30bbfdd6-388f-4230-8add-5f080297b00a" />
 
-🎮[Demo video!]
+🎮[Demo video!](https://youtu.be/3Va1YWV1nhU?si=u7KqALxQdLGPdWOX)
 
 https://youtu.be/OePKgiWGkU8
 
@@ -112,6 +110,10 @@ https://youtu.be/OePKgiWGkU8
 <a id="conceptual-process"></a>
 
 ### 2.1 Conceptual Process
+
+<img width="1280" height="720" alt="MyVideo_2" src="https://github.com/user-attachments/assets/f525a378-d631-4a9f-8728-5dcda3d18880" />
+
+
 When brainstorming for this game, we first proposed various game genres, including board games, Snake, Tetris, and Air Combat. After discussion and voting, we decided to develop a 2D survival shooter game (similar to Vampire Survivors), and split its development and expansion into two paths: the player character and enemies.
 
 For the player, we planned to incorporate multiple enhancement mechanics such as leveling up, weapons, equipment, and skills. For enemies, we intended to add diverse offensive mechanics including different enemy types, enemy skills, and enemy spawn quantities. Gameplay would be expanded by allowing players to level up and obtain weapon drops by defeating enemies.
