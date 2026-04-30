@@ -241,34 +241,25 @@ The benefits of this approach are that different team members can be responsible
 
 
 
-<a id="camera-tracking"></a>
+<a id="enemy-module-design"></a>
 
-### 4.2 The second challenge: Camera tracking
+### 4.2 The second challenge: Enemy module design and refinement
 
-Our game map is much larger than the visible canvas, so the camera follows the player's movement, while enemies spawn outside the field of view. This presented several challenges:
+As a shooter, the enemy module is undoubtedly a crucial part of the game mechanics. Through multiple iterations, we gradually refined the enemy mechanics and enriched the variety of enemies.
+
+**Phase 1: Spawning, Chase, Collision, Camera tracking and Health Mechanisms**
+
+First, we need to ensure the implementation of the most basic mechanics. This phase was accomplished using `spawnEnemies()` and `updateEnemiesAndCombat()`. Our game map is much larger than the visible canvas, so the camera follows the player's movement, while enemies spawn outside the field of view. In this phase, we implemented:
 
 - Mouse aiming had to be correctly translated from screen space to world space;
 - Enemy spawn locations had to be around the player and not exceed the map boundaries;
 - All rendering had to be synchronized with camera movement.
-
-We solved this problem by introducing a camera offset system and always using world coordinates. Player movement, enemy positions, and bullet trajectories are all updated in world space, while rendering applies camera translation separately. For aiming, camera offset is used to correct the mouse position before calculating the bullet trajectory angle. For spawning, enemies spawn at a fixed distance around the player and are then confined to the world boundaries. This solution ensured smooth gameplay and consistent visuals even as map size, enemy numbers, and level complexity increased.
-
-
-
-<a id="enemy-module-design"></a>
-
-### 4.3 The third challenge: Enemy module design and refinement
-
-As a shooter, the enemy module is undoubtedly a crucial part of the game mechanics. Through multiple iterations, we gradually refined the enemy mechanics and enriched the variety of enemies.
-
-**Phase 1: Spawning, Chase, Collision, and Health Mechanisms**
-
-First, we need to ensure the implementation of the most basic mechanics. This phase was accomplished using `spawnEnemies()` and `updateEnemiesAndCombat()`. In this phase, we implemented:
-
 - Enemies will periodically spawn outside the player's field of view.
 - Enemies will continuously move towards the player. When the distance between an enemy and the player is less than the sum of the radii of their respective areas, it is considered a collision; the enemy dies and disappears, and the player's health decreases.
 - When the distance between an enemy and a bullet fired by the player is less than the radius of the enemy's area, it is considered a collision; the bullet disappears, and the enemy's health decreases. When the enemy's health reaches 0, it dies and disappears.
 - Enemy health, spawn speed, and movement speed increase as the level progresses.
+
+We solved this problem by introducing a camera offset system and always using world coordinates. Player movement, enemy positions, and bullet trajectories are all updated in world space, while rendering applies camera translation separately. For aiming, camera offset is used to correct the mouse position before calculating the bullet trajectory angle. For spawning, enemies spawn at a fixed distance around the player and are then confined to the world boundaries. This solution ensured smooth gameplay and consistent visuals even as map size, enemy numbers, and level complexity increased.
 
 **Phase 2: New Enemies, New Mechanics**
 
