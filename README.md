@@ -225,70 +225,53 @@ The victory sequence employs asynchronous resource handling and user input. Upon
 
 ## 4. Implementation
 
-Our game, *Kill that Virus(KTV)*, is a top-down 2D survival shooter. Players control a cell moving through a large, scrolling map, defending against waves of enemies and navigating increasingly difficult levels.
+Our game, Kill that Virus(KTV), is a top-down 2D survival shooter. Players control a cell moving through a large, scrolling map, defending against waves of enemies and navigating increasingly difficult levels.
 
 
+4.1 The First Challenge: Camera Tracking
+Our game map is much larger than the visible canvas, so the camera must follow the player while only showing part of the world. This created a technical challenge because the game had to manage two coordinate systems at the same time: world coordinates and screen coordinates. Player movement, enemy positions, bullets, and collision detection all happen in world space, But the canvas only displays the area currently covered by the camera!
 
-<a id="optimizing-project-architecture"></a>
+This caused several problems:
 
-### 4.1 The First Challenge: Optimizing Project Architecture
+Mouse aiming had to be converted correctly from screen space to world space.
+Enemy spawning had to happen outside the visible canvas but still remain inside the map boundaries.
+Player movement also had to be limited by the world size rather than the canvas size.
+All enemies, bullets, and background elements needed to stay visually synchronized while the camera was moving.
+We solved this by introducing a camera offset system. The camera offset is calculated from the player’s position, allowing the player to stay near the center of the screen during normal movement. At the edges of the map, the offset is constrained so the camera does not show empty space outside the edge of map.
 
-Our initial codebase implemented a game prototype, allowing players to control a cell to move and shoot to defend against enemies. However, all the code was concentrated in a single JavaScript file, leading to high coupling and hindering subsequent team collaboration.
+All gameplay logic, including movement, enemy AI, bullet trajectories, and collision checks, is updated in world coordinates. Rendering is handled separately by applying the camera translation before drawing the world. UI elements are drawn after this step, so they stay fixed on the screen. For mouse aiming, we adjust the mouse position using the camera offset before calculating the bullet angle.
 
-Therefore, following object-oriented programming and modular design principles, we redesigned the project architecture and split the original code. We divided the previously mixed functions into multiple modules based on their responsibilities, such as input processing, enemy generation, level progression, UI rendering, and entity objects.
-
-The benefits of this approach are that different team members can be responsible for different modules, reducing merge conflicts and making subsequent debugging, adding new enemies, and incorporating new mechanics much easier. Through this refactoring, we adhered to the development principles of low coupling and high cohesion, gradually evolving the project from a single-file prototype into a more clearly structured and maintainable game application.
-
-
-
-<a id="camera-tracking"></a>
-
-### 4.2 The second challenge: Camera tracking
-
-Our game map is much larger than the visible canvas, so the camera follows the player's movement, while enemies spawn outside the field of view. This presented several challenges:
-
-- Mouse aiming had to be correctly translated from screen space to world space;
-- Enemy spawn locations had to be around the player and not exceed the map boundaries;
-- All rendering had to be synchronized with camera movement.
-
-We solved this problem by introducing a camera offset system and always using world coordinates. Player movement, enemy positions, and bullet trajectories are all updated in world space, while rendering applies camera translation separately. For aiming, camera offset is used to correct the mouse position before calculating the bullet trajectory angle. For spawning, enemies spawn at a fixed distance around the player and are then confined to the world boundaries. This solution ensured smooth gameplay and consistent visuals even as map size, enemy numbers, and level complexity increased.
+This solution made movement, aiming, spawning, and rendering consistent across a larger map, and provided a stable foundation for later enemy and level systems.
 
 
-
-<a id="enemy-module-design"></a>
-
-### 4.3 The third challenge: Enemy module design and refinement
-
+4.2 The Second challenge: Enemy module design and refinement
 As a shooter, the enemy module is undoubtedly a crucial part of the game mechanics. Through multiple iterations, we gradually refined the enemy mechanics and enriched the variety of enemies.
 
-**Phase 1: Spawning, Chase, Collision, and Health Mechanisms**
+Phase 1: Spawning, Chase, Collision, and Health Mechanisms
 
-First, we need to ensure the implementation of the most basic mechanics. This phase was accomplished using `spawnEnemies()` and `updateEnemiesAndCombat()`. In this phase, we implemented:
+First, we need to ensure the implementation of the most basic mechanics. This phase was accomplished using spawnEnemies() and updateEnemiesAndCombat(). In this phase, we implemented:
 
-- Enemies will periodically spawn outside the player's field of view.
-- Enemies will continuously move towards the player. When the distance between an enemy and the player is less than the sum of the radii of their respective areas, it is considered a collision; the enemy dies and disappears, and the player's health decreases.
-- When the distance between an enemy and a bullet fired by the player is less than the radius of the enemy's area, it is considered a collision; the bullet disappears, and the enemy's health decreases. When the enemy's health reaches 0, it dies and disappears.
-- Enemy health, spawn speed, and movement speed increase as the level progresses.
-
-**Phase 2: New Enemies, New Mechanics**
+Enemies will periodically spawn outside the player's field of view.
+Enemies will continuously move towards the player. When the distance between an enemy and the player is less than the sum of the radii of their respective areas, it is considered a collision; the enemy dies and disappears, and the player's health decreases.
+When the distance between an enemy and a bullet fired by the player is less than the radius of the enemy's area, it is considered a collision; the bullet disappears, and the enemy's health decreases. When the enemy's health reaches 0, it dies and disappears.
+Enemy health, spawn speed, and movement speed increase as the level progresses.
+Phase 2: New Enemies, New Mechanics
 
 Building on the achievements of the previous step, we must consider how to increase the fun of the enemies. This can be achieved by adding more enemies and implementing new mechanics. The achievements of this phase are as follows:
 
-- The const `ENEMY_POOL` was defined and populated in `enemy-pool.js`, defining three different enemy shapes and attributes: the *basic* enemy, the *tank* (high health but slow speed), and the *fast* enemy (low health but fast speed).
-- Particle effects and damage animations were introduced in `drawGameContent()`. When an enemy dies and disappears, a brief, scattered particle effect appears in its place; when an enemy collides with a bullet, it briefly turns white and flashes. These provide visual stimulation for the player.
-- The enemy spawn mechanism was modified. As the level progresses, there is a higher probability of spawning tanks and fast enemies, ensuring the game remains challenging.
-
-**Phase Three: More and Better Enemies and New Sound Effects**
+The const ENEMY_POOL was defined and populated in enemy-pool.js, defining three different enemy shapes and attributes: the basic enemy, the tank (high health but slow speed), and the fast enemy (low health but fast speed).
+Particle effects and damage animations were introduced in drawGameContent(). When an enemy dies and disappears, a brief, scattered particle effect appears in its place; when an enemy collides with a bullet, it briefly turns white and flashes. These provide visual stimulation for the player.
+The enemy spawn mechanism was modified. As the level progresses, there is a higher probability of spawning tanks and fast enemies, ensuring the game remains challenging.
+Phase 3: More and Better Enemies and New Sound Effects
 
 In the previous phase, although the enemy module was made more interesting, the simple, solid-color graphics were not aesthetically pleasing. Therefore, the next step is to optimize the art and music:
 
-- Two new enemies were introduced: the *sprinter*, which accelerates during a dash; and the *splitter*, which splits upon death.
+Two new enemies were introduced: the sprinter, which accelerates during a dash; and the splitter, which splits upon death.
 
-- Modified enemy appearance, replacing the original solid-color graphics with different 2D textures.
+Modified enemy appearance, replacing the original solid-color graphics with different 2D textures.
 
-- Plays a death sound effect when an enemy dies.
+Plays a death sound effect when an enemy dies.
 
----
 
 <a id="evaluation"></a>
 
