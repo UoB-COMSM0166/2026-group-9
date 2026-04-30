@@ -483,9 +483,9 @@ In the late stage of development, in order to improve efficiency and reduce cros
 |----------------|------------------------------|-------------------------------------|-------------------------------------------------------------------------------------------|
 | Jianjiang Yang | Player Character Development | Player Character & Auxiliary Systems| Implement character movement, attack, defense, healing and item systems; expand various attack methods and interaction logic |
 | Zhanyu Xu      | Enemy System Development     | Enemies            | Refactor project; Design enemy-related mechanisms; Design status bar and gameover interface |
-| Yize Yang      | UI Development               | Interface & Game Mode Flow          | Create start interface, story mode flow for the first two levels, reward interface for endless roguelike mode, etc. |
+| Yize Yang      | UI Development               | Interface & Game Mode Flow          | Create start interface, reward interface for endless roguelike mode, implement generation logic, progressive difficulty rules and reward mechanism for the endless mode etc. |
 | Sinan Xu       | Art & Narrative Integration  | Art Assets & Storytelling           | Integrate visual effects, animations, images and map resources; build game scenes; improve plot text and presentation |
-| Jack Feng      | Level & Difficulty Design     | Level Flow & Difficulty Tuning      | Design flow, rhythm and difficulty curve for the first two story levels; implement generation logic, progressive difficulty rules and reward mechanism for the third endless mode |
+| Jack Feng      | Level & Difficulty Design     | Level Flow & Difficulty Tuning      | Design flow, rhythm and difficulty curve for the first two story levels |
 
 
 In GitHub collaboration, we develop by creating independent branches. Each member completes the development work in his own code file, and finally integrates it, which not only ensures that the development progress does not interfere with each other, but also makes the overall code structure more standardized and easy to maintain.
