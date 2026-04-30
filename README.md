@@ -561,15 +561,13 @@ If given the opportunity to develop a sequel, we hope to expand upon the current
 
 ## 9. Contribution Statement
 
-```
-| Team Member   | Contribution |
-| ------------- | ------------ |
-| Jack Feng   | 1.2          |
-| Zhanyu Xu  | 1.2          |
-| Sinan Xu | 1.1          |
-| Yize Yang  | 1.0          |
-| Jianjiang Yang | 1.0          |
-```
+| Team Member     | Contribution |
+| --------------- | ------------ |
+| Jack Feng       | 1.2          |
+| Zhanyu Xu       | 1.2          |
+| Sinan Xu        | 1.1          |
+| Yize Yang       | 1.0          |
+| Jianjiang Yang  | 1.0          |
 
 ---
 
