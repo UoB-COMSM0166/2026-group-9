@@ -476,6 +476,8 @@ In the late stage of development, in order to improve efficiency and reduce cros
 
 In GitHub collaboration, we develop by creating independent branches. Each member completes the development work in his own code file, and finally integrates it, which not only ensures that the development progress does not interfere with each other, but also makes the overall code structure more standardized and easy to maintain.
 
+The project was developed based on modular labour division, with each team member responsible for independent functional modules. During later testing, the team encountered technical difficulties regarding the accurate calculation of map dimensions and player movement values. Through active communication and collaboration, all members jointly solved these technical problems. In the final stage, the team identified and fixed the player out-of-bounds bug, effectively optimizing gameplay and greatly improving game fluency and overall quality. Finally, a fully functional, stable and well-polished game was successfully delivered.
+
 <a id="sustainability"></a>
 
 ## 7. Sustainability Analysis: The Five Dimensions
