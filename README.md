@@ -44,11 +44,11 @@ https://youtu.be/OePKgiWGkU8
 ![b5fa1d2dc8a17b01f6c224e67302c3bb](https://github.com/user-attachments/assets/f1b4bfc4-1020-4e09-a5f2-37b27771b751)
 
 
-- Group member 1, Jack Feng, yj25938@bristol.ac.uk, role
-- Group member 2, Sinan Xu, pi25205@bristol.ac.uk , role
-- Group member 3, Yize Yang, jn25127@bristol.ac.uk, role
-- Group member 4, Zhanyu xu, pr25318@bristol.ac.uk, role
-- Group member 5, Jianjiang Yang, dx25555@bristol.ac.uk, role
+- Group member 1, Jack Feng, yj25938@bristol.ac.uk, Level Designer
+- Group member 2, Sinan Xu, pi25205@bristol.ac.uk , Graphic Designer
+- Group member 3, Yize Yang, jn25127@bristol.ac.uk, UI Designer
+- Group member 4, Zhanyu xu, pr25318@bristol.ac.uk, Enemy Designer
+- Group member 5, Jianjiang Yang, dx25555@bristol.ac.uk, Character Designer
 
 ---
 
@@ -65,16 +65,17 @@ https://youtu.be/OePKgiWGkU8
   - [3.1 Architecture Overview](#architecture-overview)
   - [3.2 Class Design](#class-design)
   - [3.3 State Machine Diagram](#state-machine-diagram)
-  - [3.3.1 Behavioural Design](#behavioural-design)
-  - [3.3.2 Level Progression Logic](#level-progression-logic)
-  - [3.3.3 Post-Game Narrative Sequence](#post-game-narrative-sequence)
+    - [3.3.1 Behavioural Design](#behavioural-design)
+    - [3.3.2 Level Progression Logic](#level-progression-logic)
+    - [3.3.3 Post-Game Narrative Sequence](#post-game-narrative-sequence)
 - [4. Implementation](#implementation)
   - [4.1 The First Challenge: Optimizing Project Architecture](#optimizing-project-architecture)
   - [4.2 The Second Challenge: Camera Tracking](#camera-tracking)
   - [4.3 The Third Challenge: Enemy Module Design and Refinement](#enemy-module-design)
 - [5. Evaluation](#evaluation)
-  - [5.1 Qualitative Analysis: Think Aloud](#qualitative-analysis)
-  - [5.2 Quantitative Evaluation](#quantitative-evaluation)
+  - [5.1 SUS System Usability Scale](#sus-system-usability-scale)
+  - [5.2 NASA](#nasa)
+  - [5.3 Testing](#testing)
 - [6. Process](#process)
   - [6.1 Discussion Process](#discussion-process)
   - [6.2 Use of Collaborative Tools](#collaborative-tools)
@@ -85,9 +86,12 @@ https://youtu.be/OePKgiWGkU8
   - [7.3 Social Dimension](#social-dimension)
   - [7.4 Economic Dimension](#economic-dimension)
   - [7.5 Environmental Dimension](#environmental-dimension)
-- [Conclusion](#conclusion)
-- [Contribution Statement](#contribution-statement)
-- [Additional Marks](#additional-marks)
+- [8. Conclusion](#conclusion)
+  - [8.1 Lessons Learnt](#lessons-learnt)
+  - [8.2 Reflect on Challenges](#reflect-on-challenges)
+  - [8.3 Future Work](#future-work)
+- [9. Contribution Statement](#contribution-statement)
+- [10. AI Statement](#ai-statement)
 
 ---
 
@@ -96,7 +100,8 @@ https://youtu.be/OePKgiWGkU8
 ## 1.Introduction
 
 - This game is based on Vampire Survivors and expands on the original gameplay with richer content and more diverse mechanics. It is a top-down 2D survival game in which players only need to use the WASD keys to control the character’s movement and the mouse to point toward enemies; the character will then attack automatically without additional input. Enemies continuously spawn outside the player’s field of view and quickly move toward the character to launch attacks. Whenever the character takes damage, their health bar decreases, and if health reaches zero, the run ends.
-- The core innovation of our game lies in the deep integration of classic roguelike elements into the original structure. Once the game starts, it proceeds in real time without pausing, creating a tense and immersive experience. After defeating a certain number of enemies, players earn rewards such as new weapons, passive items, or buffs that enhance their combat ability. As time passes, they face increasingly powerful and numerous enemy waves. Each run features random upgrades and enemy combinations, ensuring that no two playthroughs feel the same. 
+- The project expands the basic survival formula with multiple stages, different enemy types, skill-based support tools, and a roguelike mode. Enemies are not only spawned randomly, but are also generated according to the player’s camera position and the current stage, helping to create pressure while avoiding unfair on-screen spawning. The player can also use a shield, medkits, and different bullet modes, which makes survival depend not only on movement but also on timing and resource management.
+- A key feature of our game is the integration of roguelike elements into the real-time survival structure. In Roguelike Mode, the game continues without pausing for long periods, while the difficulty gradually increases over time. Players can receive random buff choices during the run, improving aspects such as damage, firing speed, movement speed, maximum health, or available medkits. These upgrades create different play styles across repeated attempts and make each run feel less predictable. Together with the story stages, countdown objectives, kill requirements, enemy waves, and visual/audio feedback, the game aims to provide a tense, replayable, and accessible survival shooting experience.
 
 ---
 
@@ -172,7 +177,7 @@ The most critical design decision made was to decouple the victory narrative fro
 
 
 
-Key Design Patterns:
+**Key Design Patterns:**
 
 Separation of Concerns: 
 
@@ -287,13 +292,11 @@ In the previous phase, although the enemy module was made more interesting, the 
 
 ## 5. ✍️Evaluation💭
 
-<a id="qualitative-analysis"></a>
 
 
+<a id="sus-system-usability-scale"></a>
 
-### 5. Quantitative Evaluation
-
-**SUS(System Usability Scale):**
+### 5.1 SUS(System Usability Scale)
 
 SUS is an internationally common user experience evaluation scale, which contains ten questions. The visualization results of the SUS table are as follows.
 
@@ -314,23 +317,30 @@ Descriptive statistics:
 | 9    | I felt   very confident using the   system.                  | Yes  | 4.60 | 5.00 | 0.49 | 4    | 5    | Exce llent (4.5   +) |
 | 10   | I needed to learn a lot   of things before I could use this   system. | No   | 1.70 | 1.00 | 1.27 | 1    | 5    | Poor (<3.   0)       |
 
-Project advantages (Q3, Q7, Q9, Q4, Q6): The game is easy to use and the threshold is low. It adopts the common style of the industry, which reduces the cognitive cost of players. It only needs a brief introduction, and the novice teaching will be added to the starting interface. 
-Good items (Q1, Q5, Q10): players' willingness to use, function integration needs to be improved. It is necessary to improve the playability and complexity of the game. At this stage, the later version will increase the playability and complexity of the game：
+Project advantages (Q3, Q7, Q9, Q4, Q6): 
+
+The game is easy to use and the threshold is low. It adopts the common style of the industry, which reduces the cognitive cost of players. It only needs a brief introduction, and the novice teaching will be added to the starting interface. 
+Good items (Q1, Q5, Q10): 
+
+players' willingness to use, function integration needs to be improved. It is necessary to improve the playability and complexity of the game. 
+
+At this stage, the later version will increase the playability and complexity of the game：
 
 (1). Increase the types of weapons, from ordinary firearms at this stage to pistols, sniper rifles, daggers and grenades, etc.
 
 (2). As the level increases, new enemies and new mechanisms are added to improve the difficulty of the game.
 
-3. Differential items (Q2, Q8):because the interface has not been introduced at this stage, and technical personnel still need to introduce the gameplay, so it is necessary to add a normative introduction process to assist players in getting started. At the same time, the operation fault tolerance design is added.
+(3). Differential items (Q2, Q8):because the interface has not been introduced at this stage, and technical personnel still need to introduce the gameplay, so it is necessary to add a normative introduction process to assist players in getting started. At the same time, the operation fault tolerance design is added.
 
 
-**NASA:**
+<a id="nasa"></a>
+
+### 5.2 NASA
 
 <img width="951" height="817" alt="image" src="https://github.com/user-attachments/assets/04c01bbd-5cc4-46f8-8208-6341cc988fbc" />
 
 
-*NASA-TLX Workload Assessment*
-Mean scores with standard deviation (n participants)  
+NASA-TLX Workload Assessment Mean scores with standard deviation (n participants)  
 Scale: 1-10
 
 | participants | Mean  | Standard Deviation | Minimum | 25th Percentile | Median (50th Percentile) | 75th Percentile | Maximum | Interquartile Range (IQR) |
@@ -349,31 +359,33 @@ Scale: 1-10
 
 In summary, the evaluation data of the above six core dimensions, as well as the discreteness and high and low score characteristics of the evaluator's score, from the three core directions of reducing unreasonable task load, improving player performance satisfaction, and reducing frustration, provide implementable optimization suggestions for the group's subsequent development, and adapt to the core attributes of the game "light experience, low threshold, high fun", as follows:
 
-1. High time pressure
+**1. High time pressure**
 
-The overall score of the time pressure dimension in the evaluation is high, indicating that the task promotion rhythm, operation response window, level timing settings, etc. of the current game are beyond the adaptation range of some players, resulting in urgent negative experiences for players. The difficulty of the primary level has been reduced,
+The overall score of the time pressure dimension in the evaluation is high, indicating that the task promotion rhythm, operation response window, level timing settings, etc. of the current game are beyond the adaptation range of some players, resulting in urgent negative experiences for players. 
 
 Optimize the level timing design: cancel the forced timing of non-core links (such as scene exploration and prop selection), and only set reasonable timing in the core challenge links; and the timing threshold refers to the completion speed setting of the evaluator with a low score, and reserve buffer time.
 
-2. Differentiated and high value of frustration , Effort and Performance Satisfaction do not match
+**2. Differentiated and high value of frustration , Effort and Performance Satisfaction do not match**
 
 The frustration score is highly scattered, This suggests that negative emotions mainly come from high failure costs, insufficient feedback, and sharp difficulty spikes, which hurt player retention. Too little positive payoff for the effort invested degrades the overall experience.
 Optimize the failure/retry system to reduce sunk cost: after failing a level, let players restart from a key checkpoint instead of the very beginning.
 Add more immediate positive feedback throughout: when players complete small actions — correct clicks, item pickups, mini-objectives — reinforce them with visual effects, short sound cues, and light numerical rewards, rather than only after the level. Even on mistakes, give gentle hints instead of accusatory messages.
 
 
-3. The score for the evaluator is very discrete.
+**3. The score for the evaluator is very discrete.**
 
 The scoring standard difference in all dimensions is high, indicating that the game experience of different players varies greatly.
 Do layered design for players: when entering the game for the first time, players can choose the difficulty or skip the preliminary test level. Unify the core interaction logic, reduce experience deviations, let players form operating habits, and reduce experience deviations caused by interaction inconsistency.
 
 
 
-**Testing:**
+<a id="testing"></a>
+
+### 5.3 Testing
 
 With the improvement of functions and pages in the future of the game, test codes will be added one after another to prevent errors, and the simple test code will be designed in the current version:
 
-1. White box test code
+**1. White box test code**
 
 It is used to verify internal functions and variable logic. The following code cases are only for display to test whether the player's initial health is correct and whether the position is in the middle:
 ```
@@ -401,7 +413,7 @@ assert(player.x === 960 && player.y === 540 && player.hp === 10, "player’s ini
 ```
 
 
-2. Black box test code
+**2. Black box test code**
 
 It is used to verify the performance of the player's input and output function, and give a case: the player presses the D key, and the output effect is that the character moves four units to the right:
 ```
@@ -468,8 +480,8 @@ In the late stage of development, in order to improve efficiency and reduce cros
 | Team Member    | Role                         | Module                              | Detailed Responsibilities                                                                 |
 |----------------|------------------------------|-------------------------------------|-------------------------------------------------------------------------------------------|
 | Jianjiang Yang | Player Character Development | Player Character & Auxiliary Systems| Implement character movement, attack, defense, healing and item systems; expand various attack methods and interaction logic |
-| Zhanyu Xu      | Enemy System Development     | Enemies (Minions + Boss)            | Design enemy AI, behavior patterns and attack methods; implement logic for level monsters and boss battles |
-| Yize Yang      | UI Development               | Interface & Game Mode Flow          | Create start interface, status bar, story mode flow for the first two levels, reward interface for endless roguelike mode, etc. |
+| Zhanyu Xu      | Enemy System Development     | Enemies            | Refactor project; Design enemy-related mechanisms; Design status bar and gameover interface |
+| Yize Yang      | UI Development               | Interface & Game Mode Flow          | Create start interface, story mode flow for the first two levels, reward interface for endless roguelike mode, etc. |
 | Sinan Xu       | Art & Narrative Integration  | Art Assets & Storytelling           | Integrate visual effects, animations, images and map resources; build game scenes; improve plot text and presentation |
 | Jack Feng      | Level & Difficulty Design     | Level Flow & Difficulty Tuning      | Design flow, rhythm and difficulty curve for the first two story levels; implement generation logic, progressive difficulty rules and reward mechanism for the third endless mode |
 
@@ -485,63 +497,59 @@ The project was developed based on modular labour division, with each team membe
 <a id="technical-dimension"></a>
 
 ### 7.1 Technical Dimension
-This dimension focuses on the "Maintainability," "Extensibility," and "Resource Efficiency" of the software.
-
-* **Modular Architecture and Maintainability:** The project logic is partitioned into 19 core modules (e.g., combat.js, spawn.js), demonstrating high-cohesion and low-coupling design principles. [cite_start]This reduces the Technical Debt generated during system evolution[cite: 185].
-* **Data-Driven Design and Extensibility:** By decoupling configuration through *enemy-pool.js* and *wave.js*, we have achieved flexible system scalability. [cite_start]This design aligns with the Extensibility metric in software sustainability, ensuring that adding new features in the future will not cause architectural collapse[cite: 48, 182].
+* **Modular Architecture and Maintainability:** The project logic is partitioned into 19 core modules (e.g., combat.js, spawn.js), demonstrating high-cohesion and low-coupling design principles. This reduces the Technical Debt generated during system evolution.
+* **Data-Driven Design and Extensibility:** By decoupling configuration through *enemy-pool.js* and *wave.js*, we have achieved flexible system scalability. This design aligns with the Extensibility metric in software sustainability, ensuring that adding new features in the future will not cause architectural collapse.
 * **Efficiency Optimization:** Optimizations of particle systems and rendering paths in *ui.js* and *combat.js* effectively reduced CPU utilization, implementing the efficiency principles of Green Coding.
 
 <a id="individual-dimension"></a>
 
 ### 7.2 Individual Dimension
-This dimension focuses on the user's "Health," "Privacy," and "Agency."
-
-* **User Agency:** The "Pick 1 of 3" Buff system in Roguelike mode (*victory.js*) provides players with strategic choices, enhancing their sense of control and engagement in the game.
+* **User Agency:** The "Pick 1 of 3" Buff system in Roguelike mode provides players with strategic choices, enhancing their sense of control and engagement in the game.
 * **Experience and Safety:** Through real-time UI feedback (e.g., *drawHealthBar* and *uiThermometerCold*), we ensure players maintain a clear understanding of the game state, reducing frustration. This contributes to maintaining user psychological health and game enjoyment.
 
 <a id="social-dimension"></a>
 
 ### 7.3 Social Dimension
-This dimension focuses on "Sense of Community" and "Participation and Communication."
-
 * **Community Engagement and Connectivity:** Our vision includes a "Multiplayer Mode," aimed at building social connections between players through technology, thereby strengthening the "Sense of Community".
 * **Narrative Participation:** By guiding players through the game's world via comics (*showComicBook*), we facilitate resonance and deep communication regarding the scenarios created by the developers, promoting social participation.
 
 <a id="economic-dimension"></a>
 
 ### 7.4 Economic Dimension
-This dimension focuses on "Value," "Innovation," and "Governance."
-
 * **Long-term Commercial Value:** The planned "Monetization Strategy" and "Transmedia Franchise Development" fall under Innovation and R&D. This is not merely for short-term profit, but to build a sustainable, long-term economic business model.
-* **Supply Chain Awareness:** As discussed in the lecture materials, our Phase 2 planning includes potential collaborative partnerships with external brands. This reflects a long-term management mindset regarding the business ecosystem and Value Chain.
+* **Supply Chain Awareness:** Our Phase 2 planning includes potential collaborative partnerships with external brands. This reflects a long-term management mindset regarding the business ecosystem and Value Chain.
 
 <a id="environmental-dimension"></a>
 
 ### 7.5 Environmental Dimension
-This dimension focuses on "Resource Utilization" and "Energy Efficiency."
-
 * **Efficient Resource Utilization:** During development, we implemented image compression and asset preloading (*asset-loader.js*) to minimize the loading of redundant resources, representing a direct reduction in the software's environmental impact.
-* **System Design Awareness:** Consistent with course recommendations, we optimized image processing and computational logic to achieve the goal of "Min resources, Max utilization."
+* **System Design Awareness:** We optimized image processing and computational logic to achieve the goal of "Min resources, Max utilization."
 
 <a id="conclusion"></a>
 
-## Conclusion
+## 8. Conclusion
 
 Looking back on our project, it was an extremely meaningful experience. From the initial brainstorming and defining the direction, to project division, initial implementation, gradual progress, and finally, completing the game, we faced many difficulties and challenges throughout the process. However, we overcame them and learned from them, making the game better.
 
-**Lessons learnt**
+<a id="lessons-learnt"></a>
+
+### 8.1 Lessons learnt
 
 One of the most important lessons we learned in this project was teamwork. As a team project, it's impossible for everyone to have exactly the same ideas. This necessitates establishing a clear framework and development constraints to ensure that each member doesn't work independently but rather pools their efforts to collaboratively develop the project.
 
 Furthermore, a regular review and feedback mechanism is crucial. A regular review mechanism ensures that the project develops systematically according to schedule and allows for modifications and adjustments to existing results based on feedback from other members, making the game more aligned with actual needs.
 
-**Reflect on challenges**
+<a id="reflect-on-challenges"></a>
+
+### 8.2 Reflect on challenges
 
 A significant technical challenge encountered in the project was the enemy spawning mechanism. Specifically, enemies needed to spawn randomly in a location outside the player's line of sight, but not outside the edge of the map. Additionally, the enemy spawning probability was affected by the current level's progress. The later the level, the lower the probability of low-level enemies spawning and the higher the probability of high-level enemies spawning. To address this challenge, we adopted a gradual improvement approach. We first designed the initial spawn and enemy type selection mechanism. After internal testing, team members provided feedback. Based on this feedback and referencing common design principles in similar survival shooters, we adopted a more reasonable spawn and enemy type selection mechanism.
 
 Another challenge was camera tracking. We wanted the camera to constantly follow the player's movement. We introduced a camera offset system and always used world coordinates. Player movement, enemy positions, and bullet trajectories are all updated in world space, and rendering is done using camera transformations. This approach ensures smooth gameplay and visual consistency, even as map size, enemy numbers, and level complexity increase.
 
-**Future Work**
+<a id="future-work"></a>
+
+### 8.3 Future Work
 
 In the short term, we will prioritize improving the current game's playability and balance, such as adding more enemy types, optimizing the level difficulty curve, improving the buff selection interface, and adding clearer operation prompts and combat feedback. Simultaneously, we also hope to add more statistical information, such as kill count, survival time, and damage taken, to make it easier for players to understand their performance.
 
@@ -551,20 +559,27 @@ If given the opportunity to develop a sequel, we hope to expand upon the current
 
 <a id="contribution-statement"></a>
 
-## Contribution Statement
+## 9. Contribution Statement
 
-- Provide a table of everyone's contribution, which *may* be used to weight individual grades. We expect that the contribution will be split evenly across team-members in most cases. Please let us know as soon as possible if there are any issues with teamwork as soon as they are apparent and we will do our best to help your team work harmoniously together.
+```
+| Team Member   | Contribution |
+| ------------- | ------------ |
+| Jack Feng   | 1.2          |
+| Zhanyu Xu  | 1.2          |
+| Sinan Xu | 1.1          |
+| Yize Yang  | 1.0          |
+| Jianjiang Yang | 1.0          |
+```
 
 ---
 
-<a id="additional-marks"></a>
+<a id="ai-statement"></a>
 
-## Additional Marks
+## 10. AI Statement
+Throughout the project development process, we used artificial intelligence (AI) to assist in development in a rational and prudent manner.
 
-You can delete this section in your own repo, it's just here for information. in addition to the marks above, we will be marking you on the following two points:
+In the early stages of the project, we used AI to help us concretize the game's concepts and assess the feasibility and difficulty of developing various systems, assisting us in selecting modules. Furthermore, AI played a significant role in architectural decisions, helping us construct a clear and reasonable project architecture and module division of labor, which facilitated subsequent collaboration.
 
-- **Quality** of report writing, presentation, use of figures and visual material (5% of report grade) 
-  - Please write in a clear concise manner suitable for an interested layperson. Write as if this repo was publicly available.
-- **Documentation** of code (5% of report grade)
-  - Organise your code so that it could easily be picked up by another team in the future and developed further.
-  - Is your repo clearly organised? Is code well commented throughout?
+During the development phase, to improve the game's visual presentation and player experience, we used AI to generate some art assets. More specifically, the game's map, bullets, and enemies were all drawn by team members, while the shield, pills, and weapon switch icons in the player's status bar were generated by GPT Image 2, and the player's shield texture was generated by DouBao.
+
+In summary, we used AI to reduce repetitive, low-level work, check for text errors, and improve specific visual effects. AI participated in the project as a learning and assistive tool. All core decisions and specific implementations were made by our team.
