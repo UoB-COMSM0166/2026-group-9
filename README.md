@@ -558,9 +558,9 @@ If given the opportunity to develop a sequel, we hope to expand upon the current
 
 | Team Member     | Contribution |
 | --------------- | ------------ |
-| Jack Feng       | 1.0          |
-| Zhanyu Xu       | 1.0          |
-| Sinan Xu        | 1.0          |
+| Jack Feng       | 1.2          |
+| Zhanyu Xu       | 1.2          |
+| Sinan Xu        | 1.1          |
 | Yize Yang       | 1.0          |
 | Jianjiang Yang  | 1.0          |
 
